@@ -1,0 +1,2 @@
+pkill qgis.bin
+qgis
