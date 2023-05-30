@@ -113,6 +113,7 @@ sudo echo -e 'Signed-By: '$KEY >> sudo tee -a $FILE
 # Python Packages
 sudo apt install -y python3-pip
 pip3 install \
+    beautifulsoup4 \
 	pylint \
     pb_tool \
 	nbclient \
