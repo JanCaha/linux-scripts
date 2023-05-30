@@ -1,7 +1,8 @@
 import os
 import sys
 import subprocess
-from typing import Tuple
+from typing import Tuple, Optional
+from pathlib import Path
 
 
 class Colors:
@@ -14,6 +15,51 @@ class Colors:
     CYAN = "\033[36m"
     WHITE = "\033[37m"
     NORMAL = "\033[0;39m"
+
+
+def print_color(text: str, color: str = Colors.RED) -> None:
+    print(color + text + Colors.NORMAL)
+
+
+def install_variables_file() -> Path():
+    return Path().home() / ".install_env_variables"
+
+
+def variables_file_exist():
+    return install_variables_file().exists()
+
+
+def get_install_variable(name: str) -> Optional[str]:
+    if variables_file_exist():
+        result = subprocess.Popen(
+            [
+                "/bin/zsh",
+                "-c",
+                f"source {install_variables_file().as_posix()};echo ${name}",
+            ],
+            stdout=subprocess.PIPE,
+        )
+        name = result.stdout.readline().decode("utf-8").replace("\n", "")
+
+        if name:
+            return name
+
+    return None
+
+
+def binary_exist(name: str) -> bool:
+    result = subprocess.Popen(
+        [
+            "whereis",
+            name,
+        ],
+        stdout=subprocess.PIPE,
+    )
+    text = result.stdout.readline().decode("utf-8").replace("\n", "").split(":")
+
+    if text[1]:
+        return True
+    return False
 
 
 def ubuntu_name() -> str:
