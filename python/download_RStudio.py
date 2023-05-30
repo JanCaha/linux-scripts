@@ -46,7 +46,7 @@ def main():
     existing_version = util_functions.get_install_variable("RStudioVersion")
 
     util_functions.print_color(
-        f"Online version: {version}. Version stored in file: {existing_version}.",
+        f"\tOnline version: {version}. Version stored in file: {existing_version}.",
         util_functions.Colors.GREEN,
     )
 
