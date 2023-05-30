@@ -41,7 +41,8 @@ sudo apt-get install -y \
     libcurl4-openssl-dev \
     libsqlite3-dev \
     pkg-config \
-    libnotify-dev
+    libnotify-dev \
+    ksnip
 
 # Clang
 sudo apt-get install -y \
