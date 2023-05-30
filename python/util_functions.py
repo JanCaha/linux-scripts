@@ -149,78 +149,51 @@ def return_code_and_err(process: subprocess.Popen) -> Tuple[int, str]:
     return (process.returncode, err)
 
 
-def gpg_dearmor(filename: str, url: str) -> Tuple[int, str]:
+def is_success(process: subprocess.Popen) -> bool:
+    return process.returncode == 0
+
+
+def check_dearmor(filename: Path) -> bool:
+    content = filename.read_text()
+    return (
+        "BEGIN PGP PUBLIC KEY BLOCK" in content
+        and "END PGP PUBLIC KEY BLOCK" in content
+    )
+
+
+def wget(filename: str, url: str) -> Tuple[int, str]:
+    commands = [
+        "sudo",
+        "wget",
+        "-O",
+        filename,
+        "-q",
+        url,
+    ]
     result = subprocess.Popen(
-        [
-            "sudo",
-            "curl",
-            "--fsSL",
-            url,
-            "|",
-            "sudo",
-            "gpg",
-            "--dearmor",
-            "-o",
-            filename,
-        ],
+        commands,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
+    result.wait()
 
     return return_code_and_err(result)
 
 
-def wget_gpg(filename: str, url: str) -> Tuple[int, str]:
-    result = subprocess.Popen(
-        [
-            "sudo",
-            "wget",
-            "-O",
-            filename,
-            url,
-        ],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-    )
-
-    return return_code_and_err(result)
-
-
-def wget_asc(filename: str, url: str) -> Tuple[int, str]:
-    result = subprocess.Popen(
-        [
-            "sudo",
-            "wget",
-            "-qO-",
-            url,
-            "|",
-            "sudo",
-            "tee",
-            "-a",
-            filename,
-        ],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-    )
-
-    return return_code_and_err(result)
-
-
-def curl_gpg(filename: str, url: str) -> Tuple[int, str]:
+def curl(filename: str, url: str) -> Tuple[int, str]:
     result = subprocess.Popen(
         [
             "sudo",
             "curl",
             "-fsSL",
             url,
-            "|",
-            "sudo",
-            "dd",
-            f"of={filename}",
+            "--output",
+            filename,
         ],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
+    result.wait()
 
     return return_code_and_err(result)
 
