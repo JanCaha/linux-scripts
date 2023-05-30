@@ -55,7 +55,10 @@ def main():
         args.keyring,
     )
 
-    print(f"Created successfully! {args.source_file}")
+    util_functions.print_color(
+        f"Created successfully!\n\tSource file at: {args.source_file}",
+        util_functions.Colors.GREEN,
+    )
 
 
 if __name__ == "__main__":

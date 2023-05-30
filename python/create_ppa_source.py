@@ -51,7 +51,9 @@ def main():
     ret_code, err = util_functions.add_key(args.keyring, args.keyring_fingerprint)
 
     if ret_code == 0:
-        print(f"Could not add given keyring!\n{err}")
+        util_functions.print_color(
+            f"Could not add given keyring!\n\t{err}", util_functions.Colors.RED
+        )
         sys.exit(ret_code)
 
     source_type = "deb"
@@ -67,8 +69,9 @@ def main():
         args.keyring,
     )
 
-    print(
-        f"Created successfully! \n\tSource file at: {args.source_file}. \n\tKeyring at: {args.keyring}."
+    util_functions.print_color(
+        f"Created successfully!\n\tSource file at: {args.source_file}\n\tKeyring at: {args.keyring}",
+        util_functions.Colors.GREEN,
     )
 
 
