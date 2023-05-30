@@ -67,7 +67,7 @@ def main():
             )
             subprocess.run(["rm", deb_file])
         else:
-            util_functions.print_color("Skipping RStudio instalation.")
+            util_functions.print_color("Skipping RStudio installation.")
     # url = "https://code.visualstudio.com/download"
     # r = s.get(url)
 
