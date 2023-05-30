@@ -70,17 +70,17 @@ SOURCEFILE=$SOURCES_FOLDER/git.sources
 FINGERPRINT=E1DD270288B4E6030699E45FA1715D88E1DF1F24
 URL=https://ppa.launchpadcontent.net/git-core/ppa/ubuntu
 
-create_new_ppa_source true $KEYRING $FINGERPRINT $SOURCEFILE $URL
+create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src
 
 sudo apt update
 sudo apt upgrade -y
 sudo apt-get -y install git
 
 # Docker
-KEYRING=$KEYS_FOLDER/docker-archive-keyring.gpg
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o $KEYRING
+KEYRING=$KEYS_FOLDER/docker-archive-keyring.asc
+download_keyfile.py $KEYRING https://download.docker.com/linux/ubuntu/gpg curl
 
-create_new_source_file false "$SOURCES_FOLDER/docker.sources" "https://download.docker.com/linux/ubuntu" $KEYRING $UBUNTU_CODENAME "stable"
+create_source_file.py $KEYRING $SOURCES_FOLDER/docker.sources "https://download.docker.com/linux/ubuntu"  --component "stable"
 
 sudo apt-get update
 sudo apt-get install -y \
@@ -94,21 +94,13 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 
 # VS code
-cd /tmp
-
-KEY=$KEYS_FOLDER/vscode.gpg
-
-wget -O- https://packages.microsoft.com/keys/microsoft.asc | sudo gpg --dearmor | sudo tee $KEY
-
+KEYRING=$KEYS_FOLDER/vscode.asc
 FILE=$SOURCES_FOLDER/vs-code.sources
-sudo touch $FILE
 
-sudo echo -e 'Types: deb' >> sudo tee -a $FILE
-sudo echo -e 'URIs: http://packages.microsoft.com/repos/code' >> sudo tee -a $FILE
-sudo echo -e 'Suites: stable' >> sudo tee -a $FILE
-sudo echo -e 'Architectures: '$(dpkg --print-architecture) >> sudo tee -a $FILE
-sudo echo -e 'Components: main' >> sudo tee -a $FILE
-sudo echo -e 'Signed-By: '$KEY >> sudo tee -a $FILE
+download_keyfile.py $KEYRING https://packages.microsoft.com/keys/microsoft.asc wget
+
+create_source_file.py $KEYRING $FILE http://packages.microsoft.com/repos/code  --component "main" --distro_code_name stable
+
 
 # Python Packages
 sudo apt install -y python3-pip
@@ -134,16 +126,16 @@ SOURCEFILE=$SOURCES_FOLDER/ubuntugis-stable.sources
 FINGERPRINT=6B827C12C2D425E227EDCA75089EBE08314DF160
 URL=https://ppa.launchpadcontent.net/ubuntugis/ppa/ubuntu
 
-create_new_ppa_source true $KEYRING $FINGERPRINT $URL
+create_ppa_source.py $KEYRING $FINGERPRINT $FINGERPRINT $URL --add-src
 
 # QGIS
 KEYRING=$KEYS_FOLDER/qgis-archive-keyring.gpg
 URL=https://qgis.org/ubuntu
 SOURCEFILE=$SOURCES_FOLDER/qgis.sources
 
-sudo wget -O $KEYRING https://download.qgis.org/downloads/qgis-archive-keyring.gpg
+download_keyfile.py $KEYRING https://download.qgis.org/downloads/qgis-archive-keyring.gpg wget
 
-create_new_source_file true $SOURCEFILE $URL $KEYRING
+create_source_file.py $KEYRING $SOURCEFILE $URL --add-src
 
 sudo apt update
 sudo apt upgrade -y
@@ -156,13 +148,16 @@ wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
 
 # R
 KEYRING=$KEYS_FOLDER/r-archive-keyring.asc
-wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a $KEYRING
-
-SOURCEFILE=$SOURCES_FOLDER/r.sources
+SOURCEFILE=$SOURCES_FOLDER/r.list
 FINGERPRINT=6B827C12C2D425E227EDCA75089EBE08314DF160
 URL=https://cloud.r-project.org/bin/linux/ubuntu
 
-create_new_source_file true $SOURCEFILE $URL $KEYRING 
+download_keyfile.py $KEYRING https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc wget
+# create_source_file.py $KEYRING $SOURCEFILE $URL --add-src --distro_code_name jammy-cran40 --component /
+
+echo "deb [signed-by=$KEYRING arch=amd64] https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/" | sudo tee $SOURCEFILE
+
+
 
 sudo apt-get update -y
 sudo apt-get install -y \
@@ -221,7 +216,7 @@ SOURCEFILE=$SOURCES_FOLDER/texstudio.sources
 FINGERPRINT=F4BB443370868B62A293947EB896ADA57C387DD3
 URL=https://ppa.launchpadcontent.net/sunderme/texstudio/ubuntu/
 
-python3 python/create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL true
+create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL true
 
 sudo apt-get update
 sudo apt-get install -y texstudio
@@ -235,7 +230,7 @@ SOURCEFILE=$SOURCES_FOLDER/strawberry.sources
 FINGERPRINT=BE5ED0F9261CAAD9A1E5B1A4CD6289E999EA819D
 URL=https://ppa.launchpadcontent.net/jonaski/strawberry/ubuntu
 
-python3 python/create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
+create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
 
 # Brave
 sudo curl -fsSLo $KEYS_FOLDER/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
@@ -252,7 +247,7 @@ SOURCEFILE=$SOURCES_FOLDER/peek.sources
 FINGERPRINT=8C9531299E7DF2DCF681B4999578539176BAFBC6
 URL=https://ppa.launchpadcontent.net/peek-developers/stable/ubuntu
 
-python3 python/create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
+create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
 
 sudo apt update
 sudo apt install -y \
@@ -262,8 +257,8 @@ sudo apt install -y \
 KEYRING=$KEYS_FOLDER/githubcli-archive-keyring.gpg
 SOURCEFILE=$SOURCES_FOLDER/github-cli.sources
 
-python3 python/download_keyfile.py $KEYRING https://cli.github.com/packages/githubcli-archive-keyring.gpg curl
-python3 python/create_source_file.py $KEYRING $SOURCEFILE https://cli.github.com/packages --distro_code_name stable
+download_keyfile.py $KEYRING https://cli.github.com/packages/githubcli-archive-keyring.gpg curl
+create_source_file.py $KEYRING $SOURCEFILE https://cli.github.com/packages --distro_code_name stable
 
 sudo apt-get update -y
 sudo apt-get install -y gh
@@ -288,7 +283,7 @@ SOURCEFILE=$SOURCES_FOLDER/strawberry.sources
 FINGERPRINT=BE5ED0F9261CAAD9A1E5B1A4CD6289E999EA819D
 URL=https://ppa.launchpadcontent.net/jonaski/strawberry/ubuntu
 
-create_new_ppa_source true $KEYRING $FINGERPRINT $SOURCEFILE $URL
+create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src
 sudo apt update
 sudo apt install -y strawberry
 
@@ -300,3 +295,15 @@ chsh -s $(which zsh)
 # NodeJS
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&\
 sudo apt-get install -y nodejs
+
+# CMake
+KEYRING=$KEYS_FOLDER/kitware.asc
+FILE=$SOURCES_FOLDER/cmake.sources
+URL=https://apt.kitware.com/ubuntu/
+
+download_keyfile.py $KEYRING https://apt.kitware.com/keys/kitware-archive-latest.asc wget
+
+create_source_file.py $KEYRING $FILE $URL --component main
+
+sudo apt-get update
+sudo apt-get install cmake
