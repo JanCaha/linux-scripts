@@ -24,27 +24,28 @@ def main():
 
     parser.add_argument(
         "type",
-        choices=["dearmor", "wget", "wget_asc", "curl"],
-        default="dearmor",
+        choices=["wget", "curl"],
+        default="wget",
         help="Type of Keyring download.",
     )
 
     args = parser.parse_args()
 
-    if args.type == "dearmor":
-        ret_code, err = util_functions.gpg_dearmor(args.keyring, args.keyring_url)
-    elif args.type == "wget":
-        ret_code, err = util_functions.wget_gpg(args.keyring, args.keyring_url)
-    elif args.type == "wget_asc":
-        ret_code, err = util_functions.wget_asc(args.keyring, args.keyring_url)
+    if args.type == "wget":
+        ret_code, err = util_functions.wget(args.keyring, args.keyring_url)
     elif args.type == "curl":
-        ret_code, err = util_functions.curl_gpg(args.keyring, args.keyring_url)
+        ret_code, err = util_functions.curl(args.keyring, args.keyring_url)
 
-    if ret_code == 0:
-        print(f"Could not add given keyring!\n{err}")
+    if ret_code != 0:
+        util_functions.print_color(
+            f"Could not add given keyring!\n\t{err}", util_functions.Colors.RED
+        )
         sys.exit(ret_code)
 
-    print(f"Added successfully!\n\tKeyring at: {args.keyring}.")
+    util_functions.print_color(
+        f"Added successfully!\n\tKeyring at: {args.keyring}",
+        util_functions.Colors.GREEN,
+    )
 
 
 if __name__ == "__main__":
