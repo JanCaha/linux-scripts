@@ -131,7 +131,6 @@ quartoUpdate=${quartoUpdate%"$toRemove"}
 
 if [[ "$quartoUpdate" != "$QuartoLastUpdate" ]]; then
     sudo curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb
-    sudo apt-get install gdebi-core
     sudo gdebi quarto-linux-amd64.deb -n
     sed -i "s/^QuartoLastUpdate=.*/QuartoLastUpdate='$quartoUpdate'/g" $VariablesFile
 else
@@ -174,14 +173,14 @@ echo ""
 echo -e "$YELLOW---RStudio update---$NORMAL"
 echo -e "$GREEN---$(rstudio --version)---$NORMAL"
 cd /tmp
-python3 $currentDir/python/download_RStudio.py $VariablesFile $RStudioVersion
+download_RStudio.py
 echo -e "$YELLOW---end RStudio update---$NORMAL"
 echo ""
 
 # FreeFileSync
 echo -e "$YELLOW---FreeFileSync update---$NORMAL"
 cd /tmp
-python3 $currentDir/python/download_FreeFileSync.py $VariablesFile $FreeFileSyncLastVersion
+download_FreeFileSync.py
 echo -e "$YELLOW---end FreeFileSync update---$NORMAL"
 echo ""
 
