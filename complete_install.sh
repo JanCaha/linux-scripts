@@ -17,6 +17,7 @@ sudo apt-get install -y \
     gnupg2 \
     software-properties-common \
     wget \
+    gdebi-core \
     gedit \
     gimp \
     inkscape \
