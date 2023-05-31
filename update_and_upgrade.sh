@@ -12,12 +12,13 @@ CYAN="\033[36m"
 WHITE="\033[37m"
 NORMAL="\033[0;39m"
 
+cd "$(dirname "$0")"
+
 # setup variables
 HomeFolder=~
 VariablesFile=$HomeFolder/.install_env_variables
-currentDir=$(pwd)/Documents/scripts
+currentDir=$(pwd)
 R_LIBS_USER=/home/cahik/R/x86_64-pc-linux-gnu-library/4.3
-
 
 echo "***"
 if [[ -f "$VariablesFile" ]]; then
@@ -94,7 +95,7 @@ echo ""
 echo -e "$YELLOW---R packages update---$NORMAL"
 Rscript -e "Sys.getenv('R_LIBS_USER')"
 Rscript -e ".libPaths()"
-Rscript -e "update.packages(ask=FALSE)"
+Rscript -e "update.packages(lib.loc = Sys.getenv('R_LIBS_USER'), ask=FALSE)"
 echo -e "$YELLOW---end R packages update---$NORMAL"
 echo ""
 
@@ -162,7 +163,7 @@ then
     deactivate
     sed -i "s/^OneDriveLastInstalledHash=.*/OneDriveLastInstalledHash='$currentHash'/g" $VariablesFile
 else
-    echo "Skipping OneDrive Update"
+    echo -e "$RED Skipping OneDrive Update $NORMAL"
 fi
 
 cd .. && rm -rf onedrive
@@ -173,14 +174,14 @@ echo ""
 echo -e "$YELLOW---RStudio update---$NORMAL"
 echo -e "$GREEN---$(rstudio --version)---$NORMAL"
 cd /tmp
-download_RStudio.py
+$currentDir/python/download_RStudio.py
 echo -e "$YELLOW---end RStudio update---$NORMAL"
 echo ""
 
 # FreeFileSync
 echo -e "$YELLOW---FreeFileSync update---$NORMAL"
 cd /tmp
-download_FreeFileSync.py
+$currentDir/python/download_FreeFileSync.py
 echo -e "$YELLOW---end FreeFileSync update---$NORMAL"
 echo ""
 
@@ -203,7 +204,7 @@ then
     sudo make install
     sed -i "s/^KrusaderLastInstalledHash=.*/KrusaderLastInstalledHash='$currentHash'/g" $VariablesFile
 else
-    echo "Skipping Krusader Update"
+    echo -e "$RED Skipping Krusader Update $NORMAL"
 fi
 
 cd .. && sudo rm -rf krusader
