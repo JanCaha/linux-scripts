@@ -1,7 +1,7 @@
 import os
 import sys
 import subprocess
-from typing import Tuple, Optional
+from typing import Tuple, Optional, TextIO
 from pathlib import Path
 
 
@@ -17,8 +17,32 @@ class Colors:
     NORMAL = "\033[0;39m"
 
 
-def print_color(text: str, color: str = Colors.RED) -> None:
-    print(color + text + Colors.NORMAL)
+def print_error(text: str) -> None:
+    print_color_output(text, Colors.RED, sys.stderr)
+
+
+def print_succes(text: str) -> None:
+    print_color_output(text, Colors.GREEN, sys.stdout)
+
+
+def print_info(text: str) -> None:
+    print_color_output(text, Colors.BLUE, sys.stdout)
+
+
+def print(
+    text: str,
+    color: str = Colors.RED,
+    output: TextIO = sys.stdout,
+) -> None:
+    print_color_output(text, color, output)
+
+
+def print_color_output(
+    text: str,
+    color: str = Colors.RED,
+    output: TextIO = sys.stdout,
+) -> None:
+    print(color + text + Colors.NORMAL, file=output)
 
 
 def install_variables_file() -> Path():
