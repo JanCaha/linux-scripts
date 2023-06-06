@@ -1,10 +1,10 @@
 #!/bin/bash
 QGIS_DIR=~/QGIS
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
-
 cd $QGIS_DIR
 
-if [ "$BRANCH" == "master" ];
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+if [ $BRANCH == "master" ];
 then
     BUILD_DIR=build-master
     mkdir $BUILD_DIR
