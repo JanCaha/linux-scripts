@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
 import argparse
+import typing
 
 import util_functions
 
 
-def main():
+def main(argv: typing.Optional[typing.Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser(
         prog="Create File Source",
         description="Create new File Source.",
@@ -40,7 +41,7 @@ def main():
         help="Component to add.",
     )
 
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     source_type = "deb"
     if args.add_src:
@@ -55,10 +56,11 @@ def main():
         args.keyring,
     )
 
-    util_functions.print_color(
-        f"Created successfully!\n\tSource file at: {args.source_file}",
-        util_functions.Colors.GREEN,
+    util_functions.print_success(
+        f"Created successfully!\n\tSource file at: {args.source_file}"
     )
+
+    return 0
 
 
 if __name__ == "__main__":
