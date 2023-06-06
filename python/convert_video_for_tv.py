@@ -4,11 +4,12 @@ import sys
 import argparse
 from pathlib import Path
 import subprocess
+import typing
 
 import util_functions
 
 
-def main():
+def main(argv: typing.Optional[typing.Sequence[str]] = None):
     parser = argparse.ArgumentParser(
         prog="Convert Video for Samsung TV",
         description="Convert video for Samsung TV.",
@@ -29,8 +30,8 @@ def main():
     args = parser.parse_args()
 
     if not args.input_file.exist():
-        print("Input File does not exist.", file=sys.stderr)
-        sys.exit(1)
+        util_functions.print_error("Input File does not exist.")
+        return 1
 
     output_file: Path = args.output_file
     if output_file.suffix.lower() != ".mp4":
@@ -55,8 +56,12 @@ def main():
         stdout=subprocess.PIPE,
     )
 
-    print(f"Created successfully! {args.source_file}")
+    util_functions.print_success(
+        f"Created successfully!\n\tResult file: {args.source_file}"
+    )
+
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
