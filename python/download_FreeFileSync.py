@@ -5,7 +5,6 @@ from bs4.element import Tag
 import requests
 import re
 import subprocess
-import sys
 
 import util_functions
 
@@ -26,10 +25,7 @@ def main():
     version: str
     file: str
 
-    util_functions.print_color(
-        "Checking out online version of FreeFileSync.",
-        util_functions.Colors.GREEN,
-    )
+    util_functions.print_info("Checking out online version of FreeFileSync.")
 
     for link in links:
         href = link.get("href")
@@ -43,12 +39,13 @@ def main():
 
     existing_version = util_functions.get_install_variable("FreeFileSyncLastVersion")
 
-    util_functions.print_color(
-        f"\tOnline version: {version}. Version stored in file: {existing_version}.",
-        util_functions.Colors.GREEN,
+    util_functions.print_info(
+        f"\tOnline version: {version}. Version stored in file: {existing_version}."
     )
 
     if version != existing_version or not util_functions.binary_exist("freefilesync"):
+        util_functions.print_info("Installing FreeFileSync ...")
+
         subprocess.run(["wget", url + tar_link])
         subprocess.run(["tar", "-xvf", file])
         unzipped = file.replace("Linux", "Install")
@@ -61,11 +58,13 @@ def main():
                 "sed",
                 "-i",
                 f"s/^FreeFileSyncLastVersion=.*/FreeFileSyncLastVersion='{version}'/g",
-                sys.argv[1],
+                util_functions.install_variables_file().as_posix(),
             ]
         )
+
+        util_functions.print_success("Installed new FreeFileSync version.")
     else:
-        util_functions.print_color("Skipping FreeFileSync installation.")
+        util_functions.print_skip("Skipping FreeFileSync installation.")
 
 
 if __name__ == "__main__":
