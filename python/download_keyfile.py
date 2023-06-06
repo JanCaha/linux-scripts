@@ -2,11 +2,12 @@
 
 import argparse
 import sys
+import typing
 
 import util_functions
 
 
-def main():
+def main(argv: typing.Optional[typing.Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser(
         prog="Get Keyfile",
         description="Get Keyfile.",
@@ -37,17 +38,13 @@ def main():
         ret_code, err = util_functions.curl(args.keyring, args.keyring_url)
 
     if ret_code != 0:
-        util_functions.print_color(
-            f"Could not add given keyring!\n\t{err}", util_functions.Colors.RED
-        )
-        sys.exit(ret_code)
+        util_functions.print_error(f"Could not add given keyring!\n\t{err}")
+        return ret_code
 
-    util_functions.print_color(
-        f"Added successfully!\n\tKeyring at: {args.keyring}",
-        util_functions.Colors.GREEN,
-    )
+    util_functions.print_success(f"Added successfully!\n\tKeyring at: {args.keyring}")
+    return 0
 
 
 if __name__ == "__main__":
     util_functions.check_su()
-    main()
+    sys.exit(main())
