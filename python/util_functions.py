@@ -29,6 +29,10 @@ def print_info(text: str) -> None:
     print_color_output(text, Colors.BLUE, sys.stdout)
 
 
+def print_skip(text: str) -> None:
+    print_color_output(text, Colors.YELLOW, sys.stdout)
+
+
 def print(
     text: str,
     color: str = Colors.RED,
