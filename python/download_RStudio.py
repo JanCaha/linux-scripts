@@ -24,10 +24,7 @@ def main():
 
     link: Tag
 
-    util_functions.print_color(
-        "Checking out online version of RStudio.",
-        util_functions.Colors.GREEN,
-    )
+    util_functions.print_info("Checking out online version of RStudio.")
 
     for link in links:
         href = link.get("href")
@@ -45,16 +42,13 @@ def main():
 
     existing_version = util_functions.get_install_variable("RStudioVersion")
 
-    util_functions.print_color(
-        f"\tOnline version: {version}. Version stored in file: {existing_version}.",
-        util_functions.Colors.GREEN,
+    util_functions.print_info(
+        f"\tOnline version: {version}. Version stored in file: {existing_version}."
     )
 
     if deb_link:
         if version != existing_version or not util_functions.binary_exist("rstudio"):
-            util_functions.print_color(
-                "Installing RStudio ...", util_functions.Colors.BLUE
-            )
+            util_functions.print_info("Installing RStudio ...")
             subprocess.run(["wget", deb_link])
             subprocess.run(["sudo", "dpkg", "-i", deb_file])
             subprocess.run(
@@ -66,12 +60,10 @@ def main():
                 ]
             )
             subprocess.run(["rm", deb_file])
-        else:
-            util_functions.print_color("Skipping RStudio installation.")
-    # url = "https://code.visualstudio.com/download"
-    # r = s.get(url)
 
-    # soup = BeautifulSoup(r.text, "html.parser")
+            util_functions.print_success("Installed new RStudio version.")
+        else:
+            util_functions.print_skip("Skipping RStudio installation.")
 
 
 if __name__ == "__main__":
