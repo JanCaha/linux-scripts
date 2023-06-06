@@ -21,7 +21,7 @@ def print_error(text: str) -> None:
     print_color_output(text, Colors.RED, sys.stderr)
 
 
-def print_succes(text: str) -> None:
+def print_success(text: str) -> None:
     print_color_output(text, Colors.GREEN, sys.stdout)
 
 
