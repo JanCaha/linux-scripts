@@ -34,7 +34,7 @@ else
 fi
 echo "***"
 
-echo $BLUE $currentDir $NORMAL
+echo $YELLOW $currentDir $NORMAL
 echo "***"
 
 source $VariablesFile
@@ -54,8 +54,8 @@ if [ "$?" -ne 0 ]; then
             No ) DELETELOCK=false;break;;
         esac
     done
-    
-    echo 'Deleting lock.'
+
+    echo -e "$BLUE Deleting lock. $NORMAL"
     
     if [ "$DELETELOCK" = true ] ; then
         echo 'Deleting locks!'
@@ -118,7 +118,7 @@ echo ""
 
 # quarto check and update
 echo -e "$YELLOW---Quarto update---$NORMAL"
-echo -e "$GREEN---$(quarto --version)---$NORMAL"
+echo -e "$BLUE---$(quarto --version)---$NORMAL"
 if [[ -z "$QuartoLastUpdate" ]]; then
     QuartoLastUpdate=""
 fi
@@ -135,14 +135,14 @@ if [[ "$quartoUpdate" != "$QuartoLastUpdate" ]]; then
     sudo gdebi quarto-linux-amd64.deb -n
     sed -i "s/^QuartoLastUpdate=.*/QuartoLastUpdate='$quartoUpdate'/g" $VariablesFile
 else
-    echo "Skipping Quarto Update"
+    echo -e "$PINK Skipping Quarto Update $NORMAL"
 fi
 echo -e "$YELLOW---end Quarto update---$NORMAL"
 echo ""
 
 # onedrive check and update
 echo -e "$YELLOW---OneDrive update---$NORMAL"
-echo -e "$GREEN---$(onedrive --version)---$NORMAL"
+echo -e "$BLUE---$(onedrive --version)---$NORMAL"
 # currentHash="$(git rev-parse HEAD)"
 currentHash="$(git ls-remote https://github.com/abraunegg/onedrive.git master | grep -i -E '[a-z|0-9]+' -o -m 1 | head -1)"
 
@@ -163,7 +163,7 @@ then
     deactivate
     sed -i "s/^OneDriveLastInstalledHash=.*/OneDriveLastInstalledHash='$currentHash'/g" $VariablesFile
 else
-    echo -e "$RED Skipping OneDrive Update $NORMAL"
+    echo -e "$PINK Skipping OneDrive Update $NORMAL"
 fi
 
 cd .. && rm -rf onedrive
@@ -172,7 +172,6 @@ echo ""
 
 # RStudio
 echo -e "$YELLOW---RStudio update---$NORMAL"
-echo -e "$GREEN---$(rstudio --version)---$NORMAL"
 cd /tmp
 $currentDir/python/download_RStudio.py
 echo -e "$YELLOW---end RStudio update---$NORMAL"
@@ -187,7 +186,7 @@ echo ""
 
 # krusader check and update
 echo -e "$YELLOW---Krusader update---$NORMAL"
-echo -e "$GREEN---$(krusader --version)---$NORMAL"
+echo -e "$BLUE---$(krusader --version)---$NORMAL"
 #currentHash="$(git rev-parse HEAD)"
 currentHash="$(git ls-remote https://invent.kde.org/utilities/krusader master | grep -i -E '[a-z|0-9]+' -o -m 1 | head -1)"
 
@@ -204,7 +203,7 @@ then
     sudo make install
     sed -i "s/^KrusaderLastInstalledHash=.*/KrusaderLastInstalledHash='$currentHash'/g" $VariablesFile
 else
-    echo -e "$RED Skipping Krusader Update $NORMAL"
+    echo -e "$PINK Skipping Krusader Update $NORMAL"
 fi
 
 cd .. && sudo rm -rf krusader
