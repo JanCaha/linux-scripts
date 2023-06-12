@@ -54,7 +54,8 @@ sudo apt-get install -y \
     ninja-build \
     g++-12 \
     doxygen \
-    cmake
+    cmake \
+    devscripts
 
 # Fd - find replacement
 sudo apt-get install -y fd-find
