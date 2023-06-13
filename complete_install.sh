@@ -55,7 +55,9 @@ sudo apt-get install -y \
     g++-12 \
     doxygen \
     cmake \
-    devscripts
+    devscripts \
+    libgtest-dev \
+    libgmock-dev
 
 # Fd - find replacement
 sudo apt-get install -y fd-find
