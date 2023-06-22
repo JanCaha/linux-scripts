@@ -311,3 +311,8 @@ create_source_file.py $KEYRING $FILE $URL --component main
 
 sudo apt-get update
 sudo apt-get install cmake
+
+# Rust, Cargo and packages
+sudo apt install cargo
+cargo install sd
+export PATH=~/.cargo/bin:$PATH
