@@ -4,6 +4,8 @@ source /etc/os-release
 KEYS_FOLDER=/usr/share/keyrings
 SOURCES_FOLDER=/etc/apt/sources.list.d
 
+QGIS_UNSTABLE=false
+
 sudo apt-get update 
 sudo apt-get upgrade -y 
 sudo apt autoremove -y
@@ -130,11 +132,28 @@ SOURCEFILE=$SOURCES_FOLDER/ubuntugis-stable.sources
 FINGERPRINT=6B827C12C2D425E227EDCA75089EBE08314DF160
 URL=https://ppa.launchpadcontent.net/ubuntugis/ppa/ubuntu
 
-create_ppa_source.py $KEYRING $FINGERPRINT $FINGERPRINT $URL --add-src
+create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src
+
+
+if [ "$QGIS_UNSTABLE" = "true" ]; then
+    echo "Using QGIS Unstable GIS!!!!!!!!!!!"
+    ## GIS unstable
+    KEYRING=$KEYS_FOLDER/ubuntugis-archive-keyring.gpg
+    SOURCEFILE=$SOURCES_FOLDER/ubuntugis-unstable.sources
+    FINGERPRINT=6B827C12C2D425E227EDCA75089EBE08314DF160
+    URL=https://ppa.launchpadcontent.net/ubuntugis/ubuntugis-unstable/ubuntu
+
+    create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src
+fi
 
 # QGIS
+if [ "$QGIS_UNSTABLE" = "true" ]; then
+    URL=https://qgis.org/ubuntugis
+else
+    URL=https://qgis.org/ubuntu
+fi
+
 KEYRING=$KEYS_FOLDER/qgis-archive-keyring.gpg
-URL=https://qgis.org/ubuntu
 SOURCEFILE=$SOURCES_FOLDER/qgis.sources
 
 download_keyfile.py $KEYRING https://download.qgis.org/downloads/qgis-archive-keyring.gpg wget
