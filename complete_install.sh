@@ -59,7 +59,8 @@ sudo apt-get install -y \
     cmake \
     devscripts \
     libgtest-dev \
-    libgmock-dev
+    libgmock-dev \
+    libpqxx-dev
 
 # Fd - find replacement
 sudo apt-get install -y fd-find
