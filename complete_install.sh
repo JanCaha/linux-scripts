@@ -181,8 +181,6 @@ download_keyfile.py $KEYRING https://cloud.r-project.org/bin/linux/ubuntu/marutt
 
 echo "deb [signed-by=$KEYRING arch=amd64] https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/" | sudo tee $SOURCEFILE
 
-
-
 sudo apt-get update -y
 sudo apt-get install -y \
     r-base \
@@ -330,7 +328,7 @@ download_keyfile.py $KEYRING https://apt.kitware.com/keys/kitware-archive-latest
 create_source_file.py $KEYRING $FILE $URL --component main
 
 sudo apt-get update
-sudo apt-get install cmake
+sudo apt-get install -y cmake
 
 # Rust, Cargo and packages
 sudo apt install cargo
