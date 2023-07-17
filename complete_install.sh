@@ -168,7 +168,7 @@ sudo apt-get install -y \
     libqgis-dev
 
 # TinyTeX
-wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
+# wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
 
 # R
 KEYRING=$KEYS_FOLDER/r-archive-keyring.asc
