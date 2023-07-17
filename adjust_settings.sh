@@ -14,3 +14,4 @@ fi
 
 echo "source /etc/os-release" >> $ZSHFILE
 echo 'alias open="nohup nemo . > /dev/null 2>&1 &"' >> $ZSHFILE
+echo 'alias gitreset="git reset --hard"' >> $ZSHFILE
