@@ -62,7 +62,8 @@ sudo apt-get install -y \
     devscripts \
     libgtest-dev \
     libgmock-dev \
-    libpqxx-dev
+    libpqxx-dev \
+    clang-format
 
 # Fd - find replacement
 sudo apt-get install -y fd-find
