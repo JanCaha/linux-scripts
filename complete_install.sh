@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 source /etc/os-release
 
 KEYS_FOLDER=/usr/share/keyrings
