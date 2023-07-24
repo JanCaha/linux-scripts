@@ -16,3 +16,4 @@ echo "source /etc/os-release" >> $ZSHFILE
 echo "source ~/Scripts/variables.sh" >> $ZSHFILE
 echo 'alias open="nohup nemo . > /dev/null 2>&1 &"' >> $ZSHFILE
 echo 'alias gitreset="git reset --hard"' >> $ZSHFILE
+echo 'alias sleep_computer="systemctl suspend"' >> $ZSHFILE
