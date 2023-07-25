@@ -130,10 +130,18 @@ URL=https://ppa.launchpadcontent.net/jancaha/gis-tools/ubuntu
 create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
 
 # PostreSQL
-KEYRING=$KEYS_FOLDER/pgadmin-archive-keyring.gpg
+KEYRING=$KEYS_FOLDER/pgadmin-archive-keyring.pub
 URL=https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$UBUNTU_CODENAME
 FILE=$SOURCES_FOLDER/pgadmin.sources
 
-curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add
+download_keyfile.py $KEYRING https://www.pgadmin.org/static/packages_pgadmin_org.pub curl
 
-sudo echo "deb [arch=amd64] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/jammy pgadmin4 main" > pgadmin4.list
+create_source_file.py $KEYRING $FILE $URL --component main --distro_code_name pgadmin4
+
+KEYRING=/usr/share/keyrings/postgresql-archive-keyring.asc
+URL=http://apt.postgresql.org/pub/repos/apt
+FILE=$SOURCES_FOLDER/pg.sources
+
+download_keyfile.py $KEYRING  https://www.postgresql.org/media/keys/ACCC4CF8.asc curl
+
+create_source_file.py $KEYRING $FILE $URL --distro_code_name "jammy-pgdg"
