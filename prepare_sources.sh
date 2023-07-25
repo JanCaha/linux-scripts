@@ -1,4 +1,9 @@
+#!/bin/bash
+source /etc/os-release
+
 echo "Adding sources!"
+
+sudo gpg -k
 
 KEYS_FOLDER=/usr/share/keyrings
 SOURCES_FOLDER=/etc/apt/sources.list.d
@@ -123,3 +128,12 @@ SOURCEFILE=$SOURCES_FOLDER/personal.sources
 FINGERPRINT=0002254B19F8B3682F060871D3AAC36377A9478A
 URL=https://ppa.launchpadcontent.net/jancaha/gis-tools/ubuntu
 create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
+
+# PostreSQL
+KEYRING=$KEYS_FOLDER/pgadmin-archive-keyring.gpg
+URL=https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$UBUNTU_CODENAME
+FILE=$SOURCES_FOLDER/pgadmin.sources
+
+curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add
+
+sudo echo "deb [arch=amd64] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/jammy pgadmin4 main" > pgadmin4.list
