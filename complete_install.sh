@@ -70,9 +70,9 @@ sudo apt-get install -y fd-find
 ln -s $(which fdfind) ~/.local/bin/fd
 
 # redshift
-sudo apt-get remove redshift-gtk
+sudo apt-get remove -y redshift-gtk
 rm ~/.config/redshift.conf
-sudo apt-get install redshift
+sudo apt-get install -y redshift
 
 # GIT
 sudo apt update
@@ -125,7 +125,7 @@ sudo apt-get install -y \
     r-base \
     r-base-dev
 
-sudo apt install -y \
+sudo apt-get install -y \
 	libudunits2-dev \
 	gdal-bin \
 	libgdal-dev \
