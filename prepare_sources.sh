@@ -145,3 +145,12 @@ FILE=$SOURCES_FOLDER/pg.sources
 download_keyfile.py $KEYRING  https://www.postgresql.org/media/keys/ACCC4CF8.asc curl
 
 create_source_file.py $KEYRING $FILE $URL --distro_code_name "jammy-pgdg"
+
+# Wine
+KEYRING=$KEYS_FOLDER/winehq.key
+URL=https://dl.winehq.org/wine-builds/ubuntu/
+FILE=$SOURCES_FOLDER/wine.sources
+
+download_keyfile.py $KEYRING https://dl.winehq.org/wine-builds/winehq.key wget
+
+create_source_file.py $KEYRING $FILE $URL
