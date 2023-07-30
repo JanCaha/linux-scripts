@@ -200,7 +200,7 @@ sudo gdebi quarto-linux-amd64.deb
 cd /tmp
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 chmod +x Miniconda3-latest-Linux-x86_64.sh
-sudo ./Miniconda3-latest-Linux-x86_64.sh -b -f -p ~$USER/miniconda3
+./Miniconda3-latest-Linux-x86_64.sh -b -f -p ~$USER/miniconda3
 
 # QtCreator
 sudo apt-get install -y qtcreator
