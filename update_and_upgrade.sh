@@ -102,7 +102,9 @@ echo ""
 # conda update
 echo -e "$YELLOW---conda update---$NORMAL"
 source ~/miniconda3/etc/profile.d/conda.sh
-conda update -y -n base -c conda
+conda update -y conda
+# in case of issues maybe ownership of the miniconda install is the case
+# sudo chown -R $USER:$USER ~/miniconda3
 # conda update -y -n base -c conda conda-forge
 echo -e "$YELLOW---end conda update---$NORMAL"
 echo ""
