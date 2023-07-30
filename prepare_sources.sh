@@ -153,4 +153,4 @@ FILE=$SOURCES_FOLDER/wine.sources
 
 download_keyfile.py $KEYRING https://dl.winehq.org/wine-builds/winehq.key wget
 
-create_source_file.py $KEYRING $FILE $URL
+create_source_file.py $KEYRING $FILE $URL --architecture "i386"

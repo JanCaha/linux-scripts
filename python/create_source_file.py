@@ -41,6 +41,12 @@ def main(argv: typing.Optional[typing.Sequence[str]] = None) -> int:
         help="Component to add.",
     )
 
+    parser.add_argument(
+        "--architecture",
+        default=None,
+        help="Architecture to add.",
+    )
+
     args = parser.parse_args(argv)
 
     source_type = "deb"
@@ -54,11 +60,10 @@ def main(argv: typing.Optional[typing.Sequence[str]] = None) -> int:
         args.distro_code_name,
         args.component,
         args.keyring,
+        args.architecture,
     )
 
-    util_functions.print_success(
-        f"Created successfully!\n\tSource file at: {args.source_file}"
-    )
+    util_functions.print_success(f"Created successfully!\n\tSource file at: {args.source_file}")
 
     return 0
 

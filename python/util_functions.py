@@ -1,8 +1,8 @@
 import os
-import sys
 import subprocess
-from typing import Tuple, Optional, TextIO
+import sys
 from pathlib import Path
+from typing import Optional, TextIO, Tuple
 
 
 class Colors:
@@ -97,10 +97,10 @@ def ubuntu_name() -> str:
     return name
 
 
-def architecture() -> str:
+def get_architecture() -> str:
     result = subprocess.Popen(
         [
-            "/bin/zsh",
+            "/bin/bash",
             "-c",
             "echo $(dpkg --print-architecture)",
         ],
@@ -149,13 +149,17 @@ def create_source_file(
     distro_code: str,
     component: str,
     keyring: str,
+    architecture: str = None,
 ) -> None:
+    if architecture is None:
+        architecture = get_architecture()
+
     with open(filename, "w+") as file:
         text = [
             f"Types: {source_type}",
             f"URIs: {url}",
             f"Suites: {distro_code}",
-            f"Architectures: {architecture()}",
+            f"Architectures: {architecture}",
             f"Components: {component}",
             f"Signed-By: {keyring}",
         ]
@@ -175,10 +179,7 @@ def is_success(process: subprocess.Popen) -> bool:
 
 def check_dearmor(filename: Path) -> bool:
     content = filename.read_text()
-    return (
-        "BEGIN PGP PUBLIC KEY BLOCK" in content
-        and "END PGP PUBLIC KEY BLOCK" in content
-    )
+    return "BEGIN PGP PUBLIC KEY BLOCK" in content and "END PGP PUBLIC KEY BLOCK" in content
 
 
 def wget(filename: str, url: str) -> Tuple[int, str]:
