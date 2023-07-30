@@ -101,7 +101,7 @@ echo ""
 
 # conda update
 echo -e "$YELLOW---conda update---$NORMAL"
-source /home/cahik/miniconda3/etc/profile.d/conda.sh
+source ~/miniconda3/etc/profile.d/conda.sh
 conda update -y -n base -c conda
 # conda update -y -n base -c conda conda-forge
 echo -e "$YELLOW---end conda update---$NORMAL"
