@@ -235,3 +235,7 @@ sudo apt-get install -y \
 sudo apt install -y \
     pgadmin4 \
     libpq-dev libpqxx-dev # libraries
+
+# Samba
+sudo apt-get -y install samba 
+sudo usermod -aG sambashare $USER
