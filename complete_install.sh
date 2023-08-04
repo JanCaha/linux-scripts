@@ -116,6 +116,10 @@ sudo apt-get install -y \
     qgis \
     libqgis-dev
 
+# GRASS
+sudo apt-get install -y \
+    grass-gui
+
 # TinyTeX
 # wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
 
