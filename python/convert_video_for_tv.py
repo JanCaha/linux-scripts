@@ -33,7 +33,7 @@ def main(argv: typing.Optional[typing.Sequence[str]] = None):
 
     args = parser.parse_args()
 
-    if not args.input_file.exist():
+    if not args.input_file.exists():
         util_functions.print_error("Input File does not exist.")
         return 1
 
