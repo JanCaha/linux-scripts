@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-import sys
 import argparse
-from pathlib import Path
 import subprocess
+import sys
 import typing
+from pathlib import Path
 
 import util_functions
 
@@ -63,9 +63,7 @@ def main(argv: typing.Optional[typing.Sequence[str]] = None):
         stdout=subprocess.PIPE,
     )
 
-    util_functions.print_success(
-        f"Created successfully!\n\tResult file: {args.source_file}"
-    )
+    util_functions.print_success(f"Created successfully!\n\tResult file: {args.source_file}")
 
     return 0
 
