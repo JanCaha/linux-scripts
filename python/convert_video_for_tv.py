@@ -22,9 +22,11 @@ def main(argv: typing.Optional[typing.Sequence[str]] = None):
     )
 
     parser.add_argument(
-        "output_file",
+        "-o",
+        "--output_file",
         help="Output File.",
         type=Path,
+        required=False,
     )
 
     args = parser.parse_args()
@@ -33,9 +35,12 @@ def main(argv: typing.Optional[typing.Sequence[str]] = None):
         util_functions.print_error("Input File does not exist.")
         return 1
 
-    output_file: Path = args.output_file
-    if output_file.suffix.lower() != ".mp4":
-        output_file = output_file.parent / f"{output_file.stem}.mp4"
+    if args.output_file:
+        output_file: Path = args.output_file
+        if output_file.suffix.lower() != default_suffix:
+            output_file = output_file.parent / f"{output_file.stem}{default_suffix}"
+    else:
+        output_file = args.input_file.with_suffix(default_suffix)
 
     subprocess.Popen(
         [
