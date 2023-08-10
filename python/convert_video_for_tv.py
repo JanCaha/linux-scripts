@@ -10,6 +10,8 @@ import util_functions
 
 
 def main(argv: typing.Optional[typing.Sequence[str]] = None):
+    default_suffix = ".mp4"
+
     parser = argparse.ArgumentParser(
         prog="Convert Video for Samsung TV",
         description="Convert video for Samsung TV.",
