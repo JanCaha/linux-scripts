@@ -154,3 +154,10 @@ FILE=$SOURCES_FOLDER/wine.sources
 download_keyfile.py $KEYRING https://dl.winehq.org/wine-builds/winehq.key wget
 
 create_source_file.py $KEYRING $FILE $URL --architecture "i386"
+
+# LibreOffice PPA
+KEYRING=$KEYS_FOLDER/libre-office.gpg
+SOURCEFILE=$SOURCES_FOLDER/libre-office.sources
+FINGERPRINT=36E81C9267FD1383FCC4490983FBA1751378B444
+URL=https://ppa.launchpadcontent.net/libreoffice/ppa/ubuntu
+create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
