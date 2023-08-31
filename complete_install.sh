@@ -47,7 +47,8 @@ sudo apt-get install -y \
     libsqlite3-dev \
     pkg-config \
     libnotify-dev \
-    ksnip
+    ksnip \
+    okular 
 
 # Clang
 sudo apt-get install -y \
