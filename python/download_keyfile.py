@@ -7,7 +7,7 @@ import typing
 import util_functions
 
 
-def main(argv: typing.Optional[typing.Sequence[str]] = None) -> int:
+def main(_argv: typing.Optional[typing.Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser(
         prog="Get Keyfile",
         description="Get Keyfile.",
