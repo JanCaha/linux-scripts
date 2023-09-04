@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 
-from bs4 import BeautifulSoup
-from bs4.element import Tag
-import requests
 import re
 import subprocess
 
-
+import requests
 import util_functions
+from bs4 import BeautifulSoup
+from bs4.element import Tag
 
 
 def main():
