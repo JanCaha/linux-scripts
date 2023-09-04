@@ -154,7 +154,7 @@ def create_source_file(
     if architecture is None:
         architecture = get_architecture()
 
-    with open(filename, "w+") as file:
+    with open(filename, "w+", encoding="utf-8") as file:
         text = [
             f"Types: {source_type}",
             f"URIs: {url}",
