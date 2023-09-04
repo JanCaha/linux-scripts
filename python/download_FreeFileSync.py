@@ -39,27 +39,26 @@ def main():
 
     existing_version = util_functions.get_install_variable("FreeFileSyncLastVersion")
 
-    util_functions.print_info(
-        f"\tOnline version: {version}. Version stored in file: {existing_version}."
-    )
+    util_functions.print_info(f"\tOnline version: {version}. Version stored in file: {existing_version}.")
 
     if version != existing_version or not util_functions.binary_exist("freefilesync"):
         util_functions.print_info("Installing FreeFileSync ...")
 
-        subprocess.run(["wget", url + tar_link])
-        subprocess.run(["tar", "-xvf", file])
+        subprocess.run(["wget", url + tar_link], check=True)
+        subprocess.run(["tar", "-xvf", file], check=True)
         unzipped = file.replace("Linux", "Install")
         unzipped = unzipped.replace("tar.gz", "run")
         print(unzipped)
-        subprocess.run(["chmod", "+x", unzipped])
-        subprocess.run(["sudo", f"./{unzipped}"])
+        subprocess.run(["chmod", "+x", unzipped], check=True)
+        subprocess.run(["sudo", f"./{unzipped}"], check=True)
         subprocess.run(
             [
                 "sed",
                 "-i",
                 f"s/^FreeFileSyncLastVersion=.*/FreeFileSyncLastVersion='{version}'/g",
                 util_functions.install_variables_file().as_posix(),
-            ]
+            ],
+            check=True,
         )
 
         util_functions.print_success("Installed new FreeFileSync version.")
