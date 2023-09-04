@@ -74,6 +74,10 @@ echo ""
 # apt update
 echo -e "$YELLOW---apt update---$NORMAL"
 sudo apt update
+echo -e "$GREEN---Upgradable packages---"
+apt list --upgradable
+echo -e "$GREEN---------$NORMAL"
+echo -e "\n\n\n"
 sudo apt upgrade -y
 sudo apt autoremove -y
 echo -e "$YELLOW---end apt update---$NORMAL"
