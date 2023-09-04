@@ -9,7 +9,7 @@ from pathlib import Path
 import util_functions
 
 
-def main(argv: typing.Optional[typing.Sequence[str]] = None):
+def main(_argv: typing.Optional[typing.Sequence[str]] = None):
     default_suffix = ".mp4"
 
     parser = argparse.ArgumentParser(
