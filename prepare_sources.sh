@@ -161,3 +161,12 @@ SOURCEFILE=$SOURCES_FOLDER/libre-office.sources
 FINGERPRINT=36E81C9267FD1383FCC4490983FBA1751378B444
 URL=https://ppa.launchpadcontent.net/libreoffice/ppa/ubuntu
 create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
+
+#VirtualBox
+KEYRING=$KEYS_FOLDER/virtualbox.key
+URL=https://download.virtualbox.org/virtualbox/debian
+FILE=$SOURCES_FOLDER/virtualbox.sources
+
+download_keyfile.py $KEYRING https://www.virtualbox.org/download/oracle_vbox_2016.asc wget
+
+create_source_file.py $KEYRING $FILE $URL --component contrib

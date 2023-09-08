@@ -244,3 +244,6 @@ sudo apt install -y \
 # Samba
 sudo apt-get -y install samba 
 sudo usermod -aG sambashare $USER
+
+# VirtualBox
+sudo apt-get install -y virtualbox
