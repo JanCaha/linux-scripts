@@ -10,5 +10,5 @@ Run manually:
 sudo apt install -y git zsh
 cd /tmp
 git clone https://github.com/JanCaha/linux-scripts.git
-PATH=PATH:/tmp/linux-scripts:/tmp/linux-scripts/python
+PATH=$PATH:/tmp/linux-scripts:/tmp/linux-scripts/python
 ```
