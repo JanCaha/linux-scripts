@@ -18,3 +18,7 @@ echo 'alias open="nohup nemo . > /dev/null 2>&1 &"' >> $ZSHFILE
 echo 'alias gitreset="git reset --hard"' >> $ZSHFILE
 echo 'alias sleep_computer="systemctl suspend"' >> $ZSHFILE
 echo 'alias conda_activate="source ~/miniconda3/etc/profile.d/conda.sh"' >> $ZSHFILE
+
+# install additons
+cd ~/.oh-my-zsh/custom/plugins
+git clone https://github.com/zpm-zsh/zshmarks.git bookmarks # activate by adding bookmarks to ~/.zshrc plugins=(plugins)
