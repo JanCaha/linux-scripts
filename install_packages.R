@@ -1,0 +1,11 @@
+install.packages(c(
+    "tidyverse", 
+    "tidymodels",
+    "tidyclust",
+    "here",
+    "shiny",
+    "terra", 
+    "sf", 
+    "sabre",
+    "SpatialKDE"
+    ))
