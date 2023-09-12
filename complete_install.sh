@@ -247,3 +247,6 @@ sudo usermod -aG sambashare $USER
 
 # VirtualBox
 sudo apt-get install -y virtualbox
+
+# R packages
+Rscript install_packages.R
