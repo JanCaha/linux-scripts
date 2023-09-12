@@ -138,7 +138,8 @@ sudo apt-get install -y \
 	libharfbuzz-dev \
 	libfribidi-dev \
 	libssh-dev \
-	qpdf
+	qpdf \
+    libfontconfig1-dev
 
 # Krusader
 sudo apt-get install -y \
