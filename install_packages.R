@@ -7,5 +7,7 @@ install.packages(c(
     "terra", 
     "sf", 
     "sabre",
-    "SpatialKDE"
+    "SpatialKDE",
+    "devtools",
+    "remotes"
     ))
