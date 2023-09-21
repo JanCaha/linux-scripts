@@ -4,6 +4,8 @@ cd $QGIS_DIR
 
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
+CMAKE_SETTINGS=-DWITH_SERVER:BOOL=ON -DWITH_3D:BOOL=ON -DWITH_COPC:BOOL=TRUE
+
 if [ $BRANCH == "master" ];
 then
     BUILD_DIR=build-master
@@ -20,11 +22,9 @@ cmake \
     -B $QGIS_BUILD_DIR \
     -GNinja \
     -DCMAKE_BUILD_TYPE:STRING=Debug \
-    -DWITH_3D:BOOL=ON \
-    -DWITH_COPC:BOOL=TRUE \
-    -DWITH_SERVER:BOOL=ON
+    $CMAKE_SETTINGS
 
 cmake --build $QGIS_BUILD_DIR --target all
-$QGIS_BUILD_DIR/output/bin/qgis --profile singleplugin
+$QGIS_BUILD_DIR/output/bin/qgis
 
 read -p "Press any key to resume ..."
