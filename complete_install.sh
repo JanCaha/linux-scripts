@@ -251,3 +251,9 @@ sudo apt-get install -y virtualbox
 
 # R packages
 Rscript install_packages.R
+
+# VCPKG
+cd ~
+git clone https://github.com/microsoft/vcpkg.git
+export VCPKG_ROOT=~/vcpkg
+$VCPKG_ROOT/bootstrap-vcpkg.sh
