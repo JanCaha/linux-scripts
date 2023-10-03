@@ -68,7 +68,7 @@ def main(_argv: typing.Optional[typing.Sequence[str]] = None):
         stdout=subprocess.PIPE,
     )
 
-    util_functions.print_success(f"Created successfully!\n\tResult file: {args.source_file}")
+    util_functions.print_success(f"Created successfully!\n\tResult file: {args.output_file}")
 
     return 0
 
