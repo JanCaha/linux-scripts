@@ -45,7 +45,7 @@ def main(_argv: typing.Optional[typing.Sequence[str]] = None):
         output_file = args.input_file.with_suffix(default_suffix)
 
     if output_file.exists():
-        output_file = output_file.parent / f"{output_file.stem}_converted.{output_file.suffix}"
+        output_file = output_file.parent / f"{output_file.stem}_converted{output_file.suffix}"
 
     util_functions.print_info(f"Saving as: {output_file.name}")
 
@@ -68,7 +68,7 @@ def main(_argv: typing.Optional[typing.Sequence[str]] = None):
         stdout=subprocess.PIPE,
     )
 
-    util_functions.print_success(f"Created successfully!\n\tResult file: {args.output_file}")
+    util_functions.print_success(f"Created successfully!\n\tResult file: {output_file.as_posix()}")
 
     return 0
 
