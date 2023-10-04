@@ -48,7 +48,8 @@ sudo apt-get install -y \
     pkg-config \
     libnotify-dev \
     ksnip \
-    okular 
+    okular \
+    numlockx
 
 # Clang
 sudo apt-get install -y \
