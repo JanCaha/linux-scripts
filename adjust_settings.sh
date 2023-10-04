@@ -22,3 +22,14 @@ echo 'alias conda_activate="source ~/miniconda3/etc/profile.d/conda.sh"' >> $ZSH
 # install additons
 cd ~/.oh-my-zsh/custom/plugins
 git clone https://github.com/zpm-zsh/zshmarks.git bookmarks # activate by adding bookmarks to ~/.zshrc plugins=(plugins)
+
+GREETER_FILE=/etc/lightdm/slick-greeter.conf
+LINE=$(grep "^activate-numlock=" $GREETER_FILE)
+LINE_NUMLOCK_ON="activate-numlock=true"
+
+if [ ! -z "$LINE" ];
+then
+    sd -s $LINE $LINE_NUMLOCK_ON $GREETER_FILE
+else
+    echo $LINE_NUMLOCK_ON >> $GREETER_FILE
+fi
