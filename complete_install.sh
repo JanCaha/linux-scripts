@@ -49,7 +49,8 @@ sudo apt-get install -y \
     libnotify-dev \
     ksnip \
     okular \
-    numlockx
+    numlockx \
+    jq
 
 # Clang
 sudo apt-get install -y \
