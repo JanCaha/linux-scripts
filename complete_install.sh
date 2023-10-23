@@ -95,7 +95,10 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 
 # Python Packages
-sudo apt install -y python3-pip
+sudo apt install -y \
+    python3-pip \
+    python3-pybind11
+
 pip3 install \
     beautifulsoup4 \
 	pylint \
