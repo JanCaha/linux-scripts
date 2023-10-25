@@ -97,7 +97,8 @@ sudo usermod -aG docker $USER
 # Python Packages
 sudo apt install -y \
     python3-pip \
-    python3-pybind11
+    python3-pybind11 \
+    python3-venv
 
 pip3 install \
     beautifulsoup4 \
