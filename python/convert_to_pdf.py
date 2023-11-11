@@ -19,17 +19,11 @@ def main(_argv: typing.Optional[typing.Sequence[str]] = None):
     )
 
     parser.add_argument(
-        "input_file",
-        help="Input File.",
-        type=Path,
-    )
-
-    parser.add_argument(
-        "-o",
-        "--output_file",
-        help="Output File.",
-        type=Path,
-        required=False,
+        "-t",
+        "--type",
+        choices=["major", "minor", "patch", "DebianPackage"],
+        help="Type of version bump.",
+        default="patch",
     )
 
     args = parser.parse_args()
