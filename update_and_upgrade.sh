@@ -190,6 +190,12 @@ $currentDir/python/download_FreeFileSync.py
 echo -e "$YELLOW---end FreeFileSync update---$NORMAL"
 echo ""
 
+# Calibre
+echo -e "$YELLOW---Calibre update---$NORMAL"
+sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+echo -e "$YELLOW---end Calibre update---$NORMAL"
+echo ""
+
 # krusader check and update
 echo -e "$YELLOW---Krusader update---$NORMAL"
 echo -e "$BLUE---$(krusader --version)---$NORMAL"
