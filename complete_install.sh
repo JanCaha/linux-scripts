@@ -50,7 +50,8 @@ sudo apt-get install -y \
     ksnip \
     okular \
     numlockx \
-    jq
+    jq \
+    git-buildpackage
 
 # Clang
 sudo apt-get install -y \
