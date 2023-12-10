@@ -51,7 +51,8 @@ sudo apt-get install -y \
     okular \
     numlockx \
     jq \
-    git-buildpackage
+    git-buildpackage \
+    exa
 
 # Clang
 sudo apt-get install -y \
@@ -113,6 +114,7 @@ pip3 install \
     mypy \
     yapf \
     black \
+    isort \
 	mkdocs-bootswatch \
 	https://codeload.github.com/mkdocs/mkdocs-bootstrap/zip/master \
 	git+https://github.com/it-novum/mkdocs-featherlight.git
