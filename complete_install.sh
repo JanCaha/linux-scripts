@@ -130,9 +130,6 @@ sudo apt-get install -y \
 sudo apt-get install -y \
     grass-gui
 
-# TinyTeX
-# wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
-
 # R
 sudo apt-get update -y
 sudo apt-get install -y \
@@ -211,12 +208,6 @@ cd /tmp
 sudo curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb
 sudo gdebi quarto-linux-amd64.deb
 
-# MiniConda
-cd /tmp
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-chmod +x Miniconda3-latest-Linux-x86_64.sh
-./Miniconda3-latest-Linux-x86_64.sh -b -f -p ~$USER/miniconda3
-
 # QtCreator
 sudo apt-get install -y qtcreator
 
@@ -229,18 +220,9 @@ sudo apt install zsh
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 chsh -s $(which zsh)
 
-# NodeJS
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&\
-sudo apt-get install -y nodejs npm
-
 # CMake
 sudo apt-get update
 sudo apt-get install -y cmake
-
-# Rust, Cargo and packages
-sudo apt install cargo
-cargo install sd
-export PATH=~/.cargo/bin:$PATH
 
 # QGIS compile
 sudo apt-get install -y \
@@ -252,18 +234,6 @@ sudo apt install -y \
     pgadmin4 \
     libpq-dev libpqxx-dev # libraries
 
-# Samba
-sudo apt-get -y install samba 
-sudo usermod -aG sambashare $USER
-
-# VirtualBox
-sudo apt-get install -y virtualbox
-
 # R packages
 Rscript install_packages.R
 
-# VCPKG
-cd ~
-git clone https://github.com/microsoft/vcpkg.git
-echo "VCPKG_ROOT=~/vcpkg" | sudo tee -a /etc/environment
-$VCPKG_ROOT/bootstrap-vcpkg.sh
