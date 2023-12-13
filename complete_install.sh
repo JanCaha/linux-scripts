@@ -51,8 +51,7 @@ sudo apt-get install -y \
     okular \
     numlockx \
     jq \
-    git-buildpackage \
-    exa
+    git-buildpackage
 
 # Clang
 sudo apt-get install -y \
