@@ -51,7 +51,9 @@ sudo apt-get install -y \
     okular \
     numlockx \
     jq \
-    git-buildpackage
+    git-buildpackage \
+    krita \
+    handbrake
 
 # Clang
 sudo apt-get install -y \
