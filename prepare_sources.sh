@@ -88,7 +88,7 @@ create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL true
 # Strawbery
 KEYRING=$KEYS_FOLDER/strawberry-archive-keyring.gpg
 SOURCEFILE=$SOURCES_FOLDER/strawberry.sources
-FINGERPRINT=860C1751C7FE2EC0CB35B8DD573D197B5EA20EDF
+FINGERPRINT=BE5ED0F9261CAAD9A1E5B1A4CD6289E999EA819D
 URL=https://ppa.launchpadcontent.net/jonaski/strawberry/ubuntu
 
 create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src
