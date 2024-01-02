@@ -170,3 +170,12 @@ FILE=$SOURCES_FOLDER/virtualbox.sources
 download_keyfile.py $KEYRING https://www.virtualbox.org/download/oracle_vbox_2016.asc wget
 
 create_source_file.py $KEYRING $FILE $URL --component contrib
+
+# Jellyfin
+KEYRING=$KEYS_FOLDER/jellyfin-archive-keyring.gpg
+URL=https://repo.jellyfin.org/ubuntu
+FILE=$SOURCES_FOLDER/jellyfin.sources
+
+curl -fsSL https://repo.jellyfin.org/jellyfin_team.gpg.key | sudo gpg --dearmor -o $KEYRING
+
+create_source_file.py $KEYRING $FILE $URL
