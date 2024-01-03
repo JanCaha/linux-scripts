@@ -56,7 +56,8 @@ sudo apt-get install -y \
     jq \
     git-buildpackage \
     krita \
-    handbrake
+    handbrake \
+    eiciel
 
 # Clang
 sudo apt-get install -y \
@@ -72,7 +73,8 @@ sudo apt-get install -y \
     libgtest-dev \
     libgmock-dev \
     libpqxx-dev \
-    clang-format
+    clang-format \
+    google-perftools
 
 # Fd - find replacement
 sudo apt-get install -y fd-find
