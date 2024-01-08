@@ -1,7 +1,7 @@
 ZSHFILE=~/.zshrc
 
 LINE=$(grep "^export PATH" $ZSHFILE)
-EXPORT_PATH='export PATH=$HOME/.cargo/bin:$HOME/Scripts/tools:$HOME/Scripts/python:$HOME/Scripts:$HOME/bin:/usr/local/bin:/usr/local/texlive/2023/bin/x86_64-linux:$PATH:'
+EXPORT_PATH='export PATH=$PATH:$HOME/.cargo/bin:$HOME/Scripts/tools:$HOME/Scripts/python:$HOME/Scripts:$HOME/bin:/usr/local/texlive/2023/bin/x86_64-linux'
 
 if [ ! -z "$LINE" ];
 then
