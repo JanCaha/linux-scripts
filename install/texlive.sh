@@ -1,4 +1,14 @@
 #TeXLive
+cd /tmp # working directory of your choice
+wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz # or curl instead of wget
+tar xf install-tl-unx.tar.gz
+folder=$(fd "^install-tl-[0-9]+" $(pwd))
+cd $folder
+sudo perl ./install-tl --no-interaction # as root or with writable destination
+# folder=$(fd "/usr/local/texlive/[0-9]+/bin/x86_64-linux" /)
+# #Finally, prepend /usr/local/texlive/YYYY/bin/PLATFORM to your PATH,# 
+# e.g., /usr/local/texlive/2023/bin/x86_64-linux
+
 sudo apt-get install -y \
     texlive-latex-recommended \
     texlive-science \
@@ -7,11 +17,12 @@ sudo apt-get install -y \
     texstudio \
     jabref
 
-tlmgr init-usertree
-tlmgr update --self
+sudo $(which tlmgr) init-usertree
+sudo $(which tlmgr) update --self
 
-tlmgr install koma-script \
-    dirtree \ 
+sudo $(which tlmgr) install \
+    koma-script \
+    dirtree \
     algpseudocodex \
     algorithmicx \
     fifo-stack \
@@ -21,7 +32,7 @@ tlmgr install koma-script \
     pgf \
     tikzmark \
     algorithms \
-    setspace \ 
+    setspace \
     cmap \
     bbm \
     caption \
