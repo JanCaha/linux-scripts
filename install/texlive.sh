@@ -10,12 +10,11 @@ sudo perl ./install-tl --no-interaction # as root or with writable destination
 # e.g., /usr/local/texlive/2023/bin/x86_64-linux
 
 sudo apt-get install -y \
-    texlive-latex-recommended \
-    texlive-science \
-    texlive-fonts-extra \
-    texlive-full \
     texstudio \
     jabref
+    
+# installed by script above  
+# texlive-latex-recommended texlive-science texlive-fonts-extra texlive-full
 
 sudo $(which tlmgr) init-usertree
 sudo $(which tlmgr) update --self
