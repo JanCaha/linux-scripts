@@ -83,7 +83,7 @@ SOURCEFILE=$SOURCES_FOLDER/texstudio.sources
 FINGERPRINT=F4BB443370868B62A293947EB896ADA57C387DD3
 URL=https://ppa.launchpadcontent.net/sunderme/texstudio/ubuntu/
 
-create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL true
+create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL
 
 # Strawbery
 KEYRING=$KEYS_FOLDER/strawberry-archive-keyring.gpg
