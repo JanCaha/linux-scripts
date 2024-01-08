@@ -27,6 +27,8 @@ GREETER_FILE=/etc/lightdm/slick-greeter.conf
 LINE=$(grep "^activate-numlock=" $GREETER_FILE)
 LINE_NUMLOCK_ON="activate-numlock=true"
 
+echo "greeter-setup-script=/usr/bin/numlockx on" | sudo tee /etc/lightdm/lightdm.conf
+
 if [ ! -z "$LINE" ];
 then
     sd -s $LINE $LINE_NUMLOCK_ON $GREETER_FILE
