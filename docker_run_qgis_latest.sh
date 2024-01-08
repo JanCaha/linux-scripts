@@ -13,3 +13,5 @@ docker run --rm -it \
     qgis-dev \
     /bin/bash -c qgis
 xhost -
+
+sudo chown -R $USER /home/$USER/.local/share/QGIS
