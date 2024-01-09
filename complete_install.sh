@@ -239,3 +239,5 @@ sudo apt install -y \
 # R packages
 Rscript install_packages.R
 
+# LibreOffice style
+sudo apt-get install -y libreoffice-style-karasa-jaga
