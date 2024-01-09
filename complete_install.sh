@@ -189,10 +189,6 @@ deactivate
 # Calibre
 sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
 
-# TexStudio
-sudo apt-get update
-sudo apt-get install -y texstudio
-
 # Joplin
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 
