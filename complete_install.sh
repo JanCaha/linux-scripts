@@ -14,7 +14,7 @@ source prepare_sources.sh
 sudo apt-get update 
 sudo apt-get upgrade -y 
 sudo apt autoremove -y
-sudo apt-get install mintupgrade 
+sudo apt-get install -y mintupgrade 
 
 # basic stuff
 sudo apt-get install -y \
