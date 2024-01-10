@@ -13,7 +13,7 @@ source prepare_sources.sh
 
 sudo apt-get update 
 sudo apt-get upgrade -y 
-sudo apt autoremove -y
+sudo apt-get autoremove -y
 sudo apt-get install -y mintupgrade 
 
 # basic stuff
@@ -86,12 +86,9 @@ rm ~/.config/redshift.conf
 sudo apt-get install -y redshift
 
 # GIT
-sudo apt update
-sudo apt upgrade -y
 sudo apt-get -y install git
 
 # Docker
-sudo apt-get update
 sudo apt-get install -y \
     docker-ce \
     docker-ce-cli \
@@ -103,7 +100,7 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 
 # Python Packages
-sudo apt install -y \
+sudo apt-get install -y \
     python3-pip \
     python3-pybind11 \
     python3-venv
@@ -126,8 +123,6 @@ pip3 install \
 	git+https://github.com/it-novum/mkdocs-featherlight.git
 	
 # QGIS
-sudo apt update
-sudo apt upgrade -y
 sudo apt-get install -y \
     qgis \
     libqgis-dev
@@ -137,7 +132,6 @@ sudo apt-get install -y \
     grass-gui
 
 # R
-sudo apt-get update -y
 sudo apt-get install -y \
     r-base \
     r-base-dev
@@ -193,16 +187,13 @@ sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | 
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 
 # Brave
-sudo apt-get update
 sudo apt-get install -y brave-browser
 
 # WEBP PEEK
-sudo apt update
-sudo apt install -y \
+sudo apt-get install -y \
     peek
 
 # GitHub CLI
-sudo apt-get update -y
 sudo apt-get install -y gh
 
 # Quarto
@@ -214,16 +205,14 @@ sudo gdebi quarto-linux-amd64.deb
 sudo apt-get install -y qtcreator
 
 # Strawberry
-sudo apt update
-sudo apt install -y strawberry
+sudo apt-get install -y strawberry
 
 # ZSH
-sudo apt install zsh
+sudo apt-get install zsh
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 chsh -s $(which zsh)
 
 # CMake
-sudo apt-get update
 sudo apt-get install -y cmake
 
 # QGIS compile
@@ -232,7 +221,7 @@ sudo apt-get install -y \
     sip-dev
 
 # PgAdmin
-sudo apt install -y \
+sudo apt-get install -y \
     pgadmin4 \
     libpq-dev libpqxx-dev # libraries
 
