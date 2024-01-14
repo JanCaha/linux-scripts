@@ -59,7 +59,7 @@ sudo apt-get install -y \
     handbrake \
     eiciel \
     tesseract-ocr
-    
+
 # Clang
 sudo apt-get install -y \
     clang \
@@ -120,6 +120,7 @@ pip3 install \
     black \
     isort \
 	mkdocs-bootswatch \
+    ocrmypdf \
 	https://codeload.github.com/mkdocs/mkdocs-bootstrap/zip/master \
 	git+https://github.com/it-novum/mkdocs-featherlight.git
 	
