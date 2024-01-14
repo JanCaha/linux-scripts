@@ -57,8 +57,9 @@ sudo apt-get install -y \
     git-buildpackage \
     krita \
     handbrake \
-    eiciel
-
+    eiciel \
+    tesseract-ocr
+    
 # Clang
 sudo apt-get install -y \
     clang \
