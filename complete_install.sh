@@ -183,6 +183,7 @@ sudo make install
 deactivate
 
 # Calibre
+sudo apt-get isntall -y libxcb-cursor0
 sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
 
 # Joplin
