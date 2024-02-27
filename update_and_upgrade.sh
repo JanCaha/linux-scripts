@@ -1,5 +1,5 @@
 #!/bin/zsh
-# needs QuartoLastUpdate, OneDriveLastInstalledHash, RStudioVersion in $VariablesFile file
+# needs QuartoVersion, OneDriveLastInstalledHash, RStudioVersion in $VariablesFile file
 
 # COLORS
 BLACK="\033[30m"
@@ -26,7 +26,7 @@ if [[ -f "$VariablesFile" ]]; then
 else 
     echo -e "$RED $VariablesFile does not exist. $NORMAL" 
     touch $VariablesFile
-    echo "QuartoLastUpdate=''" >> $VariablesFile
+    echo "QuartoVersion=''" >> $VariablesFile
     echo "OneDriveLastInstalledHash=''" >> $VariablesFile
     echo "RStudioVersion='v'" >> $VariablesFile
     echo "FreeFileSyncLastVersion='v'" >> $VariablesFile
@@ -124,25 +124,8 @@ echo ""
 
 # quarto check and update
 echo -e "$YELLOW---Quarto update---$NORMAL"
-echo -e "$BLUE---$(quarto --version)---$NORMAL"
-if [[ -z "$QuartoLastUpdate" ]]; then
-    QuartoLastUpdate=""
-fi
-
-quartoUpdate="$(curl -s -L -I https://quarto.org/download/latest/quarto-linux-amd64.deb | gawk -v IGNORECASE=1 '/^last-modified/')"
-quartoUpdate=$(tr -dc '[[:print:]]' <<< "$quartoUpdate")
-toRemove="last-modified: "
-quartoUpdate=${quartoUpdate#"$toRemove"}
-toRemove=" GMT"
-quartoUpdate=${quartoUpdate%"$toRemove"}
-
-if [[ "$quartoUpdate" != "$QuartoLastUpdate" ]]; then
-    sudo curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb
-    sudo gdebi quarto-linux-amd64.deb -n
-    sed -i "s/^QuartoLastUpdate=.*/QuartoLastUpdate='$quartoUpdate'/g" $VariablesFile
-else
-    echo -e "$PINK Skipping Quarto Update $NORMAL"
-fi
+cd /tmp
+$currentDir/python/download_quarto.py
 echo -e "$YELLOW---end Quarto update---$NORMAL"
 echo ""
 
