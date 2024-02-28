@@ -75,6 +75,7 @@ def main():
             check=True,
         )
         subprocess.run(["rm", deb_file], check=True)
+
         util_functions.print_success("Installed new Quarto version.")
     else:
         util_functions.print_skip("Skipping Quarto installation.")
