@@ -147,7 +147,8 @@ sudo apt-get install -y \
 	libfribidi-dev \
 	libssh-dev \
 	qpdf \
-    libfontconfig1-dev
+    libfontconfig1-dev \
+    libgeos-dev
 
 # Krusader
 sudo apt-get install -y \
