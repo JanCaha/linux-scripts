@@ -1,5 +1,5 @@
 #!/bin/zsh
-# needs QuartoVersion, OneDriveLastInstalledHash, RStudioVersion in $VariablesFile file
+# needs QuartoVersion, OneDriveLastInstalledHash, RStudioVersion, CalibreVersion in $VariablesFile file
 
 # COLORS
 BLACK="\033[30m"
@@ -31,6 +31,7 @@ else
     echo "RStudioVersion='v'" >> $VariablesFile
     echo "FreeFileSyncLastVersion='v'" >> $VariablesFile
     echo "KrusaderLastInstalledHash='v'" >> $VariablesFile
+    echo "CalibreVersion=''" >> $VariablesFile
 fi
 echo "***"
 
@@ -175,7 +176,18 @@ echo ""
 
 # Calibre
 echo -e "$YELLOW---Calibre update---$NORMAL"
-sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+
+version=$(python3 $currentDir/python/check_calibre_version.py)
+if [ -z "$version"];
+then
+    echo -e "$PINK Version found online $version matches currently installed. $NORMAL"
+    echo -e "$PINK Skipping Calibre Update $NORMAL"
+else
+    sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+    sed -i "s/^CalibreVersion=.*/CalibreVersion='$version'/g" $VariablesFile
+fi
+
+
 echo -e "$YELLOW---end Calibre update---$NORMAL"
 echo ""
 
