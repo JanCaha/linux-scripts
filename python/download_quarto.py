@@ -14,17 +14,27 @@ def main():
 
     util_functions.print_info("Checking out online version of Quarto.")
 
-    command = "gh release list -R quarto-dev/quarto-cli --exclude-pre-releases --exclude-drafts --json tagName --jq '.[0].tagName' | cat"
+    command = [
+        "gh",
+        "release",
+        "list",
+        "-R",
+        "quarto-dev/quarto-cli",
+        "--exclude-pre-releases",
+        "--exclude-drafts",
+        "--json",
+        "tagName",
+        "--jq",
+        ".[0].tagName",
+    ]
 
-    result = subprocess.Popen(
+    result = subprocess.run(
         command,
-        shell=True,
         stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
+        check=True,
     )
-    result.wait()
 
-    version = result.stdout.read().decode("utf-8").replace("\n", "")
+    version = result.stdout.decode("utf-8").replace("\n", "")
 
     existing_version = util_functions.get_install_variable("QuartoVersion")
 
@@ -34,15 +44,21 @@ def main():
 
     util_functions.print_info(f"\tOnline version: {version}. Version stored in file: {existing_version}.")
 
-    command = "gh release download -R quarto-dev/quarto-cli -p 'quarto*linux-amd64.deb'"
+    command = [
+        "gh",
+        "release",
+        "download",
+        "-R",
+        "quarto-dev/quarto-cli",
+        "-p",
+        "quarto*linux-amd64.deb",
+    ]
 
-    result = subprocess.Popen(
+    result = subprocess.run(
         command,
-        shell=True,
         stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
+        check=True,
     )
-    result.wait()
 
     for file in Path.cwd().glob("quarto*.deb"):
         deb_file = file.as_posix()
