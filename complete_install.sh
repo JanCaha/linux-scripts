@@ -236,7 +236,7 @@ Rscript install_packages.R
 sudo apt-get install -y libreoffice-style-karasa-jaga
 
 # add install from sepearate scripts
-source install/conda.sh
+source install/miniconda.sh
 source install/rust.sh
 source install/jellyfin.sh
 source install/texlive.sh
