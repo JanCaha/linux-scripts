@@ -187,7 +187,6 @@ else
     sed -i "s/^CalibreVersion=.*/CalibreVersion='$version'/g" $VariablesFile
 fi
 
-
 echo -e "$YELLOW---end Calibre update---$NORMAL"
 echo ""
 
