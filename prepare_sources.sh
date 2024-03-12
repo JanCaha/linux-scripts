@@ -179,3 +179,10 @@ FILE=$SOURCES_FOLDER/jellyfin.sources
 curl -fsSL https://repo.jellyfin.org/jellyfin_team.gpg.key | sudo gpg --dearmor -o $KEYRING
 
 create_source_file.py $KEYRING $FILE $URL
+
+# KeepassXC PPA
+KEYRING=$KEYS_FOLDER/keepassxc.gpg
+SOURCEFILE=$SOURCES_FOLDER/keepassxc.sources
+FINGERPRINT=D89C66D0E31FEA2874EBD20561922AB60068FCD6
+URL=https://ppa.launchpadcontent.net/phoerious/keepassxc/ubuntu
+create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
