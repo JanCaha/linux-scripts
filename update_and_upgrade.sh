@@ -167,12 +167,12 @@ $currentDir/python/download_RStudio.py
 echo -e "$YELLOW---end RStudio update---$NORMAL"
 echo ""
 
-# FreeFileSync
-echo -e "$YELLOW---FreeFileSync update---$NORMAL"
-cd /tmp
-$currentDir/python/download_FreeFileSync.py
-echo -e "$YELLOW---end FreeFileSync update---$NORMAL"
-echo ""
+# # FreeFileSync
+# echo -e "$YELLOW---FreeFileSync update---$NORMAL"
+# cd /tmp
+# #$currentDir/python/download_FreeFileSync.py
+# echo -e "$YELLOW---end FreeFileSync update---$NORMAL"
+# echo ""
 
 # Calibre
 echo -e "$YELLOW---Calibre update---$NORMAL"
