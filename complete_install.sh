@@ -58,7 +58,8 @@ sudo apt-get install -y \
     krita \
     handbrake \
     eiciel \
-    tesseract-ocr
+    tesseract-ocr \
+    google-perftools
 
 # Clang
 sudo apt-get install -y \
@@ -121,6 +122,7 @@ pip3 install \
     isort \
 	mkdocs-bootswatch \
     ocrmypdf \
+    pytest-qgis \
 	https://codeload.github.com/mkdocs/mkdocs-bootstrap/zip/master \
 	git+https://github.com/it-novum/mkdocs-featherlight.git
 	
