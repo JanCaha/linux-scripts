@@ -41,7 +41,7 @@ def print_color_output(
     print(color + text + Colors.NORMAL, file=output)
 
 
-def install_variables_file() -> Path():
+def install_variables_file() -> Path:
     return Path().home() / ".install_env_variables"
 
 
@@ -59,10 +59,13 @@ def get_install_variable(name: str) -> Optional[str]:
             ],
             stdout=subprocess.PIPE,
         )
-        name = result.stdout.readline().decode("utf-8").replace("\n", "")
 
-        if name:
-            return name
+        std_out = result.stdout
+        if std_out:
+            name = std_out.readline().decode("utf-8").replace("\n", "")
+
+            if name:
+                return name
 
     return None
 
@@ -75,7 +78,12 @@ def binary_exist(name: str) -> bool:
         ],
         stdout=subprocess.PIPE,
     )
-    text = result.stdout.readline().decode("utf-8").replace("\n", "").split(":")
+
+    std_out = result.stdout
+    if std_out:
+        text = std_out.readline().decode("utf-8").replace("\n", "").split(":")
+    else:
+        text = ["", ""]
 
     if text[1]:
         return True
@@ -92,7 +100,11 @@ def ubuntu_name() -> str:
         stdout=subprocess.PIPE,
     )
 
-    name = result.stdout.readline().decode("utf-8").replace("\n", "")
+    std_out = result.stdout
+    if std_out:
+        name = std_out.readline().decode("utf-8").replace("\n", "")
+    else:
+        name = ""
 
     return name
 
@@ -106,8 +118,13 @@ def get_architecture() -> str:
         ],
         stdout=subprocess.PIPE,
     )
+    std_out = result.stdout
+    if std_out:
+        name = std_out.readline().decode("utf-8").replace("\n", "")
+    else:
+        name = ""
 
-    return result.stdout.readline().decode("utf-8").replace("\n", "")
+    return name
 
 
 def check_su() -> None:
@@ -149,13 +166,13 @@ def create_source_file(
     distro_code: str,
     component: str,
     keyring: str,
-    architecture: str = None,
+    architecture: Optional[str] = None,
 ) -> None:
     if architecture is None:
         architecture = get_architecture()
 
     with open(filename, "w+", encoding="utf-8") as file:
-        text = [
+        lines = [
             f"Types: {source_type}",
             f"URIs: {url}",
             f"Suites: {distro_code}",
@@ -163,12 +180,16 @@ def create_source_file(
             f"Components: {component}",
             f"Signed-By: {keyring}",
         ]
-        text = "\n".join(text)
+        text = "\n".join(lines)
         file.writelines(text)
 
 
 def return_code_and_err(process: subprocess.Popen) -> Tuple[int, str]:
-    err = process.stderr.readline().decode("utf-8").replace("\n", "")
+    std_out = process.stdout
+    if std_out:
+        err = std_out.readline().decode("utf-8").replace("\n", "")
+    else:
+        err = ""
 
     return (process.returncode, err)
 
