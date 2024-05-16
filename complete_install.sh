@@ -214,9 +214,7 @@ sudo apt-get install -y qtcreator
 sudo apt-get install -y strawberry
 
 # ZSH
-sudo apt-get install zsh
-sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-chsh -s $(which zsh)
+source install/zsh.sh
 
 # CMake
 sudo apt-get install -y cmake
