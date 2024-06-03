@@ -40,5 +40,6 @@ fi
 # create folder for custom deb files
 if [ ! -d $CUSTOM_DEBS_FOLDER ]; then
   sudo mkdir -p $CUSTOM_DEBS_FOLDER
+  sudo chown $USER:$USER $CUSTOM_DEBS_FOLDER
 fi
 
