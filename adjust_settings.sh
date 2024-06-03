@@ -14,6 +14,7 @@ fi
 
 echo "source /etc/os-release" >> $ZSHFILE
 echo "source ~/Scripts/variables.sh" >> $ZSHFILE
+source ~/Scripts/variables.sh
 echo 'alias open="nohup nemo . > /dev/null 2>&1 &"' >> $ZSHFILE
 echo 'alias gitreset="git reset --hard"' >> $ZSHFILE
 echo 'alias sleep_computer="systemctl suspend"' >> $ZSHFILE
@@ -35,3 +36,9 @@ then
 else
     echo $LINE_NUMLOCK_ON >> $GREETER_FILE
 fi
+
+# create folder for custom deb files
+if [ ! -d $CUSTOM_DEBS_FOLDER ]; then
+  sudo mkdir -p $CUSTOM_DEBS_FOLDER
+fi
+
