@@ -8,7 +8,7 @@ sudo gpg -k
 KEYS_FOLDER=/usr/share/keyrings
 SOURCES_FOLDER=/etc/apt/sources.list.d
 
-QGIS_UNSTABLE=false
+QGIS_UNSTABLE=true
 
 # GIT
 KEYRING=$KEYS_FOLDER/git-archive-keyring.gpg
