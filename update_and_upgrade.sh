@@ -190,11 +190,11 @@ fi
 echo -e "$YELLOW---end Calibre update---$NORMAL"
 echo ""
 
-# krusader check and update
-echo -e "$YELLOW---Krusader update---$NORMAL"
-echo -e "$BLUE---$(krusader --version)---$NORMAL"
-#currentHash="$(git rev-parse HEAD)"
-currentHash="$(git ls-remote https://invent.kde.org/utilities/krusader master | grep -i -E '[a-z|0-9]+' -o -m 1 | head -1)"
+# # krusader check and update
+# echo -e "$YELLOW---Krusader update---$NORMAL"
+# echo -e "$BLUE---$(krusader --version)---$NORMAL"
+# #currentHash="$(git rev-parse HEAD)"
+# currentHash="$(git ls-remote https://invent.kde.org/utilities/krusader master | grep -i -E '[a-z|0-9]+' -o -m 1 | head -1)"
 
 if [[ -z "$KrusaderLastInstalledHash" ]]; then
 KrusaderLastInstalledHash=""
