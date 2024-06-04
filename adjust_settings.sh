@@ -1,3 +1,4 @@
+#!/bin/bash
 ZSHFILE=~/.zshrc
 
 LINE=$(grep "^export PATH" $ZSHFILE)
@@ -24,22 +25,17 @@ echo 'alias conda_activate="source ~/miniconda3/etc/profile.d/conda.sh"' >> $ZSH
 cd ~/.oh-my-zsh/custom/plugins
 git clone https://github.com/zpm-zsh/zshmarks.git bookmarks # activate by adding bookmarks to ~/.zshrc plugins=(plugins)
 
-GREETER_FILE=/etc/lightdm/slick-greeter.conf
-LINE=$(grep "^activate-numlock=" $GREETER_FILE)
-LINE_NUMLOCK_ON="activate-numlock=true"
+#GREETER_FILE=/etc/lightdm/slick-greeter.conf
+#LINE=$(grep "^activate-numlock=" $GREETER_FILE)
+#LINE_NUMLOCK_ON="activate-numlock=true"
 
-echo "greeter-setup-script=/usr/bin/numlockx on" | sudo tee /etc/lightdm/lightdm.conf
+#echo "greeter-setup-script=/usr/bin/numlockx on" | sudo tee /etc/lightdm/lightdm.conf
 
-if [ ! -z "$LINE" ];
-then
-    sd -s $LINE $LINE_NUMLOCK_ON $GREETER_FILE
-else
-    echo $LINE_NUMLOCK_ON >> $GREETER_FILE
-fi
+#if [ ! -z "$LINE" ];
+#then
+#    sd -s $LINE $LINE_NUMLOCK_ON $GREETER_FILE
+#else
+#    echo $LINE_NUMLOCK_ON >> $GREETER_FILE
+#fi
 
-# create folder for custom deb files
-if [ ! -d $CUSTOM_DEBS_FOLDER ]; then
-  sudo mkdir -p $CUSTOM_DEBS_FOLDER
-  sudo chown $USER:$USER $CUSTOM_DEBS_FOLDER
-fi
 

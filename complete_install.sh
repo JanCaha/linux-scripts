@@ -4,11 +4,6 @@ source /etc/os-release
 BASEDIR=$(dirname "$0")
 PATH=$PATH:$BASEDIR/python
 
-KEYS_FOLDER=/usr/share/keyrings
-SOURCES_FOLDER=/etc/apt/sources.list.d
-
-QGIS_UNSTABLE=false
-
 source prepare_sources.sh
 
 sudo apt-get update 
@@ -52,7 +47,7 @@ sudo apt-get install -y \
     libnotify-dev \
     ksnip \
     okular \
-    numlockx \
+    # numlockx \
     jq \
     git-buildpackage \
     krita \
