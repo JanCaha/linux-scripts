@@ -38,4 +38,7 @@ git clone https://github.com/zpm-zsh/zshmarks.git bookmarks # activate by adding
 #    echo $LINE_NUMLOCK_ON >> $GREETER_FILE
 #fi
 
-
+echo 'if [[ "$TERM_PROGRAM" == "vscode" && -f ".env" ]]; then
+  source .env && \
+  echo "✅ loaded .env"
+fi' >> $ZSHFILE
