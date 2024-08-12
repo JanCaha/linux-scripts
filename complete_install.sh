@@ -31,7 +31,6 @@ sudo apt-get install -y \
     umbrello \
     zanshin \
     dia \
-    dropbox \
     chromium \
     gpick \
     webp \
