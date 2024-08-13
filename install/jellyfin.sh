@@ -2,7 +2,7 @@
 sudo apt-get install -y jellyfin-server jellyfin-web jellyfin-ffmpeg6 
 
 sudo ln -s $HOME/Documents/jellyfin/var /var/lib/jellyfin
-sudo ln -s $HOME/Documents/jellyfin/etc/jellyfin /etc/jellyfin
+# sudo ln -s $HOME/Documents/jellyfin/etc/jellyfin /etc/jellyfin
 sudo chown -R jellyfin $HOME/Documents/jellyfin
 
 
