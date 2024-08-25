@@ -4,14 +4,17 @@ cd $QGIS_DIR
 
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
-CMAKE_SETTINGS=-DWITH_SERVER:BOOL=ON -DWITH_3D:BOOL=ON -DWITH_COPC:BOOL=TRUE
+CMAKE_SETTINGS="-DWITH_SERVER:BOOL=ON -DWITH_3D:BOOL=ON -DWITH_COPC:BOOL=TRUE -DWITH_PDAL:BOOL=TRUE"
 
 if [ $BRANCH == "master" ];
 then
     BUILD_DIR=build-master
     mkdir $BUILD_DIR
     QGIS_BUILD_DIR=$QGIS_DIR/$BUILD_DIR
+    git stash
+    git pull upstream
     git merge upstream/master --no-edit
+    git stash pop
 else
     BUILD_DIR=build-branch
     QGIS_BUILD_DIR=$QGIS_DIR/$BUILD_DIR
