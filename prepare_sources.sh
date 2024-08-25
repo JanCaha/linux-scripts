@@ -123,11 +123,11 @@ download_keyfile.py $KEYRING https://apt.kitware.com/keys/kitware-archive-latest
 create_source_file.py $KEYRING $FILE $URL --component main
 
 # Personal PPA
-KEYRING=$KEYS_FOLDER/personal.gpg
-SOURCEFILE=$SOURCES_FOLDER/personal.sources
-FINGERPRINT=0002254B19F8B3682F060871D3AAC36377A9478A
-URL=https://ppa.launchpadcontent.net/jancaha/gis-tools/ubuntu
-create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
+# KEYRING=$KEYS_FOLDER/personal.gpg
+# SOURCEFILE=$SOURCES_FOLDER/personal.sources
+# FINGERPRINT=0002254B19F8B3682F060871D3AAC36377A9478A
+# URL=https://ppa.launchpadcontent.net/jancaha/gis-tools/ubuntu
+# create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
 
 # PostreSQL
 KEYRING=$KEYS_FOLDER/pgadmin-archive-keyring.pub
