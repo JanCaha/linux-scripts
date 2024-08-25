@@ -46,14 +46,13 @@ sudo apt-get install -y \
     libnotify-dev \
     ksnip \
     okular \
-    # numlockx \
     jq \
     git-buildpackage \
     krita \
     handbrake \
     eiciel \
-    tesseract-ocr \
-    google-perftools
+    tesseract-ocr
+    # numlockx
 
 # Clang
 sudo apt-get install -y \
