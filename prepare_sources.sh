@@ -99,12 +99,12 @@ sudo curl -fsSLo $KEYS_FOLDER/brave-browser-archive-keyring.gpg https://brave-br
 echo "deb [signed-by=$KEYS_FOLDER/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee $SOURCES_FOLDER/brave-browser-release.list
 
 # WEBP PEEK
-KEYRING=$KEYS_FOLDER/peek-archive-keyring.gpg
-SOURCEFILE=$SOURCES_FOLDER/peek.sources
-FINGERPRINT=8C9531299E7DF2DCF681B4999578539176BAFBC6
-URL=https://ppa.launchpadcontent.net/peek-developers/stable/ubuntu
+# KEYRING=$KEYS_FOLDER/peek-archive-keyring.gpg
+# SOURCEFILE=$SOURCES_FOLDER/peek.sources
+# FINGERPRINT=8C9531299E7DF2DCF681B4999578539176BAFBC6
+# URL=https://ppa.launchpadcontent.net/peek-developers/stable/ubuntu
 
-create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
+# create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
 
 # GitHub CLI
 KEYRING=$KEYS_FOLDER/githubcli-archive-keyring.gpg
