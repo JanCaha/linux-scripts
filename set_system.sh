@@ -7,5 +7,5 @@ sudo fc-cache -v
 mkdir -p ~/Codes
 cd ~/Codes
 git clone https://github.com/JanCaha/linux-scripts.git
-ln -sd ~/Codes/linux-scripts ~/Scripts
+ln -s ~/Codes/GitHub/linux-scripts ~/Scripts
 cd ~
