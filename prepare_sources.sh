@@ -75,7 +75,7 @@ URL=https://cloud.r-project.org/bin/linux/ubuntu
 download_keyfile.py $KEYRING https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc wget
 # create_source_file.py $KEYRING $SOURCEFILE $URL --add-src --distro_code_name jammy-cran40 --component "/"
 
-echo "deb [signed-by=$KEYRING arch=amd64] https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/" | sudo tee $SOURCEFILE
+echo "deb [signed-by=$KEYRING arch=amd64] https://cloud.r-project.org/bin/linux/ubuntu $UBUNTU_CODENAME-cran40/" | sudo tee $SOURCEFILE
 
 # TexStudio
 KEYRING=$KEYS_FOLDER/texstudio-archive-keyring.gpg
