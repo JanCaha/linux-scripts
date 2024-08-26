@@ -85,11 +85,13 @@ def main():
         enhancer = ImageEnhance.Brightness(image)
         image = enhancer.enhance(random.uniform(1.01, 1.02))
 
+        image = add_gaussian_noise(image, mean=0, std_dev=0.03)
+
+        image = image.filter(ImageFilter.GaussianBlur(random.uniform(0.5, 0.75)))
+
         image = image.rotate(
             random.uniform(-1.01, 1.01), resample=Image.Resampling.BICUBIC, expand=True, fillcolor=(255, 255, 255)
         )
-        image = image.filter(ImageFilter.GaussianBlur(random.uniform(0.5, 0.75)))
-        image = add_gaussian_noise(image, mean=0, std_dev=0.03)
 
         images_list.append(_change_image_to_byte_buffer(image))
         page.close()
