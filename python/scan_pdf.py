@@ -7,12 +7,13 @@ import typing
 from pathlib import Path
 
 import numpy as np
+import PIL
 import pypdfium2 as pdfium
 import util_functions
 from PIL import Image, ImageEnhance, ImageFilter
 
 
-def add_gaussian_noise(image: Image, mean=0, std_dev=0.025) -> Image:
+def add_gaussian_noise(image: PIL.Image, mean=0, std_dev=0.025) -> Image:
     img = np.array(image) / 255.0  # Normalize pixel values to [0, 1]
     noise = np.random.normal(mean, std_dev, img.shape)
     noisy_img = img + noise
