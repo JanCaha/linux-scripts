@@ -70,7 +70,8 @@ sudo apt-get install -y \
     libgmock-dev \
     libpqxx-dev \
     clang-format \
-    google-perftools
+    google-perftools \
+    valgrind
 
 # Fd - find replacement
 sudo apt-get install -y fd-find
