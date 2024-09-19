@@ -228,6 +228,9 @@ Rscript install_packages.R
 # LibreOffice style
 sudo apt-get install -y libreoffice-style-karasa-jaga
 
+# Turtle
+sudo apt-get install -y turtle-cli turtle-nautilus
+
 # add install from sepearate scripts
 source install/miniconda.sh
 source install/rust.sh
