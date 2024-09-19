@@ -186,3 +186,6 @@ SOURCEFILE=$SOURCES_FOLDER/keepassxc.sources
 FINGERPRINT=D89C66D0E31FEA2874EBD20561922AB60068FCD6
 URL=https://ppa.launchpadcontent.net/phoerious/keepassxc/ubuntu
 create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
+
+# Turtle
+sudo add-apt-repository ppa:philippun/turtle -y
