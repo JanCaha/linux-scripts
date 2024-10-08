@@ -38,8 +38,9 @@ SOURCEFILE=$SOURCES_FOLDER/ubuntugis-stable.sources
 FINGERPRINT=6B827C12C2D425E227EDCA75089EBE08314DF160
 URL=https://ppa.launchpadcontent.net/ubuntugis/ppa/ubuntu
 
-create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src
-
+if [ "$QGIS_UNSTABLE" != "true" ]; then
+    create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src
+fi
 
 if [ "$QGIS_UNSTABLE" = "true" ]; then
     echo "Using QGIS Unstable GIS!!!!!!!!!!!"
