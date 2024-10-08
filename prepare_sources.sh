@@ -68,12 +68,12 @@ create_source_file.py $KEYRING $SOURCEFILE $URL --add-src
 
 # R
 KEYRING=$KEYS_FOLDER/r-archive-keyring.asc
-SOURCEFILE=$SOURCES_FOLDER/r.list
+SOURCEFILE=$SOURCES_FOLDER/r.sources
 FINGERPRINT=6B827C12C2D425E227EDCA75089EBE08314DF160
 URL=https://cloud.r-project.org/bin/linux/ubuntu
 
 download_keyfile.py $KEYRING https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc wget
-create_source_file.py $KEYRING $SOURCEFILE $URL --add-src --distro_code_name $UBUNTU_CODENAME-cran40 --component "/"
+create_source_file.py $KEYRING $SOURCEFILE $URL --add-src --distro_code_name $UBUNTU_CODENAME-cran40/
 
 # TexStudio
 KEYRING=$KEYS_FOLDER/texstudio-archive-keyring.gpg
