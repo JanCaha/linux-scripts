@@ -73,9 +73,7 @@ FINGERPRINT=6B827C12C2D425E227EDCA75089EBE08314DF160
 URL=https://cloud.r-project.org/bin/linux/ubuntu
 
 download_keyfile.py $KEYRING https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc wget
-# create_source_file.py $KEYRING $SOURCEFILE $URL --add-src --distro_code_name jammy-cran40 --component "/"
-
-echo "deb [signed-by=$KEYRING arch=amd64] https://cloud.r-project.org/bin/linux/ubuntu $UBUNTU_CODENAME-cran40/" | sudo tee $SOURCEFILE
+create_source_file.py $KEYRING $SOURCEFILE $URL --add-src --distro_code_name $UBUNTU_CODENAME-cran40 --component "/"
 
 # TexStudio
 KEYRING=$KEYS_FOLDER/texstudio-archive-keyring.gpg
@@ -144,7 +142,7 @@ FILE=$SOURCES_FOLDER/pg.sources
 
 download_keyfile.py $KEYRING  https://www.postgresql.org/media/keys/ACCC4CF8.asc curl
 
-create_source_file.py $KEYRING $FILE $URL --distro_code_name "jammy-pgdg"
+create_source_file.py $KEYRING $FILE $URL --distro_code_name "noble-pgdg"
 
 # Wine
 KEYRING=$KEYS_FOLDER/winehq.key
