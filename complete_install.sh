@@ -4,7 +4,7 @@ source /etc/os-release
 BASEDIR=$(dirname "$0")
 PATH=$PATH:$BASEDIR/python
 
-source prepare_sources.sh
+# source prepare_sources.sh
 
 sudo apt-get update 
 sudo apt-get upgrade -y 
@@ -147,22 +147,22 @@ sudo apt-get install -y \
     libgeos-dev
 
 # Krusader
-sudo apt-get install -y \
-    extra-cmake-modules \
-    libkf5archive-dev \
-    libkf5doctools-dev \
-    libkf5kio-dev \
-    libkf5notifications-dev \
-    libkf5parts-dev \
-    libkf5wallet-dev \
-    libkf5xmlgui-dev
+# sudo apt-get install -y \
+#     extra-cmake-modules \
+#     libkf5archive-dev \
+#     libkf5doctools-dev \
+#     libkf5kio-dev \
+#     libkf5notifications-dev \
+#     libkf5parts-dev \
+#     libkf5wallet-dev \
+#     libkf5xmlgui-dev
 
-cd /tmp
-git clone https://invent.kde.org/utilities/krusader
-cd krusader
-cmake -DCMAKE_INSTALL_PREFIX=/usr/ -DCMAKE_C_FLAGS="-O2 -fPIC" -DCMAKE_CXX_FLAGS="-O2 -fPIC"
-sudo make install
-# sudo apt-get install -y krusader
+# cd /tmp
+# git clone https://invent.kde.org/utilities/krusader
+# cd krusader
+# cmake -DCMAKE_INSTALL_PREFIX=/usr/ -DCMAKE_C_FLAGS="-O2 -fPIC" -DCMAKE_CXX_FLAGS="-O2 -fPIC"
+# sudo make install
+sudo apt-get install -y krusader
 
 # Onedrive 
 curl -fsS https://dlang.org/install.sh | bash -s dmd
