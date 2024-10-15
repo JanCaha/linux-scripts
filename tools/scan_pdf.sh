@@ -1,1 +1,0 @@
-convert -density 120 $1 -rotate 0.5 -attenuate 0.2 +noise Multiplicative $2
