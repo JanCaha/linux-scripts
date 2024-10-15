@@ -18,14 +18,6 @@ def main(_argv: typing.Optional[typing.Sequence[str]] = None):
         description="Convert Ebook to PDF file.",
     )
 
-    parser.add_argument(
-        "-t",
-        "--type",
-        choices=["major", "minor", "patch", "DebianPackage"],
-        help="Type of version bump.",
-        default="patch",
-    )
-
     args = parser.parse_args()
 
     if not args.input_file.exists():
