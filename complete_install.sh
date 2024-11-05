@@ -54,7 +54,7 @@ sudo apt-get install -y \
     tesseract-ocr
     # numlockx
 
-# Clang
+# C++ dev tools
 sudo apt-get install -y \
     clang \
     clang-14 \
@@ -70,7 +70,10 @@ sudo apt-get install -y \
     libpqxx-dev \
     clang-format \
     google-perftools \
-    valgrind
+    valgrind \
+    silversearcher-ag \
+    expect \
+    shellcheck
 
 # Fd - find replacement
 sudo apt-get install -y fd-find
