@@ -103,26 +103,15 @@ sudo apt-get install -y \
     python3-pip \
     python3-pybind11 \
     python3-venv \
-    python3-debugpy 
-
-pip3 install \
-    beautifulsoup4 \
-	pylint \
-    pb_tool \
-	nbclient \
-    jupyter-core \
-    ipykernel \
-	pycodestyle \
-    flake8 \
-    mypy \
-    yapf \
-    black \
-    isort \
-	mkdocs-bootswatch \
-    ocrmypdf \
-    pytest-qgis \
-	https://codeload.github.com/mkdocs/mkdocs-bootstrap/zip/master \
-	git+https://github.com/it-novum/mkdocs-featherlight.git
+    python3-debugpy \
+    python3-jupyter-core \
+    python3-ipykernel \
+    python3-nbclient \
+    python3-flake8-black \
+    python3-pycodestyle \
+    python3-isort \
+    python3-mypy \
+    python3-pytest
 	
 # QGIS
 sudo apt-get install -y \
