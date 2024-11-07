@@ -21,5 +21,6 @@ pip3 install \
 	mkdocs-bootswatch \
     ocrmypdf \
     pytest-qgis \
+    selenium \
 	https://codeload.github.com/mkdocs/mkdocs-bootstrap/zip/master \
 	git+https://github.com/it-novum/mkdocs-featherlight.git
