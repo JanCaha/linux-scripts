@@ -84,17 +84,17 @@ sudo apt autoremove -y
 echo -e "$YELLOW---end apt update---$NORMAL"
 echo ""
 
+# # omz update
+# echo -e "$YELLOW---omz update---$NORMAL"
 # omz update
-echo -e "$YELLOW---omz update---$NORMAL"
-omz update
-echo -e "$YELLOW---end apt update---$NORMAL"
-echo ""
+# echo -e "$YELLOW---end apt update---$NORMAL"
+# echo ""
 
-# snap update
-echo -e "$YELLOW---snap update---$NORMAL"
-sudo snap refresh
-echo -e "$YELLOW---end snap update---$NORMAL"
-echo ""
+# # snap update
+# echo -e "$YELLOW---snap update---$NORMAL"
+# sudo snap refresh
+# echo -e "$YELLOW---end snap update---$NORMAL"
+# echo ""
 
 # R packages updates
 echo -e "$YELLOW---R packages update---$NORMAL"
@@ -106,8 +106,7 @@ echo ""
 
 # conda update
 echo -e "$YELLOW---conda update---$NORMAL"
-source ~/miniconda3/etc/profile.d/conda.sh
-conda update -y conda
+/home/$USER/miniforge3/bin/conda update -y conda
 # in case of issues maybe ownership of the miniconda install is the case
 # sudo chown -R $USER:$USER ~/miniconda3
 # conda update -y -n base -c conda conda-forge
@@ -196,25 +195,25 @@ echo ""
 # #currentHash="$(git rev-parse HEAD)"
 # currentHash="$(git ls-remote https://invent.kde.org/utilities/krusader master | grep -i -E '[a-z|0-9]+' -o -m 1 | head -1)"
 
-if [[ -z "$KrusaderLastInstalledHash" ]]; then
-KrusaderLastInstalledHash=""
-fi
+# if [[ -z "$KrusaderLastInstalledHash" ]]; then
+# KrusaderLastInstalledHash=""
+# fi
 
-if [ "$currentHash" != "$KrusaderLastInstalledHash" ];
-then
-    cd /tmp
-    git clone https://invent.kde.org/utilities/krusader
-    cd krusader
-    cmake -DCMAKE_INSTALL_PREFIX=/usr/ -DCMAKE_C_FLAGS="-O2 -fPIC" -DCMAKE_CXX_FLAGS="-O2 -fPIC"
-    sudo make install
-    sed -i "s/^KrusaderLastInstalledHash=.*/KrusaderLastInstalledHash='$currentHash'/g" $VariablesFile
-else
-    echo -e "$PINK Skipping Krusader Update $NORMAL"
-fi
+# if [ "$currentHash" != "$KrusaderLastInstalledHash" ];
+# then
+#     cd /tmp
+#     git clone https://invent.kde.org/utilities/krusader
+#     cd krusader
+#     cmake -DCMAKE_INSTALL_PREFIX=/usr/ -DCMAKE_C_FLAGS="-O2 -fPIC" -DCMAKE_CXX_FLAGS="-O2 -fPIC"
+#     sudo make install
+#     sed -i "s/^KrusaderLastInstalledHash=.*/KrusaderLastInstalledHash='$currentHash'/g" $VariablesFile
+# else
+#     echo -e "$PINK Skipping Krusader Update $NORMAL"
+# fi
 
-cd .. && sudo rm -rf krusader
-echo -e "$YELLOW---end Krusader update---$NORMAL"
-echo ""
+# cd .. && sudo rm -rf krusader
+# echo -e "$YELLOW---end Krusader update---$NORMAL"
+# echo ""
 
 # wait at the end
 # read -p "Press any key to resume ..."

@@ -38,8 +38,9 @@ SOURCEFILE=$SOURCES_FOLDER/ubuntugis-stable.sources
 FINGERPRINT=6B827C12C2D425E227EDCA75089EBE08314DF160
 URL=https://ppa.launchpadcontent.net/ubuntugis/ppa/ubuntu
 
-create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src
-
+if [ "$QGIS_UNSTABLE" != "true" ]; then
+    create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src
+fi
 
 if [ "$QGIS_UNSTABLE" = "true" ]; then
     echo "Using QGIS Unstable GIS!!!!!!!!!!!"
@@ -68,14 +69,12 @@ create_source_file.py $KEYRING $SOURCEFILE $URL --add-src
 
 # R
 KEYRING=$KEYS_FOLDER/r-archive-keyring.asc
-SOURCEFILE=$SOURCES_FOLDER/r.list
+SOURCEFILE=$SOURCES_FOLDER/r.sources
 FINGERPRINT=6B827C12C2D425E227EDCA75089EBE08314DF160
 URL=https://cloud.r-project.org/bin/linux/ubuntu
 
 download_keyfile.py $KEYRING https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc wget
-# create_source_file.py $KEYRING $SOURCEFILE $URL --add-src --distro_code_name jammy-cran40 --component "/"
-
-echo "deb [signed-by=$KEYRING arch=amd64] https://cloud.r-project.org/bin/linux/ubuntu $UBUNTU_CODENAME-cran40/" | sudo tee $SOURCEFILE
+create_source_file.py $KEYRING $SOURCEFILE $URL --add-src --distro_code_name $UBUNTU_CODENAME-cran40/
 
 # TexStudio
 KEYRING=$KEYS_FOLDER/texstudio-archive-keyring.gpg
@@ -99,12 +98,12 @@ sudo curl -fsSLo $KEYS_FOLDER/brave-browser-archive-keyring.gpg https://brave-br
 echo "deb [signed-by=$KEYS_FOLDER/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee $SOURCES_FOLDER/brave-browser-release.list
 
 # WEBP PEEK
-KEYRING=$KEYS_FOLDER/peek-archive-keyring.gpg
-SOURCEFILE=$SOURCES_FOLDER/peek.sources
-FINGERPRINT=8C9531299E7DF2DCF681B4999578539176BAFBC6
-URL=https://ppa.launchpadcontent.net/peek-developers/stable/ubuntu
+# KEYRING=$KEYS_FOLDER/peek-archive-keyring.gpg
+# SOURCEFILE=$SOURCES_FOLDER/peek.sources
+# FINGERPRINT=8C9531299E7DF2DCF681B4999578539176BAFBC6
+# URL=https://ppa.launchpadcontent.net/peek-developers/stable/ubuntu
 
-create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
+# create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
 
 # GitHub CLI
 KEYRING=$KEYS_FOLDER/githubcli-archive-keyring.gpg
@@ -123,11 +122,11 @@ download_keyfile.py $KEYRING https://apt.kitware.com/keys/kitware-archive-latest
 create_source_file.py $KEYRING $FILE $URL --component main
 
 # Personal PPA
-KEYRING=$KEYS_FOLDER/personal.gpg
-SOURCEFILE=$SOURCES_FOLDER/personal.sources
-FINGERPRINT=0002254B19F8B3682F060871D3AAC36377A9478A
-URL=https://ppa.launchpadcontent.net/jancaha/gis-tools/ubuntu
-create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
+# KEYRING=$KEYS_FOLDER/personal.gpg
+# SOURCEFILE=$SOURCES_FOLDER/personal.sources
+# FINGERPRINT=0002254B19F8B3682F060871D3AAC36377A9478A
+# URL=https://ppa.launchpadcontent.net/jancaha/gis-tools/ubuntu
+# create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
 
 # PostreSQL
 KEYRING=$KEYS_FOLDER/pgadmin-archive-keyring.pub
@@ -144,7 +143,7 @@ FILE=$SOURCES_FOLDER/pg.sources
 
 download_keyfile.py $KEYRING  https://www.postgresql.org/media/keys/ACCC4CF8.asc curl
 
-create_source_file.py $KEYRING $FILE $URL --distro_code_name "jammy-pgdg"
+create_source_file.py $KEYRING $FILE $URL --distro_code_name "noble-pgdg"
 
 # Wine
 KEYRING=$KEYS_FOLDER/winehq.key
@@ -186,3 +185,6 @@ SOURCEFILE=$SOURCES_FOLDER/keepassxc.sources
 FINGERPRINT=D89C66D0E31FEA2874EBD20561922AB60068FCD6
 URL=https://ppa.launchpadcontent.net/phoerious/keepassxc/ubuntu
 create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
+
+# Turtle
+sudo add-apt-repository ppa:philippun/turtle -y

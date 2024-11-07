@@ -1,0 +1,2 @@
+UUID=disc_UUID folder	ntfs-3g	 auto,nofail,noatime,user,nls=utf8,windows_names,dmask=002,fmask=111,uid=1000,gid=1000 0  0
+UUID=disc_UUID folder 	ext4 auto,nofail 0 0  0
