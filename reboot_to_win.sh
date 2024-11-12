@@ -2,6 +2,9 @@
 
 # This script reboots the system into Windows
 
+# List all GRUB entries to select the Windows entry
+# grep -i 'menuentry' /boot/grub/grub.cfg
+
 # Define the GRUB entry name for Windows
 WINDOWS_ENTRY="Windows Boot Manager (on /dev/nvme0n1p1)" # Replace with exact entry from grub.cfg if different
 
