@@ -112,7 +112,7 @@ sudo apt-get install -y \
     python3-isort \
     python3-mypy \
     python3-pytest \
-    pyton3-pytest-cov
+    python3-pytest-cov
 	
 # QGIS
 sudo apt-get install -y \
