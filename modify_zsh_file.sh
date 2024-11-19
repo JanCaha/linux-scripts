@@ -22,6 +22,29 @@ echo 'alias sleep_computer="systemctl suspend"' >> $ZSHFILE
 echo 'alias conda_activate="source ~/miniconda3/etc/profile.d/conda.sh"' >> $ZSHFILE
 echo 'alias git_merge_upstream="git fetch upstream && git merge upstream/master"' >> $ZSHFILE
 
+tee -a $ZSHFILE <<EOF
+git_export_changes() {
+  if [ -z "\$1" ]; then
+    echo "Path to result file is not set."
+    exit 1
+  fi
+
+  COMMIT_HASH=\$(git rev-parse --short HEAD)
+  git diff $COMMIT_HASH > \$1
+}
+EOF
+
+tee -a $ZSHFILE <<EOF
+git_apply_changes() {
+  if [ -z "\$1" ]; then
+    echo "Path to result file is not set."
+    exit 1
+  fi
+
+  git apply \$1
+}
+EOF
+
 # install additons
 cd ~/.oh-my-zsh/custom/plugins
 git clone https://github.com/zpm-zsh/zshmarks.git bookmarks # activate by adding bookmarks to ~/.zshrc plugins=(plugins)
