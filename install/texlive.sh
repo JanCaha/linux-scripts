@@ -5,7 +5,8 @@ tar xf install-tl-unx.tar.gz
 folder=$(fd "^install-tl-[0-9]+" $(pwd))
 cd $folder
 sudo perl ./install-tl --no-interaction # as root or with writable destination
-# folder=$(fd "/usr/local/texlive/[0-9]+/bin/x86_64-linux" /)
+folder=$(fd "/usr/local/texlive/[0-9]+/bin/x86_64-linux" /)
+
 # #Finally, prepend /usr/local/texlive/YYYY/bin/PLATFORM to your PATH,# 
 # e.g., /usr/local/texlive/2023/bin/x86_64-linux
 
@@ -56,3 +57,7 @@ sudo $(which tlmgr) install \
     algpseudocodex \
     mwe \
     comment
+
+# edit .zshrc file ins
+echo "Add this to PATH in the open file - $folder"
+kate ~/.zshrc
