@@ -2,7 +2,7 @@
 ZSHFILE=~/.zshrc
 
 LINE=$(grep "^export PATH" $ZSHFILE)
-EXPORT_PATH='export PATH=$PATH:$HOME/.cargo/bin:$HOME/Scripts/tools:$HOME/Scripts/python:$HOME/Scripts:$HOME/bin:/usr/local/texlive/2023/bin/x86_64-linux'
+EXPORT_PATH='export PATH=$PATH:$HOME/.cargo/bin:$HOME/Scripts/tools:$HOME/Scripts/python:$HOME/Scripts:$HOME/bin:/usr/local/texlive/2024/bin/x86_64-linux'
 
 if [ ! -z "$LINE" ];
 then
@@ -17,10 +17,10 @@ echo "source /etc/os-release" >> $ZSHFILE
 echo "source ~/Scripts/variables.sh" >> $ZSHFILE
 source ~/Scripts/variables.sh
 echo 'alias open="nohup nemo . > /dev/null 2>&1 &"' >> $ZSHFILE
-echo 'alias gitreset="git reset --hard"' >> $ZSHFILE
 echo 'alias sleep_computer="systemctl suspend"' >> $ZSHFILE
-echo 'alias conda_activate="source ~/miniconda3/etc/profile.d/conda.sh"' >> $ZSHFILE
+
 echo 'alias git_merge_upstream="git fetch upstream && git merge upstream/master"' >> $ZSHFILE
+echo 'alias gitreset="git reset --hard"' >> $ZSHFILE
 
 tee -a $ZSHFILE <<EOF
 git_export_changes() {
