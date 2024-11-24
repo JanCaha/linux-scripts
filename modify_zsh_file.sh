@@ -45,6 +45,26 @@ git_apply_changes() {
 }
 EOF
 
+tee -a $ZSHFILE <<EOF
+screenshot(){
+  SCREENSHOT_DIR=\$HOME/Pictures/Screenshots
+
+  if [ ! -d "\$SCREENSHOT_DIR" ]; then
+    mkdir -p \$SCREENSHOT_DIR
+  fi
+
+  if [ -z "\$1" ]; then
+    echo "Timing not set using default value 5."
+    delay=5
+  else
+    echo "Timing set to \$1."
+    delay=\$1
+  fi
+
+  gnome-screenshot -c --delay=\$delay -f \$SCREENSHOT_DIR/$(date +%Y-%m-%d-%H-%M-%S).png
+}
+EOF
+
 # install additons
 cd ~/.oh-my-zsh/custom/plugins
 git clone https://github.com/zpm-zsh/zshmarks.git bookmarks # activate by adding bookmarks to ~/.zshrc plugins=(plugins)
