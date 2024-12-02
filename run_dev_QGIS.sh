@@ -2,6 +2,8 @@
 QGIS_DIR=~/QGIS
 cd $QGIS_DIR
 
+pre-commit install -f
+
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 CMAKE_SETTINGS="-G Ninja -DWITH_SERVER:BOOL=ON -DWITH_3D:BOOL=ON -DWITH_COPC:BOOL=TRUE -DWITH_PDAL:BOOL=TRUE"
