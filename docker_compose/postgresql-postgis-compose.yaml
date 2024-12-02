@@ -10,5 +10,6 @@ services:
       PGDATA: /data/postgres
     volumes:
       - ${HOME_DIR}/PG_Data:/data/postgres
+      - ${HOME_DIR}:/home
     ports:
       - "5432:5432"
