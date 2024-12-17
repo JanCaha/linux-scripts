@@ -46,6 +46,60 @@ git_apply_changes() {
 EOF
 
 tee -a $ZSHFILE <<EOF
+git_commit_exists(){
+    if [ -z "\$1" ]; then
+        return 1
+    fi
+    git rev-parse --verify "\$1" >/dev/null 2>&1
+    return \$?
+}
+EOF
+
+tee -a $ZSHFILE <<EOF
+git_export_commits_since(){
+  if [ -z "\$1" ]; then
+    echo "Starting commit not set file is not set."
+    exit 1
+  fi
+
+  if ! git_commit_exists "\$1"; then
+      echo "Invalid commit hash: \$1"
+      return 1
+  fi
+
+  git format-patch \$1
+}
+EOF
+
+
+tee -a $ZSHFILE <<EOF
+git_apply_commit_patches() {
+    if [ -z "\$1" ]; then
+        echo "Patches directory not specified"
+        return 1
+    fi
+
+    if [ ! -d "\$1" ]; then
+        echo "Directory \$1 does not exist"
+        return 1
+    fi
+
+    # Apply patches in numerical order
+    for patch in "\$1"/*.patch; do
+        if [ -f "\$patch" ]; then
+            echo "Applying patch: \$patch"
+            git am "\$patch"
+            if [ \$? -ne 0 ]; then
+                echo "Failed to apply patch: \$patch"
+                git am --abort
+                return 1
+            fi
+        fi
+    done
+}
+EOF
+
+tee -a $ZSHFILE <<EOF
 screenshot(){
   SCREENSHOT_DIR=\$HOME/Pictures/Screenshots
 
