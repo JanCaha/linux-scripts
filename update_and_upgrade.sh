@@ -141,15 +141,7 @@ fi
 
 if [ "$currentHash" != "$OneDriveLastInstalledHash" ];
 then
-    cd /tmp
-    git clone https://github.com/abraunegg/onedrive.git
-    cd onedrive
-    folder=$(fd "^dmd-[0-9\.]+" ~/dlang)
-    source $folder/activate
-    ./configure
-    make clean; make;
-    sudo make install
-    deactivate
+    source install/onedrive.sh
     sed -i "s/^OneDriveLastInstalledHash=.*/OneDriveLastInstalledHash='$currentHash'/g" $VariablesFile
 else
     echo -e "$PINK Skipping OneDrive Update $NORMAL"
