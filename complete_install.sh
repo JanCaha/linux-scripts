@@ -160,20 +160,7 @@ sudo apt-get install -y \
 sudo apt-get install -y krusader
 
 # Onedrive 
-curl -fsS https://dlang.org/install.sh | bash -s dmd
-sudo update-alternatives --install "/usr/bin/ld" "ld" "/usr/bin/ld.gold" 20
-sudo update-alternatives --install "/usr/bin/ld" "ld" "/usr/bin/ld.bfd" 10
-
-folder=$(fd "^dmd-[0-9\.]+" ~/dlang)
-source $folder/activate
-
-cd /tmp
-git clone https://github.com/abraunegg/onedrive.git
-cd onedrive
-./configure
-make clean; make;
-sudo make install
-deactivate
+source install/onedrive.sh
 
 # Calibre
 sudo apt-get install -y libxcb-cursor0
