@@ -9,5 +9,6 @@ install.packages(c(
     "sabre",
     "SpatialKDE",
     "devtools",
-    "remotes"
+    "remotes",
+    "easystats"
     ))
