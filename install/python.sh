@@ -1,7 +1,3 @@
-# PYTHON_ENVS_DIR="/opt/python_envs/"
-# MAIN_ENV="global-env"
-# MAIN_ENV_ACTIVATE="$PYTHON_ENVS_DIR/$MAIN_ENV/bin/activate"
-
 if [ ! -d "$PYTHON_ENVS_DIR" ]; then
     echo "Creating directory $PYTHON_ENVS_DIR"
     sudo mkdir $PYTHON_ENVS_DIR
