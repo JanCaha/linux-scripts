@@ -124,3 +124,5 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
+
+alias venv_global_activate_="source $PYTHON_ENVS_DIR/$MAIN_ENV/bin/activate"
