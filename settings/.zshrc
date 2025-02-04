@@ -8,26 +8,6 @@ plugins=(git bookmarks)
 
 source $ZSH/oh-my-zsh.sh
 
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/cahik/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/cahik/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/home/cahik/miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/cahik/miniforge3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-if [ -f "/home/cahik/miniforge3/etc/profile.d/mamba.sh" ]; then
-    . "/home/cahik/miniforge3/etc/profile.d/mamba.sh"
-fi
-# <<< conda initialize <<<
-
 PATH=$PATH:$HOME/.cargo/bin:$HOME/Scripts/tools:$HOME/Scripts/python:$HOME/Scripts:$HOME/bin:/usr/local/texlive/2024/bin/x86_64-linux:$HOME/.local/bin
 
 source /etc/os-release
@@ -130,4 +110,17 @@ git_apply_commit_patches() {
     done
 }
 
-export PYTHONNOUSERSITE=True
+alias conda="micromamba"
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'micromamba shell init' !!
+export MAMBA_EXE='/home/cahik/.local/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/home/cahik/micromamba';
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias micromamba="$MAMBA_EXE"  # Fallback on help from micromamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
