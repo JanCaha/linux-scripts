@@ -17,5 +17,5 @@ cd ~
 
 # settings zshrc
 mv ~/.zshrc ~/.zshrc_backup
-mv $SCRIPTS_DIR/settings/.zshrc ~/.zshrc
-mv $SCRIPTS_DIR/settings/.zshenv ~/.zshenv
+cp $SCRIPTS_DIR/settings/.zshrc ~/.zshrc
+cp $SCRIPTS_DIR/settings/.zshenv ~/.zshenv
