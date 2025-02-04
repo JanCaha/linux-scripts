@@ -1,6 +1,12 @@
+echo "🚀 Installing MicroMamba"
+
 # MicroMamba
 cd /tmp
 curl -L micro.mamba.pm/install.sh | bash -s
+
+echo "✅ MicroMamba installed"
+
+echo "🚀 Installing packages to base environment"
 
 conda activate base
 
@@ -14,3 +20,5 @@ conda install -y \
     mypy \
     black \
     isort
+
+echo "✅ Packages installed to base environment"
