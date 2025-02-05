@@ -48,7 +48,7 @@ def main(_argv: typing.Optional[typing.Sequence[str]] = None):
 
     process.wait()
 
-    util_functions.print_success(f"Created successfully!\n\tResult file: {output_file.as_posix()}")
+    util_functions.print_success(f"✅ Created successfully!\n\tResult file: {output_file.as_posix()}")
 
     return 0
 
