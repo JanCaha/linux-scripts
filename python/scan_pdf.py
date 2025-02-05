@@ -120,7 +120,7 @@ def main():
         output_pdf.save(output_file, version=17)
         output_pdf.close()
 
-    util_functions.print_success(f"Created successfully!\n\tResult file: {output_file.as_posix()}")
+    util_functions.print_success(f"✅ Created successfully!\n\tResult file: {output_file.as_posix()}")
 
 
 if __name__ == "__main__":
