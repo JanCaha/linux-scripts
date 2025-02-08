@@ -6,7 +6,7 @@
 # grep -i 'menuentry' /boot/grub/grub.cfg
 
 # Define the GRUB entry name for Windows
-WINDOWS_ENTRY="Windows Boot Manager (on /dev/nvme0n1p1)" # Replace with exact entry from grub.cfg if different
+WINDOWS_ENTRY=$(sudo grep -oE "Windows Boot Manager.*\(on.*/dev/.+\)" /boot/grub/grub.cfg) #"Windows Boot Manager (on /dev/nvme0n1p1)" # Replace with exact entry from grub.cfg if different
 
 # Check if the entry exists in GRUB configuration
 if sudo grep -q "$WINDOWS_ENTRY" /boot/grub/grub.cfg; then
