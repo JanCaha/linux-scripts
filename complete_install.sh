@@ -57,9 +57,8 @@ sudo apt-get install -y \
 # C++ dev tools
 sudo apt-get install -y \
     clang \
-    clang-14 \
-    lld-14 \
-    libclang-14-dev \
+    lld \
+    libclang-dev \
     ninja-build \
     g++-12 \
     doxygen \
@@ -219,3 +218,14 @@ source install/miniconda.sh
 source install/rust.sh
 source install/jellyfin.sh
 source install/texlive.sh
+
+search_package() {
+    if [ -z "$1" ]; then
+        echo "Usage: search_package <package_name>"
+        return 1
+    fi
+    apt search "$1"
+}
+
+# Example usage:
+# search_package "vim"
