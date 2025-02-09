@@ -218,14 +218,3 @@ source install/miniconda.sh
 source install/rust.sh
 source install/jellyfin.sh
 source install/texlive.sh
-
-search_package() {
-    if [ -z "$1" ]; then
-        echo "Usage: search_package <package_name>"
-        return 1
-    fi
-    apt search "$1"
-}
-
-# Example usage:
-# search_package "vim"
