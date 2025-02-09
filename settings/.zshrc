@@ -13,15 +13,6 @@ PATH=$PATH:$HOME/.cargo/bin:$HOME/Scripts/tools:$HOME/Scripts/python:$HOME/Scrip
 source /etc/os-release
 source ~/Scripts/variables.sh
 
-alias open="nohup nemo . > /dev/null 2>&1 &"
-alias gitreset="git reset --hard"
-alias sleep_computer="systemctl suspend"
-
-alias gitreset="git reset --hard"
-alias sleep_computer="systemctl suspend"
-alias conda_activate="source ~/miniconda3/etc/profile.d/conda.sh"
-alias git_merge_upstream="git fetch upstream && git merge upstream/master"
-
 if [[ "$TERM_PROGRAM" == "vscode" && -f ".env" ]]; then
   source .env && \
   echo "✅ loaded .env"
@@ -110,8 +101,6 @@ git_apply_commit_patches() {
     done
 }
 
-alias conda="micromamba"
-
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'micromamba shell init' !!
 export MAMBA_EXE='/home/cahik/.local/bin/micromamba';
@@ -125,4 +114,14 @@ fi
 unset __mamba_setup
 # <<< mamba initialize <<<
 
+alias open="nohup nemo . > /dev/null 2>&1 &"
+alias sleep_computer="systemctl suspend"
+
 alias venv_global_activate_="source $PYTHON_ENVS_DIR/$MAIN_ENV/bin/activate"
+
+alias gitreset="git reset --hard"
+alias git_merge_upstream="git fetch upstream && git merge upstream/master"
+
+alias conda="micromamba"
+
+alias find_package="apt search"
