@@ -6,6 +6,8 @@ curl -L micro.mamba.pm/install.sh | bash -s
 
 echo "✅ MicroMamba installed"
 
+alias conda=micromamba
+
 echo "🚀 Installing packages to base environment"
 
 conda activate base
