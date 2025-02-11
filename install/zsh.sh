@@ -6,7 +6,12 @@ chsh -s $(which zsh)
 
 echo "✅ Zsh installed and set as default shell"
 
-# install additons
+# Check if ~/.oh-my-zsh exists before removing it
+if [ -d "~/.oh-my-zsh" ]; then
+    rm -rf ~/.oh-my-zsh
+fi
+
+# install additions
 cd ~/.oh-my-zsh/custom/plugins
 git clone https://github.com/zpm-zsh/zshmarks.git bookmarks
 
