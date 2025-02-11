@@ -13,8 +13,8 @@ ln -s $CODES_SCRIPTS_DIR $SCRIPTS_DIR
 cd ~
 
 # install zsh
-./install/zsh.sh
+$SCRIPTS_DIR/install/zsh.sh
 
 # settings zshrc
 mv ~/.zshrc ~/.zshrc_backup
-./settings/copy_zsh_settings.sh
+$SCRIPTS_DIR/settings/copy_zsh_settings.sh
