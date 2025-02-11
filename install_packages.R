@@ -11,4 +11,6 @@ install.packages(c(
     "devtools",
     "remotes",
     "easystats"
-    ))
+    ),
+    lib=Sys.getenv("R_LIBS_USER")
+)
