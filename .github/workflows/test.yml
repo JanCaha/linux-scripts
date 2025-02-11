@@ -1,0 +1,16 @@
+name: Test scripts
+
+on: [push]
+
+jobs:
+
+  test-scripts:
+
+    runs-on: ubuntu-24.04
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Echo HOME
+        run: echo $HOME
