@@ -13,7 +13,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create R Dir
-        run: mkdir -p ~/R/x86_64-pc-linux-gnu-library
+        run: |
+          mkdir -p ~/R/x86_64-pc-linux-gnu-library
+          chown -R ${{ github.actor }}:${{ github.actor }} ~/R
 
       - name: Run first_run.sh
         run: ./first_run.sh
