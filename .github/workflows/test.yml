@@ -18,6 +18,7 @@ jobs:
       - name: Create R Dir
         shell: zsh {0}
         run: |
+          echo $R_LIBS_USER
           mkdir -p $R_LIBS_USER
       
       - name: Run complete_install.sh
