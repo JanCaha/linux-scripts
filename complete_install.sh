@@ -4,6 +4,8 @@ source /etc/os-release
 BASEDIR=$(dirname "$0")
 PATH=$PATH:$BASEDIR/python
 
+echo BASEDIR: $BASEDIR
+
 # source prepare_sources.sh
 
 sudo apt-get update 
