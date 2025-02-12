@@ -206,8 +206,8 @@ sudo apt-get install -y libreoffice-style-karasa-jaga
 sudo apt-get install -y turtle-cli turtle-nautilus
 
 # add install from sepearate scripts
-source install/miniconda.sh
-source install/rust.sh
-source install/jellyfin.sh
-source install/texlive.sh
-source install/r.sh
+source $BASEDIR/install/miniconda.sh
+source $BASEDIR/install/rust.sh
+source $BASEDIR/install/jellyfin.sh
+source $BASEDIR/install/texlive.sh
+source $BASEDIR/install/r.sh
