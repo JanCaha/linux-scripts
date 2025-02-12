@@ -14,12 +14,6 @@ jobs:
 
       - name: Run first_run.sh
         run: ./first_run.sh
-
-      - name: Test variables
-        shell: zsh {0}
-        run: |
-          echo $SOURCES_FOLDER
-          echo $MAIN_ENV_ACTIVATE 
       
       - name: Run complete_install.sh
         shell: zsh {0}
