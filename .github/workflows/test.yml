@@ -21,6 +21,6 @@ jobs:
           echo $SOURCES_FOLDER
           echo $MAIN_ENV_ACTIVATE 
       
-      - name: Runc complete_install.sh
+      - name: Run complete_install.sh
         shell: zsh {0}
         run: ./complete_install.sh
