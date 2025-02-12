@@ -12,6 +12,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Create R Dir
+        run: mkdir -p ~/R
+
       - name: Run first_run.sh
         run: ./first_run.sh
       
