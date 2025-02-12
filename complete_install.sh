@@ -1,10 +1,8 @@
 #!/bin/bash
 source /etc/os-release
 
-BASEDIR=$(dirname "$0")
+BASEDIR=$(dirname "$(readlink -f "$0")")
 PATH=$PATH:$BASEDIR/python
-
-echo BASEDIR: $(dirname "$(readlink -f "$0")")
 
 # source prepare_sources.sh
 
