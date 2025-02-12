@@ -12,13 +12,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Create R Dir
-        run: |
-          mkdir -p ~/R/x86_64-pc-linux-gnu-library
-          chown -R ${{ github.actor }}:${{ github.actor }} ~/R
-
       - name: Run first_run.sh
         run: ./first_run.sh
+
+      - name: Create R Dir
+        shell: zsh {0}
+        run: |
+          mkdir -p $R_LIBS_USER
       
       - name: Run complete_install.sh
         shell: zsh {0}
