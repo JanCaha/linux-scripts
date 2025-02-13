@@ -21,6 +21,8 @@ jobs:
           echo $MAIN_ENV_ACTIVATE
           echo $R_LIBS_USER
           mkdir -p $R_LIBS_USER
+          cd $R_LIBS_USER/x86_64-pc-linux-gnu-library
+          ls -la
       
       - name: Run complete_install.sh
         shell: zsh {0}
