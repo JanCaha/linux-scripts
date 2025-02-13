@@ -20,7 +20,7 @@ jobs:
         run: |
           echo $MAIN_ENV_ACTIVATE
           echo $R_LIBS_USER
-          mkdir -p $R_LIBS_USER
+          mkdir -p $R_LIBS_USER/x86_64-pc-linux-gnu-library
           cd $R_LIBS_USER/x86_64-pc-linux-gnu-library
           ls -la
       
