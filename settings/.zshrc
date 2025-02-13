@@ -8,7 +8,7 @@ plugins=(git bookmarks)
 
 source $ZSH/oh-my-zsh.sh
 
-PATH=$PATH:$HOME/.cargo/bin:$HOME/Scripts/tools:$HOME/Scripts/python:$HOME/Scripts:$HOME/bin:/usr/local/texlive/2024/bin/x86_64-linux:$HOME/.local/bin
+PATH=$PATH:$HOME/.cargo/bin:$HOME/Scripts/tools:$HOME/Scripts/python:$HOME/Scripts:$HOME/bin:/usr/local/texlive/2024/bin/x86_64-linux:$HOME/.local/bin:$HOME/miniconda3/bin
 
 source /etc/os-release
 source ~/Scripts/variables.sh
@@ -101,18 +101,20 @@ git_apply_commit_patches() {
     done
 }
 
-# >>> mamba initialize >>>
-# !! Contents within this block are managed by 'micromamba shell init' !!
-export MAMBA_EXE='/home/cahik/.local/bin/micromamba';
-export MAMBA_ROOT_PREFIX='/home/cahik/micromamba';
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/cahik/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
+    eval "$__conda_setup"
 else
-    alias micromamba="$MAMBA_EXE"  # Fallback on help from micromamba activate
+    if [ -f "/home/cahik/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/cahik/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/cahik/miniconda3/bin:$PATH"
+    fi
 fi
-unset __mamba_setup
-# <<< mamba initialize <<<
+unset __conda_setup
+# <<< conda initialize <<<
 
 alias open="nohup nemo . > /dev/null 2>&1 &"
 alias sleep_computer="systemctl suspend"
@@ -121,7 +123,5 @@ alias venv_global_activate_="source $PYTHON_ENVS_DIR/$MAIN_ENV/bin/activate"
 
 alias gitreset="git reset --hard"
 alias git_merge_upstream="git fetch upstream && git merge upstream/master"
-
-alias conda="micromamba"
 
 alias find_package="apt search"
