@@ -7,15 +7,12 @@ if (Sys.getenv("R_LIBS_USER") != "") {
     if (!dir.exists(Sys.getenv("R_LIBS_USER"))) {
         dir.create(Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)
         print("\tDirectory created")
-    }
-    else
-    {
+    } else {
         print("\tDirectory already exists")
     }
 
     default_lib_path <- Sys.getenv("R_LIBS_USER")
-}
-else {
+} else {
     print("R_LIBS_USER is not set")
 }
 
