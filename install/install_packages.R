@@ -1,3 +1,5 @@
+default_lib_path <- .libPaths()[1]
+
 # Check if the directory exists and create it if it does not
 if (Sys.getenv("R_LIBS_USER") != "") {
     print(paste("R_LIBS_USER is set to: ", Sys.getenv("R_LIBS_USER")))
@@ -9,6 +11,8 @@ if (Sys.getenv("R_LIBS_USER") != "") {
     {
         print("\tDirectory already exists")
     }
+
+    default_lib_path <- Sys.getenv("R_LIBS_USER")
 }
 else {
     print("R_LIBS_USER is not set")
@@ -29,5 +33,5 @@ install.packages(c(
     "remotes",
     "easystats"
     ),
-    lib=Sys.getenv("R_LIBS_USER")
+    lib=default_lib_path
 )
