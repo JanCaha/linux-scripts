@@ -8,6 +8,7 @@ if (Sys.getenv("R_LIBS_USER") != "") {
         dir.create(Sys.getenv("R_LIBS_USER"), showWarnings = FALSE, recursive = TRUE)
         print("\tDirectory created")
     }
+    else
     {
         print("\tDirectory already exists")
     }
