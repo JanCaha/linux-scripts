@@ -14,15 +14,6 @@ jobs:
 
       - name: Run first_run.sh
         run: ./first_run.sh
-
-      - name: Create R Dir
-        shell: zsh {0}
-        run: |
-          echo $MAIN_ENV_ACTIVATE
-          echo $R_LIBS_USER
-          mkdir -p $R_LIBS_USER/x86_64-pc-linux-gnu-library
-          cd $R_LIBS_USER/x86_64-pc-linux-gnu-library
-          ls -la
       
       - name: Run complete_install.sh
         shell: zsh {0}
