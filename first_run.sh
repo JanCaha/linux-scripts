@@ -18,3 +18,9 @@ $SCRIPTS_DIR/install/zsh.sh
 # settings zshrc
 mv ~/.zshrc ~/.zshrc_backup
 $SCRIPTS_DIR/settings/copy_zsh_settings.sh
+
+
+# numlock still on
+sudo apt install numlockx -y
+
+echo -e "[Seat:*]\ngreeter-setup-script=/usr/bin/numlockx on" | sudo tee /etc/lightdm/lightdm.conf.d/numlock.conf
