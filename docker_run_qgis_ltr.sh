@@ -11,7 +11,6 @@ docker run --rm -it \
     -v $DIR_QGIS_PROFILES \
     -p 127.0.0.1:5678:5678 \
     -e DISPLAY=unix$DISPLAY \
-    -e RUN_IN_DOCKER=true \
     qgis-ltr \
     /bin/bash -c qgis
 xhost -
