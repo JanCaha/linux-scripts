@@ -1,0 +1,3 @@
+export PYTHONPATH=$QGIS_BUILD_DIR/python/:$QGIS_BUILD_DIR/python/plugins:$QGIS_BUILD_DIR/../tests/src/python
+export QGIS_PREFIX_PATH=$QGIS_BUILD_DIR
+export LD_LIBRARY_PATH=$QGIS_BUILD_DIR/lib
