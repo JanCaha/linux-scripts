@@ -8,10 +8,7 @@ plugins=(git bookmarks)
 
 source $ZSH/oh-my-zsh.sh
 
-PATH=$PATH:$HOME/.cargo/bin:$HOME/Scripts/tools:$HOME/Scripts/python:$HOME/Scripts:$HOME/bin:/usr/local/texlive/2024/bin/x86_64-linux:$HOME/.local/bin:$HOME/miniconda3/bin
-
 source /etc/os-release
-source ~/Scripts/variables.sh
 
 if [[ "$TERM_PROGRAM" == "vscode" && -f ".env" ]]; then
   source .env && \
@@ -26,6 +23,7 @@ git_apply_changes() {
 
   git apply $1
 }
+
 git_export_changes() {
   if [ -z "$1" ]; then
     echo "Path to result file is not set."
