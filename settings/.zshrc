@@ -117,7 +117,7 @@ unset __conda_setup
 alias open="nohup nemo . > /dev/null 2>&1 &"
 alias sleep_computer="systemctl suspend"
 
-alias venv_global_activate_="source $PYTHON_ENVS_DIR/$MAIN_ENV/bin/activate"
+alias venv_global_activate="source $PYTHON_ENVS_DIR/$MAIN_ENV/bin/activate"
 
 alias gitreset="git reset --hard"
 alias git_merge_upstream="git fetch upstream && git merge upstream/master"
