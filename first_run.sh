@@ -23,4 +23,8 @@ $SCRIPTS_DIR/settings/copy_zsh_settings.sh
 # numlock still on
 sudo apt install numlockx -y
 
+if [ ! -d /etc/lightdm/lightdm.conf.d ]; then
+    sudo mkdir -p /etc/lightdm/lightdm.conf.d
+fi
+
 echo -e "[Seat:*]\ngreeter-setup-script=/usr/bin/numlockx on" | sudo tee /etc/lightdm/lightdm.conf.d/numlock.conf
