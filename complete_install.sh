@@ -1,7 +1,7 @@
 #!/bin/bash
 source /etc/os-release
 
-BASEDIR=$(dirname "$0")
+BASEDIR=$(dirname "$(readlink -f "$0")")
 PATH=$PATH:$BASEDIR/python
 
 # source prepare_sources.sh
@@ -123,11 +123,6 @@ sudo apt-get install -y \
 sudo apt-get install -y \
     grass-gui
 
-# R
-sudo apt-get install -y \
-    r-base \
-    r-base-dev
-
 sudo apt-get install -y \
 	libudunits2-dev \
 	gdal-bin \
@@ -204,9 +199,6 @@ sudo apt-get install -y \
     pgadmin4 \
     libpq-dev libpqxx-dev # libraries
 
-# R packages
-Rscript install_packages.R
-
 # LibreOffice style
 sudo apt-get install -y libreoffice-style-karasa-jaga
 
@@ -214,7 +206,8 @@ sudo apt-get install -y libreoffice-style-karasa-jaga
 sudo apt-get install -y turtle-cli turtle-nautilus
 
 # add install from sepearate scripts
-source install/miniconda.sh
-source install/rust.sh
-source install/jellyfin.sh
-source install/texlive.sh
+$BASEDIR/install/miniconda.sh
+$BASEDIR/install/rust.sh
+$BASEDIR/install/jellyfin.sh
+$BASEDIR/install/texlive.sh
+$BASEDIR/install/r.sh
