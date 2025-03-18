@@ -188,3 +188,6 @@ create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src
 
 # Turtle
 sudo add-apt-repository ppa:philippun/turtle -y
+
+# gimp 3
+sudo add-apt-repository ppa:ubuntuhandbook1/gimp-3
