@@ -82,6 +82,8 @@ echo -e "$GREEN---------$NORMAL"
 echo -e "\n\n\n"
 sudo apt upgrade -y
 sudo apt autoremove -y
+echo -e "$GREEN---kept back packages---$NORMAL"
+apt-get upgrade --dry-run | grep -i "kept back" -A 1000
 echo -e "$YELLOW---end apt update---$NORMAL"
 echo ""
 
