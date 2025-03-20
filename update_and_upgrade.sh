@@ -18,7 +18,8 @@ cd "$(dirname "$0")"
 HomeFolder=~
 VariablesFile=$HomeFolder/.install_env_variables
 currentDir=$(pwd)
-R_LIBS_USER=/home/cahik/R/x86_64-pc-linux-gnu-library/4.3
+R_LIBS_USER=$HOME/R/x86_64-pc-linux-gnu-library/4.3
+BASEDIR=$(dirname "$(readlink -f "$0")")
 
 echo "***"
 if [[ -f "$VariablesFile" ]]; then
