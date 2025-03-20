@@ -139,12 +139,12 @@ echo -e "$BLUE---$(onedrive --version)---$NORMAL"
 currentHash="$(git ls-remote https://github.com/abraunegg/onedrive.git master | grep -i -E '[a-z|0-9]+' -o -m 1 | head -1)"
 
 if [[ -z "$OneDriveLastInstalledHash" ]]; then
-OneDriveLastInstalledHash=""
+    OneDriveLastInstalledHash=""
 fi
 
 if [ "$currentHash" != "$OneDriveLastInstalledHash" ];
 then
-    source install/onedrive.sh
+    source $BASEDIR/install/onedrive.sh
     sed -i "s/^OneDriveLastInstalledHash=.*/OneDriveLastInstalledHash='$currentHash'/g" $VariablesFile
 else
     echo -e "$PINK Skipping OneDrive Update $NORMAL"
