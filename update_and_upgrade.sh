@@ -109,10 +109,7 @@ echo ""
 
 # conda update
 echo -e "$YELLOW---conda update---$NORMAL"
-conda update conda -y
-# in case of issues maybe ownership of the miniconda install is the case
-# sudo chown -R $USER:$USER ~/miniconda3
-# conda update -y -n base -c conda conda-forge
+micromamba self-update
 echo -e "$YELLOW---end conda update---$NORMAL"
 echo ""
 
