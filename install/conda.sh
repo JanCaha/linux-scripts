@@ -1,34 +1,36 @@
-# echo "🚀 Installing MiniConda"
+echo "🚀 Installing MiniConda"
 
-# mkdir -p ~/miniconda3
-# wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
-# bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-# rm ~/miniconda3/miniconda.sh
+mkdir -p ~/miniconda3
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+rm ~/miniconda3/miniconda.sh
 
-# echo "✅ MiniConda installed"
+echo "✅ MiniConda installed"
 
-# echo "🚀 Installing packages to base environment"
+echo "🚀 Installing packages to base environment"
 
-# ~/miniconda3/bin/conda init zsh
-# source ~/.zshrc
+~/miniconda3/bin/conda init zsh
+source ~/.zshrc
 
-# conda activate base
+conda config --set solver libmamba
 
-# conda install -y \
-#     beautifulsoup4 \
-#     nbclient \
-#     ipykernel \
-#     pylint \
-#     pycodestyle \
-#     flake8 \
-#     mypy \
-#     black \
-#     isort
+conda activate base
 
-# echo "✅ Packages installed to base environment"
+conda install -y \
+    beautifulsoup4 \
+    nbclient \
+    ipykernel \
+    pylint \
+    pycodestyle \
+    flake8 \
+    mypy \
+    black \
+    isort
 
-echo "🚀 Installing MicroMamba"
+echo "✅ Packages installed to base environment"
 
-"${SHELL}" <(curl -L micro.mamba.pm/install.sh)
+# echo "🚀 Installing MicroMamba"
 
-echo "✅ MicroMamba installed"
+# "${SHELL}" <(curl -L micro.mamba.pm/install.sh)
+
+# echo "✅ MicroMamba installed"
