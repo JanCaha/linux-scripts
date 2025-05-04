@@ -33,6 +33,7 @@ else
     echo "FreeFileSyncLastVersion='v'" >> $VariablesFile
     echo "KrusaderLastInstalledHash='v'" >> $VariablesFile
     echo "CalibreVersion=''" >> $VariablesFile
+    echo "ZoteroVersion=''" >> $VariablesFile
 fi
 echo "***"
 
@@ -179,6 +180,12 @@ else
 fi
 
 echo -e "$YELLOW---end Calibre update---$NORMAL"
+echo ""
+
+# zotero check and update
+echo -e "$YELLOW---Zotero update---$NORMAL"
+source $BASEDIR/install/zotero.sh
+echo -e "$YELLOW---end Zotero update---$NORMAL"
 echo ""
 
 # # krusader check and update
