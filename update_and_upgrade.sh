@@ -33,7 +33,6 @@ else
     echo "FreeFileSyncLastVersion='v'" >> $VariablesFile
     echo "KrusaderLastInstalledHash='v'" >> $VariablesFile
     echo "CalibreVersion=''" >> $VariablesFile
-    echo "ZoteroVersion=''" >> $VariablesFile
 fi
 echo "***"
 
