@@ -181,12 +181,6 @@ fi
 echo -e "$YELLOW---end Calibre update---$NORMAL"
 echo ""
 
-# zotero check and update
-echo -e "$YELLOW---Zotero update---$NORMAL"
-source $BASEDIR/install/zotero.sh
-echo -e "$YELLOW---end Zotero update---$NORMAL"
-echo ""
-
 # # krusader check and update
 # echo -e "$YELLOW---Krusader update---$NORMAL"
 # echo -e "$BLUE---$(krusader --version)---$NORMAL"
