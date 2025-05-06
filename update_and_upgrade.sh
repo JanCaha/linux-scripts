@@ -80,7 +80,7 @@ echo -e "$GREEN---Upgradable packages---"
 apt list --upgradable
 echo -e "$GREEN---------$NORMAL"
 echo -e "\n\n\n"
-sudo apt upgrade -y
+sudo apt upgrade -y --fix-missing
 sudo apt autoremove -y
 echo -e "$GREEN---kept back packages---$NORMAL"
 apt-get upgrade --dry-run | grep -i "kept back" -A 1000
