@@ -55,7 +55,7 @@ fi
 
 # QGIS
 if [ "$QGIS_UNSTABLE" = "true" ]; then
-    URL=https://qgis.org/ubuntugis
+    URL=https://qgis.org/ubuntugis-nightly
 else
     URL=https://qgis.org/ubuntu
 fi
