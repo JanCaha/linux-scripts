@@ -16,14 +16,15 @@ MAIN_ENV=global-env
 MAIN_ENV_ACTIVATE=$PYTHON_ENVS_DIR/$MAIN_ENV/bin/activate
 
 PATH=$PATH:$HOME/.cargo/bin
-PATH=$PATH:$HOME/Scripts/tools:$HOME/Scripts/python:$HOME/Scripts
+PATH=$PATH:$HOME/Scripts/tools:$HOME/Scripts/python:$HOME/Scripts:$HOME/Scripts/qgis
 PATH=$PATH:$HOME/bin:/usr/local/texlive/2024/bin/x86_64-linux
 PATH=$PATH:$HOME/.local/bin
 PATH=$PATH:$HOME/miniconda3/bin
 
 
 # TODO FILL
-PGHOST=
+PGHOST=localhost
+PGPORT=5432
 PGUSER=
 PGPASSWORD=
 DIR_WORK=
