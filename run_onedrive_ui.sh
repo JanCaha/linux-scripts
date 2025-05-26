@@ -1,6 +1,6 @@
 cd ~/Applications
 if [ ! -d "OneDriveGUI" ]; then
-    git clone https://github.com/bpozdena/OneDriveGUI.git
+    git clone -b main https://github.com/bpozdena/OneDriveGUI.git
     cd OneDriveGUI
     echo "✅ OneDriveGUI cloned."
 else
@@ -18,10 +18,15 @@ else
     echo "✅ VENV created."
 fi
 
-. ~/Applications/OneDriveGUI/.venv/bin/activate
+. "$(pwd)/$VENV_FOLDER/bin/activate"
 echo "✅ Python VENV activated."
 
-python -m pip install PySide6_Essentials requests
+python -m pip install -r ~/Applications/OneDriveGUI/requirements.txt
 
-cd src/
-python OneDriveGUI.py
+if [ -d "src" ] && [ -f "src/OneDriveGUI.py" ]; then
+    cd src/
+    python OneDriveGUI.py
+else
+    echo "❌ Error: 'src/' directory or 'OneDriveGUI.py' file is missing."
+    exit 1
+fi
