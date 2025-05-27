@@ -4,7 +4,7 @@ ZSH_THEME="robbyrussell"
 
 DISABLE_MAGIC_FUNCTIONS="true"
 
-plugins=(git bookmarks)
+plugins=(git bookmarks zsh-autosuggestions zsh-syntax-highlighting conda python pip virtualenv)
 
 source $ZSH/oh-my-zsh.sh
 
