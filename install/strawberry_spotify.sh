@@ -15,4 +15,4 @@ cd build
 ninja
 
 sudo mkdir /usr/lib64/gstreamer-1.0
-sudo cp libgstspotify.so /usr/lib64/gstreamer-1.0/libgstspotify.so 
+sudo cp libgstspotify.so /usr/lib64/gstreamer-1.0/libgstspotify.so

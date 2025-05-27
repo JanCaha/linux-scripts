@@ -1,5 +1,7 @@
 echo "🚀 Installing dlang"
 
+sudo curl -fsSL https://dlang.org/d-keyring.gpg -o /etc/apt/trusted.gpg.d/dlang.gpg
+
 curl -fsS https://dlang.org/install.sh | bash -s dmd
 sudo update-alternatives --install "/usr/bin/ld" "ld" "/usr/bin/ld.gold" 20
 sudo update-alternatives --install "/usr/bin/ld" "ld" "/usr/bin/ld.bfd" 10
@@ -20,7 +22,8 @@ source $folder/activate
 echo "🚀 Building and installing OneDrive"
 
 ./configure
-make clean; make;
+make clean
+make
 sudo make install
 deactivate
 
