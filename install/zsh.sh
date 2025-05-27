@@ -27,6 +27,8 @@ if [ -d "~/.oh-my-zsh" ]; then
     cd ~/.oh-my-zsh/custom/plugins
     git clone https://github.com/zpm-zsh/zshmarks.git bookmarks
     git clone https://github.com/zpm-zsh/zshmarks.git git
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git
 
     echo "✅ Oh-my-zsh plugins bookmarks and git installed"
 else
