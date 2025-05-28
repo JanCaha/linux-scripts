@@ -1,0 +1,15 @@
+[Unit]
+Description=Backup user data to external drive at shutdown/reboot
+DefaultDependencies=no
+Before=shutdown.target reboot.target halt.target
+Requires=local-fs.target
+After=network.target local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/cahik/Scripts/services/scripts/backup_on_exit.sh
+TimeoutStartSec=60
+RemainAfterExit=true
+
+[Install]
+WantedBy=halt.target shutdown.target
