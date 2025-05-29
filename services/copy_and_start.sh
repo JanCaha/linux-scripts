@@ -8,3 +8,5 @@ sudo systemctl enable backup-on-shutdown.service
 # sudo systemctl disable backup-on-shutdown.service
 
 # systemctl list-unit-files --type=service
+
+sudo cp $SCRIPT_DIR/logrotate/backup_on_shutdown /etc/logrotate.d/backup_on_shutdown

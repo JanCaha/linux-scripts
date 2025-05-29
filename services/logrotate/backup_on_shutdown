@@ -1,0 +1,9 @@
+/var/log/backup_on_shutdown.log {
+    daily
+    rotate 5
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 644 root root
+}
