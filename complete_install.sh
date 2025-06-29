@@ -20,6 +20,7 @@ sudo apt-get install -y \
     software-properties-common \
     wget \
     gdebi-core \
+    gdebi \
     gedit \
     gimp \
     inkscape \
