@@ -6,10 +6,10 @@ PATH=$PATH:$BASEDIR/python
 
 # source prepare_sources.sh
 
-sudo apt-get update 
-sudo apt-get upgrade -y 
+sudo apt-get update
+sudo apt-get upgrade -y
 sudo apt-get autoremove -y
-sudo apt-get install -y mintupgrade 
+sudo apt-get install -y mintupgrade
 
 # basic stuff
 sudo apt-get install -y \
@@ -53,7 +53,7 @@ sudo apt-get install -y \
     handbrake \
     eiciel \
     tesseract-ocr
-    # numlockx
+# numlockx
 
 # C++ dev tools
 sudo apt-get install -y \
@@ -114,7 +114,7 @@ sudo apt-get install -y \
     python3-pytest \
     python3-pytest-cov \
     python3-pytestqt
-	
+
 # QGIS
 sudo apt-get install -y \
     qgis \
@@ -125,14 +125,14 @@ sudo apt-get install -y \
     grass-gui
 
 sudo apt-get install -y \
-	libudunits2-dev \
-	gdal-bin \
-	libgdal-dev \
-	libgit2-dev \
-	libharfbuzz-dev \
-	libfribidi-dev \
-	libssh-dev \
-	qpdf \
+    libudunits2-dev \
+    gdal-bin \
+    libgdal-dev \
+    libgit2-dev \
+    libharfbuzz-dev \
+    libfribidi-dev \
+    libssh-dev \
+    qpdf \
     libfontconfig1-dev \
     libgeos-dev
 
@@ -154,7 +154,7 @@ sudo apt-get install -y \
 # sudo make install
 sudo apt-get install -y krusader
 
-# Onedrive 
+# Onedrive
 source install/onedrive.sh
 
 # Calibre
