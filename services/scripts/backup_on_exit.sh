@@ -2,6 +2,7 @@
 
 LOGFILE="/var/log/backup_on_shutdown.log"
 TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+
 echo "[$TIMESTAMP] Starting backup..." >>"$LOGFILE"
 
 BACKUP_DIR=/home/cahik/Disc-Seagate/Backup
