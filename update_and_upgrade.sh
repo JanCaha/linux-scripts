@@ -23,16 +23,17 @@ BASEDIR=$(dirname "$(readlink -f "$0")")
 
 echo "***"
 if [[ -f "$VariablesFile" ]]; then
-    echo -e "$GREEN $VariablesFile exists. $NORMAL" 
-else 
-    echo -e "$RED $VariablesFile does not exist. $NORMAL" 
+    echo -e "$GREEN $VariablesFile exists. $NORMAL"
+else
+    echo -e "$RED $VariablesFile does not exist. $NORMAL"
     touch $VariablesFile
-    echo "QuartoVersion=''" >> $VariablesFile
-    echo "OneDriveLastInstalledHash=''" >> $VariablesFile
-    echo "RStudioVersion='v'" >> $VariablesFile
-    echo "FreeFileSyncLastVersion='v'" >> $VariablesFile
-    echo "KrusaderLastInstalledHash='v'" >> $VariablesFile
-    echo "CalibreVersion=''" >> $VariablesFile
+    echo "QuartoVersion=''" >>$VariablesFile
+    echo "OneDriveLastInstalledHash=''" >>$VariablesFile
+    echo "RStudioVersion='v'" >>$VariablesFile
+    echo "FreeFileSyncLastVersion='v'" >>$VariablesFile
+    echo "KrusaderLastInstalledHash='v'" >>$VariablesFile
+    echo "CalibreVersion=''" >>$VariablesFile
+    echo "XnViewVersion=''" >>$VariablesFile
 fi
 echo "***"
 
@@ -49,19 +50,25 @@ if [ "$?" -ne 0 ]; then
 
     echo 'APT Lock exist!'
     echo 'Delete lock?'
-    
+
     select yn in "Yes" "No"; do
         case $yn in
-            Yes ) DELETELOCK=true; break;;
-            No ) DELETELOCK=false;break;;
+        Yes)
+            DELETELOCK=true
+            break
+            ;;
+        No)
+            DELETELOCK=false
+            break
+            ;;
         esac
     done
 
     echo -e "$BLUE Deleting lock. $NORMAL"
-    
-    if [ "$DELETELOCK" = true ] ; then
+
+    if [ "$DELETELOCK" = true ]; then
         echo 'Deleting locks!'
-        
+
         sudo killall apt apt-get
 
         sudo rm /var/lib/apt/lists/lock
@@ -139,8 +146,7 @@ if [[ -z "$OneDriveLastInstalledHash" ]]; then
     OneDriveLastInstalledHash=""
 fi
 
-if [ "$currentHash" != "$OneDriveLastInstalledHash" ];
-then
+if [ "$currentHash" != "$OneDriveLastInstalledHash" ]; then
     source $BASEDIR/install/onedrive.sh
     sed -i "s/^OneDriveLastInstalledHash=.*/OneDriveLastInstalledHash='$currentHash'/g" $VariablesFile
 else
@@ -176,8 +182,7 @@ echo ""
 echo -e "$YELLOW---Calibre update---$NORMAL"
 
 version=$(python3 $currentDir/python/check_calibre_version.py)
-if [ -z "$version"];
-then
+if [ -z "$version"]; then
     echo -e "$PINK Version found online $version matches currently installed. $NORMAL"
     echo -e "$PINK Skipping Calibre Update $NORMAL"
 else
@@ -216,4 +221,5 @@ echo ""
 
 # wait at the end
 # read -p "Press any key to resume ..."
-echo 'Press any key to continue...'; read -k1 -s
+echo 'Press any key to continue...'
+read -k1 -s
