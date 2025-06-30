@@ -158,6 +158,13 @@ $currentDir/python/download_RStudio.py
 echo -e "$YELLOW---end RStudio update---$NORMAL"
 echo ""
 
+# XnView
+echo -e "$YELLOW---XnView update---$NORMAL"
+cd /tmp
+$currentDir/python/download_XnView.py
+echo -e "$YELLOW---end XnView update---$NORMAL"
+echo ""
+
 # # FreeFileSync
 # echo -e "$YELLOW---FreeFileSync update---$NORMAL"
 # cd /tmp

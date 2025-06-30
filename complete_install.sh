@@ -212,3 +212,4 @@ $BASEDIR/install/rust.sh
 $BASEDIR/install/jellyfin.sh
 $BASEDIR/install/texlive.sh
 $BASEDIR/install/r.sh
+$BASEDIR/install/xnview.sh
