@@ -55,6 +55,14 @@ sudo apt-get install -y \
     tesseract-ocr
 # numlockx
 
+# mtp for android devices
+sudo apt-get install -y \
+    mtp-tools \
+    jmtpfs \
+    gvfs-backends \
+    gvfs-fuse \
+    libmtp-runtime
+
 # C++ dev tools
 sudo apt-get install -y \
     clang \
