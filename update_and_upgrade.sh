@@ -34,6 +34,7 @@ else
     echo "KrusaderLastInstalledHash='v'" >>$VariablesFile
     echo "CalibreVersion=''" >>$VariablesFile
     echo "XnViewVersion=''" >>$VariablesFile
+    echo "DLangVersion=''" >>$VariablesFile
 fi
 echo "***"
 
