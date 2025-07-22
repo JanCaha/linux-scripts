@@ -19,8 +19,11 @@ cd onedrive
 
 echo "📥 OneDrive cloned"
 
-folder=$(fdfind "^dmd-[0-9\.]+" ~/dlang)
-source $folder/activate
+sudo apt-get install -y \
+    libdbus-1-dev
+
+# folder=$(fdfind "^dmd-[0-9\.]+" ~/dlang)
+# source $folder/activate
 
 echo "🚀 Building and installing OneDrive"
 
@@ -28,6 +31,6 @@ echo "🚀 Building and installing OneDrive"
 make clean
 make
 sudo make install
-deactivate
+# deactivate
 
 echo "✅ OneDrive installed"
