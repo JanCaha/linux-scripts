@@ -2,6 +2,7 @@
 
 import re
 import subprocess
+import sys
 
 import requests
 import util_functions
@@ -20,6 +21,9 @@ def main():
     a = soup.find("a", href=lambda x: x and "dmd" in x and "amd64" in x and ".deb" in x and ".sig" not in x)
 
     util_functions.print_info("Checking out online version of DLang.")
+
+    if a is None:
+        sys.exit("No download link found for DLang.")
 
     link = a.get("href")
 
