@@ -23,6 +23,7 @@ pip3 install \
     ocrmypdf \
     pytest-qgis \
     selenium \
+    pypdfium2 \
 	https://codeload.github.com/mkdocs/mkdocs-bootstrap/zip/master \
 	git+https://github.com/it-novum/mkdocs-featherlight.git
 
