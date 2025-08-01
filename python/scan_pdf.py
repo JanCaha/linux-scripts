@@ -3,6 +3,7 @@
 import argparse
 import io
 import random
+import sys
 import typing
 from pathlib import Path
 
@@ -124,4 +125,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
