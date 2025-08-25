@@ -18,6 +18,7 @@ if (Sys.getenv("R_LIBS_USER") != "") {
 
 # Install the required packages
 install.packages(c(
+    "collections",
     "tidyverse", 
     "tidymodels",
     "tidyclust",
