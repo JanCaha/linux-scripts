@@ -3,7 +3,7 @@ version: "3.5"
 services:
   postgres:
     container_name: $CONTAINER_NAME
-    image: postgis/postgis:16-master
+    image: postgis/postgis:17-master
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: heslo
@@ -13,3 +13,13 @@ services:
       - ${HOME_DIR}:/home
     ports:
       - "5432:5432"
+    command:
+      [
+        "postgres",
+        "-c",
+        "logging_collector=on",
+        "-c",
+        "log_statement=all",
+        "-c",
+        "log_directory=/tmp",
+      ]
