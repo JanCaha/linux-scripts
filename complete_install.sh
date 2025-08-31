@@ -52,7 +52,8 @@ sudo apt-get install -y \
     krita \
     handbrake \
     eiciel \
-    tesseract-ocr
+    tesseract-ocr \
+    vsftpd
 # numlockx
 
 # mtp for android devices
