@@ -15,9 +15,9 @@ FILE=/etc/xrdp/startwm.sh
 sudo rm $FILE
 touch $FILE
 
-echo "unset DBUS_SESSION_BUS_ADDRESS" | sudo tee $FILE
-echo "unset XDG_RUNTIME_DIR" | sudo tee $FILE
-echo "exec cinnamon-session" | sudo tee $FILE
+echo "unset DBUS_SESSION_BUS_ADDRESS" | sudo tee -a $FILE
+echo "unset XDG_RUNTIME_DIR" | sudo tee -a $FILE
+echo "exec cinnamon-session" | sudo tee -a $FILE
 
 # restart xrdp
 sudo systemctl restart xrdp
