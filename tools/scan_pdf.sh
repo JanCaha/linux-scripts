@@ -2,9 +2,13 @@
 
 echo "🚀 Making $1 Scan of the PDF"
 
-if [ -z "$1" ] || [ -z "$2" ]; then
-    echo "Usage: $0 <arg1> <arg2>"
+if [ -z "$1" ]; then
+    echo "Usage: $0 <arg1>"
     exit 1
+fi
+
+if [ -z "$2" ]; then
+    2=$1
 fi
 
 echo "📥 Activating Python environment"
