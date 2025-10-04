@@ -177,6 +177,7 @@ fi
 
 if [ "$CURRENT_RELEASE" != "$DBeaverVersion" ]; then
     source $currentDir/install/dbeaver.sh
+    ed -i "s/^DBeaverVersion=.*/DBeaverVersion='$CURRENT_RELEASE'/g" $VariablesFile
 fi
 
 echo -e "$YELLOW---end DBeaver update---$NORMAL"
