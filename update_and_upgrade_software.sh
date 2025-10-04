@@ -41,6 +41,7 @@ else
     echo "CalibreVersion=''" >>$VariablesFile
     echo "XnViewVersion=''" >>$VariablesFile
     echo "DLangVersion=''" >>$VariablesFile
+    echo "DBeaverVersion=''" >>$VariablesFile
 fi
 echo "***"
 
@@ -164,6 +165,22 @@ echo ""
 # cd .. && sudo rm -rf krusader
 # echo -e "$YELLOW---end Krusader update---$NORMAL"
 # echo ""
+
+# DBeaver check and update
+echo -e "$YELLOW---DBeaver update---$NORMAL"
+
+CURRENT_RELEASE=$(gh release view --repo dbeaver/dbeaver --json tagName --jq .tagName)
+
+if [[ -z "$DBeaverVersion" ]]; then
+    DBeaverVersion=""
+fi
+
+if [ "$CURRENT_RELEASE" != "$DBeaverVersion" ]; then
+    source $currentDir/install/dbeaver.sh
+fi
+
+echo -e "$YELLOW---end DBeaver update---$NORMAL"
+echo ""
 
 # wait at the end
 # read -p "Press any key to resume ..."
