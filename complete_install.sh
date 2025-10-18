@@ -122,7 +122,8 @@ sudo apt-get install -y \
     python3-mypy \
     python3-pytest \
     python3-pytest-cov \
-    python3-pytestqt
+    python3-pytestqt \
+    pipx
 
 # QGIS
 sudo apt-get install -y \
@@ -203,6 +204,24 @@ sudo apt-get install -y cmake
 # QGIS compile
 sudo apt-get install -y \
     bison build-essential ca-certificates ccache cmake cmake-curses-gui dh-python doxygen expect flex flip gdal-bin git graphviz grass-dev libdraco-dev libexiv2-dev libexpat1-dev libfcgi-dev libgdal-dev libgeos-dev libgsl-dev libpq-dev libproj-dev libprotobuf-dev libqca-qt5-2-dev libqca-qt5-2-plugins libqscintilla2-qt5-dev libqt5opengl5-dev libqt5serialport5-dev libqt5sql5-sqlite libqt5svg5-dev libqt5webkit5-dev libqt5xmlpatterns5-dev libqwt-qt5-dev libspatialindex-dev libspatialite-dev libsqlite3-dev libsqlite3-mod-spatialite libyaml-tiny-perl libzip-dev libzstd-dev lighttpd locales ninja-build ocl-icd-opencl-dev opencl-headers pandoc pkg-config poppler-utils protobuf-compiler pyqt5-dev pyqt5-dev-tools pyqt5.qsci-dev python3-all-dev python3-autopep8 python3-dev python3-gdal python3-jinja2 python3-lxml python3-mock python3-nose2 python3-owslib python3-plotly python3-psycopg2 python3-pygments python3-pyproj python3-pyqt5 python3-pyqt5.qsci python3-pyqt5.qtmultimedia python3-pyqt5.qtpositioning python3-pyqt5.qtserialport python3-pyqt5.qtsql python3-pyqt5.qtsvg python3-pyqt5.qtwebkit python3-pyqtbuild python3-sip python3-termcolor python3-yaml qt3d-assimpsceneimport-plugin qt3d-defaultgeometryloader-plugin qt3d-gltfsceneio-plugin qt3d-scene2d-plugin qt3d5-dev qtbase5-dev qtbase5-private-dev qtkeychain-qt5-dev qtmultimedia5-dev qtpositioning5-dev qttools5-dev qttools5-dev-tools sip-tools spawn-fcgi xauth xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable xvfb libpdal-dev
+
+sudo apt-get install -y \
+    qt6-base-dev \
+    qt6-tools-dev \
+    qt6-tools-dev-tools \
+    qt6-svg-dev \
+    qt6-serialport-dev \
+    qt6-positioning-dev \
+    qt6-5compat-dev \
+    qt6-3d-dev \
+    qt6-webengine-dev \
+    qtkeychain-qt6-dev libqt6keychain1 \
+    qt6-multimedia-dev \
+    libqca-qt6-dev \
+    libqscintilla2-qt6-dev 
+python3 -m pip install PyQt6 PyQt6-sip PyQt6-QScintilla --break-system-packages
+
+
 
 # PgAdmin
 sudo apt-get install -y \
