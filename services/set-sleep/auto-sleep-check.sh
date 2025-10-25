@@ -32,6 +32,7 @@ else
         now=$(date +%s)
         elapsed=$(( (now - last) / 60 ))
         if (( elapsed >= IDLE_MINUTES )); then
+            rm -f "$LOCKFILE"
             logger -t auto-sleep -p info "No activity for $elapsed minutes -> suspending..."
             systemctl suspend
         fi
