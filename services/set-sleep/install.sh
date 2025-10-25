@@ -1,0 +1,12 @@
+#!/bin/bash
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Copy files
+sudo cp "$SCRIPT_DIR/auto-sleep-check.sh" /usr/local/bin/auto-sleep-check.sh
+sudo chmod +x /usr/local/bin/auto-sleep-check.sh
+sudo cp "$SCRIPT_DIR/auto-sleep.service" /etc/systemd/system/auto-sleep.service
+sudo cp "$SCRIPT_DIR/auto-sleep.timer" /etc/systemd/system/auto-sleep.timer
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now auto-sleep.timer
