@@ -1,0 +1,7 @@
+[Unit]
+Description=Auto-suspend when idle and no critical processes are running
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/auto-sleep-check.sh
