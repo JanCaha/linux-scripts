@@ -3,23 +3,33 @@
 # Automatically suspend system if none of the listed processes are running for a defined time.
 
 # === Configuration ===
-PROCESS_LIST=("ffmpeg" "vlc" "transmission-daemon", "code", "konsole", "brave")
+PROCESS_LIST=("ffmpeg" "vlc" "transmission-daemon" "code" "konsole" "brave")
 LOCKFILE="/tmp/auto-sleep.lock"
 IDLE_MINUTES=30   # time threshold before sleep
 
 # === Function ===
 check_processes() {
     logger -t auto-sleep -p info "Checking running processes"
+    # Treat active XRDP as activity to prevent sleep
+    if systemctl is-active --quiet xrdp; then
+        logger -t auto-sleep -p info "xrdp service is active"
+        return 0
+    fi
+
+    # test processes
     for p in "${PROCESS_LIST[@]}"; do
         if pgrep -x "$p" >/dev/null 2>&1; then
             logger -t auto-sleep -p info "Process $p is running"
             return 0  # process running
         fi
     done
+    
+    # special case for JDownloader (java process)
     if pgrep -f "JDownloader" >/dev/null 2>&1; then
         logger -t auto-sleep -p info "JDownloader is running"
         return 0  # JDownloader running
     fi
+
     return 1  # none running
 }
 
