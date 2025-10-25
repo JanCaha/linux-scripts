@@ -9,4 +9,5 @@ sudo cp "$SCRIPT_DIR/auto-sleep.service" /etc/systemd/system/auto-sleep.service
 sudo cp "$SCRIPT_DIR/auto-sleep.timer" /etc/systemd/system/auto-sleep.timer
 
 sudo systemctl daemon-reload
+sudo systemctl restart auto-sleep.service
 sudo systemctl enable --now auto-sleep.timer
