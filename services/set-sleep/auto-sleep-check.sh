@@ -3,18 +3,21 @@
 # Automatically suspend system if none of the listed processes are running for a defined time.
 
 # === Configuration ===
-PROCESS_LIST=("ffmpeg" "vlc" "transmission-daemon")
+PROCESS_LIST=("ffmpeg" "vlc" "transmission-daemon", "code", "konsole", "brave")
 LOCKFILE="/tmp/auto-sleep.lock"
 IDLE_MINUTES=30   # time threshold before sleep
 
 # === Function ===
 check_processes() {
+    logger -t auto-sleep -p info "Checking running processes"
     for p in "${PROCESS_LIST[@]}"; do
         if pgrep -x "$p" >/dev/null 2>&1; then
+            logger -t auto-sleep -p info "Process $p is running"
             return 0  # process running
         fi
     done
     if pgrep -f "JDownloader" >/dev/null 2>&1; then
+        logger -t auto-sleep -p info "JDownloader is running"
         return 0  # JDownloader running
     fi
     return 1  # none running
