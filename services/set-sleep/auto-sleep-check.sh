@@ -42,11 +42,9 @@ jellyfin_is_playing() {
     # If jq finds at least one matching session (now playing and not paused), return 0
     if echo "$json" | jq -e '.[] | select(.NowPlayingItem != null) |
                                 select(.PlayState != null) |
+                                (.PlayState.IsPaused != null) |
                                 select(
-                                    (.PlayState.IsPaused == false) or 
-                                    (.PlayState.IsPaused == true) or
-                                    ((.PlayState.PlaybackStatus // "") == "Playing") or
-                                    ((.PlayState.PlaybackStatus // "") == "Paused")
+                                    (["Playing","Paused"] | index(.PlayState.PlaybackStatus // ""))
                                 )' >/dev/null 2>&1; then
         logger -t auto-sleep -p info "Jellyfin playback active"
         return 0
