@@ -53,7 +53,8 @@ sudo apt-get install -y \
     handbrake \
     eiciel \
     tesseract-ocr \
-    vsftpd
+    vsftpd \
+    wakeonlan
 # numlockx
 
 # mtp for android devices
