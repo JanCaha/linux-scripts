@@ -6,6 +6,8 @@
 PROCESS_LIST=("ffmpeg" "vlc" "transmission-daemon" "code" "konsole" "brave")
 LOCKFILE="/tmp/auto-sleep.lock"
 IDLE_MINUTES=30   # time threshold before sleep
+JELLYFIN_URL="http://127.0.0.1:8096"
+JELLYFIN_API_KEY=""
 
 # === Function ===
 check_processes() {
@@ -27,9 +29,35 @@ check_processes() {
     return 1  # none running
 }
 
+jellyfin_is_playing() {
+    [[ -z "$JELLYFIN_API_KEY" ]] && return 1
+
+    logger -t auto-sleep -p info "Checking Jellyfin playback status"
+    
+    local url="$JELLYFIN_URL/Sessions?ActiveWithinSeconds=300"
+    local json
+    json=$(curl -fsS --connect-timeout 2 --max-time 4 \
+        -H "X-Emby-Token: $JELLYFIN_API_KEY" "$url" 2>/dev/null) || return 1
+
+    # If jq finds at least one matching session (now playing and not paused), return 0
+    if echo "$json" | jq -e '.[] | select(.NowPlayingItem != null) |
+                                select(.PlayState != null) |
+                                select(
+                                    (.PlayState.IsPaused == false) or 
+                                    (.PlayState.IsPaused == true) or
+                                    ((.PlayState.PlaybackStatus // "") == "Playing") or
+                                    ((.PlayState.PlaybackStatus // "") == "Paused")
+                                )' >/dev/null 2>&1; then
+        logger -t auto-sleep -p info "Jellyfin playback active"
+        return 0
+    else
+        return 1
+    fi
+}
+
 # === Logic ===
-if check_processes; then
-    # Active process -> reset timer
+if check_processes || jellyfin_is_playing; then
+    # Active process or Jellyfin playback -> reset timer
     rm -f "$LOCKFILE"
     exit 0
 else
