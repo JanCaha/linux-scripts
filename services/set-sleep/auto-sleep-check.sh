@@ -31,8 +31,6 @@ check_processes() {
 
 jellyfin_is_playing() {
     [[ -z "$JELLYFIN_API_KEY" ]] && return 1
-
-    logger -t auto-sleep -p info "Checking Jellyfin playback status"
     
     local url="$JELLYFIN_URL/Sessions?ActiveWithinSeconds=300"
     local json
@@ -68,6 +66,8 @@ else
             rm -f "$LOCKFILE"
             logger -t auto-sleep -p info "No activity for $elapsed minutes -> suspending..."
             systemctl suspend
+        else
+            logger -t auto-sleep -p info "Inactive for $elapsed minutes -> not yet suspending..."
         fi
     else
         # create lock to start counting idle time
