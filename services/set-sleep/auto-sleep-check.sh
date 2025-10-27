@@ -9,48 +9,10 @@ IDLE_MINUTES=30   # time threshold before sleep
 JELLYFIN_URL="http://127.0.0.1:8096"
 JELLYFIN_API_KEY=""
 
-# === Function ===
-check_processes() {
-    logger -t auto-sleep -p info "Checking running processes"
-    # test processes
-    for p in "${PROCESS_LIST[@]}"; do
-        if pgrep -x "$p" >/dev/null 2>&1; then
-            logger -t auto-sleep -p info "Process $p is running"
-            return 0  # process running
-        fi
-    done
-    
-    # special case for JDownloader (java process)
-    if pgrep -f "JDownloader" >/dev/null 2>&1; then
-        logger -t auto-sleep -p info "JDownloader is running"
-        return 0  # JDownloader running
-    fi
-
-    return 1  # none running
-}
-
-jellyfin_is_playing() {
-    [[ -z "$JELLYFIN_API_KEY" ]] && return 1
-    
-    local url="$JELLYFIN_URL/Sessions?ActiveWithinSeconds=300"
-    local json
-    json=$(curl -fsS --connect-timeout 2 --max-time 4 \
-        -H "X-Emby-Token: $JELLYFIN_API_KEY" "$url" 2>/dev/null) || return 1
-
-    # If jq finds at least one matching session (playing or paused), return 0
-    if echo "$json" | jq -e '.[] | select(.NowPlayingItem != null) |
-                                select(.PlayState != null) |
-                                select(
-                                    (.PlayState.IsPaused != null) or
-                                    ((.PlayState.PlaybackStatus // "") == "Playing") or
-                                    ((.PlayState.PlaybackStatus // "") == "Paused")
-                                )' >/dev/null 2>&1; then
-        logger -t auto-sleep -p info "Jellyfin playback active"
-        return 0
-    else
-        return 1
-    fi
-}
+# === Functions ===
+# Source shared functions from the same directory
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/auto-sleep-functions.sh"
 
 # === Logic ===
 if check_processes || jellyfin_is_playing; then
