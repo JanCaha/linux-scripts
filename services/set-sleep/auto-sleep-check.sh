@@ -42,7 +42,8 @@ jellyfin_is_playing() {
                                 select(.PlayState != null) |
                                 (.PlayState.IsPaused != null) |
                                 select(
-                                    (["Playing","Paused"] | index(.PlayState.PlaybackStatus // ""))
+                                    ((.PlayState.PlaybackStatus // "") == "Playing") or
+                                    ((.PlayState.PlaybackStatus // "") == "Paused")
                                 )' >/dev/null 2>&1; then
         logger -t auto-sleep -p info "Jellyfin playback active"
         return 0
