@@ -1,6 +1,8 @@
 sudo apt install x11vnc -y
-x11vnc -storepasswd
 
+# x11vnc -storepasswd
+sudo mkdir -p /root/.vnc
+sudo x11vnc -storepasswd /root/.vnc/passwd
 
 ps -ef | grep -E 'X|Xorg'
 

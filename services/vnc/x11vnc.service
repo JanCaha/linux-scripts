@@ -4,9 +4,16 @@ After=display-manager.service
 
 [Service]
 Type=simple
-User=
-ExecStart=/usr/bin/x11vnc -display :0 -auth /var/run/lightdm/root/:0 \
-  -rfbauth .vnc/passwd -forever -loop -noxdamage -repeat -rfbport 5900
+ExecStart=/usr/bin/x11vnc \
+  -display :0 \
+  -auth /var/run/lightdm/root/:0 \
+  -rfbauth /root/.vnc/passwd \
+  -forever \
+  -loop \
+  -noxdamage \
+  -repeat \
+  -shared \
+  -rfbport 5900
 Restart=on-failure
 
 [Install]
