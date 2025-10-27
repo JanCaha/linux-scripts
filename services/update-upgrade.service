@@ -1,0 +1,12 @@
+[Unit]
+Description=Update and Upgrade system
+After=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/path/to/your/script.sh
+User=root
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
