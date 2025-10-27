@@ -5,6 +5,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Copy files
 sudo cp "$SCRIPT_DIR/auto-sleep-check.sh" /usr/local/bin/auto-sleep-check.sh
 sudo cp "$SCRIPT_DIR/auto-sleep-functions.sh" /usr/local/bin/auto-sleep-functions.sh
+sudo cp "$SCRIPT_DIR/auto-sleep-test.sh" /usr/local/bin/auto-sleep-test.sh
 sudo chmod +x /usr/local/bin/auto-sleep-check.sh
 
 
