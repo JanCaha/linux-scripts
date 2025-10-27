@@ -4,13 +4,8 @@
 
 log() {
   # Usage: log level message...
-  local level=${1:-info}; shift || true
-  if command -v logger >/dev/null 2>&1; then
-    echo "$*" | logger -t auto-sleep -p "$level" 
-  else
-    # Fallback to stderr
-    printf '[auto-sleep][%s] %s\n' "$level" "$*" >&2
-  fi
+  echo "$2"
+  logger -t auto-sleep -p "$1" "$2"
 }
 
 # Determine if a Jellyfin Sessions JSON indicates any active or paused playback
