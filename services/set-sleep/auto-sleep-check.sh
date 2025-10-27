@@ -37,11 +37,11 @@ jellyfin_is_playing() {
     json=$(curl -fsS --connect-timeout 2 --max-time 4 \
         -H "X-Emby-Token: $JELLYFIN_API_KEY" "$url" 2>/dev/null) || return 1
 
-    # If jq finds at least one matching session (now playing and not paused), return 0
+    # If jq finds at least one matching session (playing or paused), return 0
     if echo "$json" | jq -e '.[] | select(.NowPlayingItem != null) |
                                 select(.PlayState != null) |
-                                (.PlayState.IsPaused != null) |
                                 select(
+                                    (.PlayState.IsPaused != null) or
                                     ((.PlayState.PlaybackStatus // "") == "Playing") or
                                     ((.PlayState.PlaybackStatus // "") == "Paused")
                                 )' >/dev/null 2>&1; then
