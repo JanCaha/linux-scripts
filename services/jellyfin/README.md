@@ -12,3 +12,6 @@ sudo chown -R jellyfin:jellyfin $BACKUP_DIR/jellyfin
 
 # change directories
 sudo nano /etc/default/jellyfin
+
+sudo rm -rf /var/lib/jellyfin
+sudo rm -rf /etc/jellyfin
