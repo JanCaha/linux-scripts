@@ -99,6 +99,26 @@ git_apply_commit_patches() {
     done
 }
 
+git_stop_tracking_file() {
+  if [ -z "$1" ]; then
+      echo "File path not specified"
+      return 1
+  fi
+
+  git rm --cached "$1"
+  if [ $? -ne 0 ]; then
+      echo "Failed to stop tracking file: $1"
+      return 1
+  fi
+
+  MAIN_FOLDER=$(git rev-parse --show-toplevel)
+  cd $MAIN_FOLDER
+  
+  echo $1 >> .gitignore
+  git add .gitignore
+  git commit -m "Stop tracking '$1' file"
+}
+
 alias open="nohup nemo . > /dev/null 2>&1 &"
 alias sleep_computer="systemctl suspend"
 
