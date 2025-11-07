@@ -17,4 +17,4 @@ fi
 
 sudo systemctl start jellyfin
 
-sudo usermod -a -G $USER jellyfin
+sudo usermod -aG $USER jellyfin
