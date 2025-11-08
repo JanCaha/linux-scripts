@@ -6,6 +6,7 @@ sudo ufw reload
 
 sudo usermod -aG $USER jellyfin
 
+sudo systemctl stop jellyfin
 
 sudo sqlite3  $HOME/Backup/Jellyfin/var/data/jellyfin.db
 
@@ -16,3 +17,5 @@ SET Path = REPLACE(Path, '/Old/Path/', '/New/Path/')
 WHERE Path LIKE '/Old/Path/%';
 
 .exit
+
+sudo systemctl start jellyfin
