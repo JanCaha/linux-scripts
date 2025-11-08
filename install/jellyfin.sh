@@ -8,14 +8,23 @@ sudo usermod -aG $USER jellyfin
 
 sudo systemctl stop jellyfin
 
-sudo sqlite3  $HOME/Backup/Jellyfin/var/data/jellyfin.db
+DB="$HOME/Backup/Jellyfin/var/data/jellyfin.db"
+OLD="/Old/Path/"
+NEW="/New/Path/"
 
-## SELECT Path FROM BaseItems WHERE Path LIKE '/Old/Path/%';
+# Optional: preview first 5 paths to be changed
+sudo -u jellyfin sqlite3 "$DB" "SELECT Path FROM BaseItems WHERE Path LIKE '${OLD}%' LIMIT 5;"
 
+# Apply update inside a transaction and report number of rows changed
+sudo -u jellyfin sqlite3 "$DB" <<SQL
+PRAGMA foreign_keys=ON;
+BEGIN;
 UPDATE BaseItems
-SET Path = REPLACE(Path, '/Old/Path/', '/New/Path/')
-WHERE Path LIKE '/Old/Path/%';
+  SET Path = REPLACE(Path, '$OLD', '$NEW')
+  WHERE Path LIKE '${OLD}%';
+SELECT changes() AS rows_updated;
+COMMIT;
+SQL
 
-.exit
 
 sudo systemctl start jellyfin
