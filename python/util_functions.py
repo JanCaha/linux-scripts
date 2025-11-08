@@ -130,7 +130,7 @@ def get_architecture() -> str:
 def check_su() -> None:
     if os.geteuid() != 0:
         print("Not a root, need sudo:")
-        os.execvp("sudo", ["sudo", "python3"] + sys.argv)
+        os.execvp("sudo", ["sudo", sys.executable] + sys.argv)
     else:
         print("Already root.")
 
