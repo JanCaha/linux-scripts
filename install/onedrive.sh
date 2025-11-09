@@ -1,13 +1,10 @@
 echo "🚀 Installing dlang"
 
-# sudo curl -fsSL https://dlang.org/d-keyring.gpg -o /etc/apt/trusted.gpg.d/dlang.gpg
-# sudo curl -fsSL https://downloads.dlang.org/other/d-keyring.gpg -o /etc/apt/trusted.gpg.d/dlang-other.gpg
+# python3 ~/Scripts/python/download_dlang.py
 
-# curl -fsS https://dlang.org/install.sh | bash -s dmd
-# sudo update-alternatives --install "/usr/bin/ld" "ld" "/usr/bin/ld.gold" 20
-# sudo update-alternatives --install "/usr/bin/ld" "ld" "/usr/bin/ld.bfd" 10
-
-python3 ~/Scripts/python/download_dlang.py
+cd /tmp
+sudo curl -LO https://downloads.dlang.org/releases/2.x/2.111.0/dmd_2.111.0-0_amd64.deb
+sudo gdebi dmd_2.111.0-0_amd64.deb
 
 echo "✅ dlang installed"
 
