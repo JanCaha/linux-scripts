@@ -11,12 +11,7 @@ SOURCES_FOLDER=/etc/apt/sources.list.d
 QGIS_UNSTABLE=true
 
 # GIT
-KEYRING=$KEYS_FOLDER/git-archive-keyring.gpg
-SOURCEFILE=$SOURCES_FOLDER/git.sources
-FINGERPRINT=E1DD270288B4E6030699E45FA1715D88E1DF1F24
-URL=https://ppa.launchpadcontent.net/git-core/ppa/ubuntu
-
-create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src
+sudo add-apt-repository ppa:git-core/ppa
 
 # Docker
 KEYRING=$KEYS_FOLDER/docker-archive-keyring.asc
@@ -77,20 +72,10 @@ download_keyfile.py $KEYRING https://cloud.r-project.org/bin/linux/ubuntu/marutt
 create_source_file.py $KEYRING $SOURCEFILE $URL --add-src --distro_code_name $UBUNTU_CODENAME-cran40/
 
 # TexStudio
-KEYRING=$KEYS_FOLDER/texstudio-archive-keyring.gpg
-SOURCEFILE=$SOURCES_FOLDER/texstudio.sources
-FINGERPRINT=F4BB443370868B62A293947EB896ADA57C387DD3
-URL=https://ppa.launchpadcontent.net/sunderme/texstudio/ubuntu/
-
-create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL
+sudo add-apt-repository ppa:sunderme/texstudio
 
 # Strawbery
-KEYRING=$KEYS_FOLDER/strawberry-archive-keyring.gpg
-SOURCEFILE=$SOURCES_FOLDER/strawberry.sources
-FINGERPRINT=BE5ED0F9261CAAD9A1E5B1A4CD6289E999EA819D
-URL=https://ppa.launchpadcontent.net/jonaski/strawberry/ubuntu
-
-create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src
+sudo add-apt-repository ppa:jonaski/strawberry
 
 # Brave
 sudo curl -fsSLo $KEYS_FOLDER/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
