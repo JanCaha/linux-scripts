@@ -71,7 +71,6 @@ sudo apt-get install -y \
     lld \
     libclang-dev \
     ninja-build \
-    g++-12 \
     doxygen \
     cmake \
     devscripts \
