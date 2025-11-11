@@ -54,7 +54,8 @@ sudo apt-get install -y \
     eiciel \
     tesseract-ocr \
     vsftpd \
-    wakeonlan
+    wakeonlan \
+    openssh-server
 # numlockx
 
 # mtp for android devices
@@ -213,7 +214,8 @@ sudo apt-get install -y \
     libhdf5-dev libhdf5-serial-dev hdf5-tools libnetcdf-dev netcdf-bin libsfcgal-dev
 
 # PDAL
-libgeotiff-dev
+libgeotiff-dev geotiff-bin
+
 
 sudo apt-get install -y \
     python3-pyqt6 \
@@ -237,9 +239,11 @@ sudo apt-get install -y \
     python3-pyqt6.qtwebchannel \
     python3-pyqt6.qtwebengine \
     python3-pyqt6.qtwebsockets \
-    python3-pyqt6.sip
+    python3-pyqt6.sip \
+    python3-gdal     
 
-pip install sip pyqt-builder --break-system-packages
+pip install sip pyqt-builder owslib psycopg2 --break-system-packages
+
 
 # PgAdmin
 sudo apt-get install -y \
