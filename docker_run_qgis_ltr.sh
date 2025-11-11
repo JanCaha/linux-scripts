@@ -1,7 +1,7 @@
 #!/bin/zsh
 BASEDIR=$(dirname "$0")
 
-docker build -t qgis-ltr -f $BASEDIR/docker/QGIS-ltr.dockerfile
+docker build -t qgis-ltr -f $BASEDIR/docker/QGIS-ltr.dockerfile $BASEDIR/docker
 
 xhost +
 docker run --rm -it \
