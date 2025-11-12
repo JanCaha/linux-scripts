@@ -83,7 +83,8 @@ sudo apt-get install -y \
     valgrind \
     silversearcher-ag \
     expect \
-    shellcheck
+    shellcheck \
+    pre-commit
 
 # Fd - find replacement
 sudo apt-get install -y fd-find
