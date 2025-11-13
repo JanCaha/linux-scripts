@@ -84,7 +84,9 @@ sudo apt-get install -y \
     silversearcher-ag \
     expect \
     shellcheck \
-    pre-commit
+    pre-commit \
+    astyle \
+    flip 
 
 # Fd - find replacement
 sudo apt-get install -y fd-find
