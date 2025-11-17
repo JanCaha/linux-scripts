@@ -30,7 +30,6 @@ sudo apt-get install -y \
     sqlitebrowser \
     ncftp \
     umbrello \
-    zanshin \
     dia \
     chromium \
     gpick \
@@ -55,7 +54,9 @@ sudo apt-get install -y \
     tesseract-ocr \
     vsftpd \
     wakeonlan \
-    openssh-server
+    openssh-server \
+    baobab
+
 # numlockx
 
 # mtp for android devices
@@ -86,7 +87,8 @@ sudo apt-get install -y \
     shellcheck \
     pre-commit \
     astyle \
-    flip 
+    flip \
+    ccache
 
 # Fd - find replacement
 sudo apt-get install -y fd-find
