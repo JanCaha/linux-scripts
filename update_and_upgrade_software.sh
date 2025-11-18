@@ -34,7 +34,6 @@ else
     echo -e "$RED $VariablesFile does not exist. $NORMAL"
     touch $VariablesFile
     echo "QuartoVersion=''" >>$VariablesFile
-    echo "OneDriveLastInstalledHash=''" >>$VariablesFile
     echo "RStudioVersion='v'" >>$VariablesFile
     echo "FreeFileSyncLastVersion='v'" >>$VariablesFile
     echo "KrusaderLastInstalledHash='v'" >>$VariablesFile
@@ -85,20 +84,8 @@ echo ""
 
 # onedrive check and update
 echo -e "$YELLOW---OneDrive update---$NORMAL"
-echo -e "$BLUE---$(onedrive --version)---$NORMAL"
-# currentHash="$(git rev-parse HEAD)"
-currentHash="$(git ls-remote https://github.com/abraunegg/onedrive.git master | grep -i -E '[a-z|0-9]+' -o -m 1 | head -1)"
-
-if [[ -z "$OneDriveLastInstalledHash" ]]; then
-    OneDriveLastInstalledHash=""
-fi
-
-if [ "$currentHash" != "$OneDriveLastInstalledHash" ]; then
-    source $BASEDIR/install/onedrive.sh
-    sed -i "s/^OneDriveLastInstalledHash=.*/OneDriveLastInstalledHash='$currentHash'/g" $VariablesFile
-else
-    echo -e "$PINK Skipping OneDrive Update $NORMAL"
-fi
+echo -e "$BLUE---$(onedrive --version)---$NORMAL"s
+source $BASEDIR/install/onedrive.sh
 
 cd .. && rm -rf onedrive
 echo -e "$YELLOW---end OneDrive update---$NORMAL"
