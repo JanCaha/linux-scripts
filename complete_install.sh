@@ -9,7 +9,6 @@ PATH=$PATH:$BASEDIR/python
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get autoremove -y
-sudo apt-get install -y mintupgrade
 
 # basic stuff
 sudo apt-get install -y \
