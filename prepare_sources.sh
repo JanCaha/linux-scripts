@@ -8,8 +8,6 @@ sudo gpg -k
 KEYS_FOLDER=/usr/share/keyrings
 SOURCES_FOLDER=/etc/apt/sources.list.d
 
-QGIS_UNSTABLE=true
-
 # GIT
 sudo add-apt-repository ppa:git-core/ppa
 
@@ -19,42 +17,8 @@ download_keyfile.py $KEYRING https://download.docker.com/linux/ubuntu/gpg curl
 
 create_source_file.py $KEYRING $SOURCES_FOLDER/docker.sources "https://download.docker.com/linux/ubuntu"  --component "stable"
 
-# # VS code
-# KEYRING=$KEYS_FOLDER/vscode.asc
-# FILE=$SOURCES_FOLDER/vs-code.sources
-
-# download_keyfile.py $KEYRING https://packages.microsoft.com/keys/microsoft.asc wget
-
-# create_source_file.py $KEYRING $FILE http://packages.microsoft.com/repos/code  --component "main" --distro_code_name stable
-
-# GIS
-KEYRING=$KEYS_FOLDER/ubuntugis-archive-keyring.gpg
-SOURCEFILE=$SOURCES_FOLDER/ubuntugis-stable.sources
-FINGERPRINT=6B827C12C2D425E227EDCA75089EBE08314DF160
-URL=https://ppa.launchpadcontent.net/ubuntugis/ppa/ubuntu
-
-if [ "$QGIS_UNSTABLE" != "true" ]; then
-    create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src
-fi
-
-if [ "$QGIS_UNSTABLE" = "true" ]; then
-    echo "Using QGIS Unstable GIS!!!!!!!!!!!"
-    ## GIS unstable
-    KEYRING=$KEYS_FOLDER/ubuntugis-archive-keyring.gpg
-    SOURCEFILE=$SOURCES_FOLDER/ubuntugis-unstable.sources
-    FINGERPRINT=6B827C12C2D425E227EDCA75089EBE08314DF160
-    URL=https://ppa.launchpadcontent.net/ubuntugis/ubuntugis-unstable/ubuntu
-
-    create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src
-fi
-
 # QGIS
-if [ "$QGIS_UNSTABLE" = "true" ]; then
-    URL=https://qgis.org/ubuntugis-nightly
-else
-    URL=https://qgis.org/ubuntu
-fi
-
+URL=https://qgis.org/ubuntu
 KEYRING=$KEYS_FOLDER/qgis-archive-keyring.gpg
 SOURCEFILE=$SOURCES_FOLDER/qgis.sources
 
@@ -81,14 +45,6 @@ sudo add-apt-repository ppa:jonaski/strawberry
 sudo curl -fsSLo $KEYS_FOLDER/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 
 echo "deb [signed-by=$KEYS_FOLDER/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee $SOURCES_FOLDER/brave-browser-release.list
-
-# WEBP PEEK
-# KEYRING=$KEYS_FOLDER/peek-archive-keyring.gpg
-# SOURCEFILE=$SOURCES_FOLDER/peek.sources
-# FINGERPRINT=8C9531299E7DF2DCF681B4999578539176BAFBC6
-# URL=https://ppa.launchpadcontent.net/peek-developers/stable/ubuntu
-
-# create_ppa_source.py $KEYRING $FINGERPRINT $SOURCEFILE $URL --add-src 
 
 # GitHub CLI
 KEYRING=$KEYS_FOLDER/githubcli-archive-keyring.gpg
