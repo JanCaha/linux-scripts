@@ -13,3 +13,4 @@ services:
     volumes:
       - /home/cahik/_backup/jellyfin/var:/config
       - /home/cahik/Disc-Moje-Věci/Videa/Video:/home/cahik/Disc-Moje-Věci/Videa/Video:ro
+      - /home/cahik/_backup/jellyfin/cache:/cache
