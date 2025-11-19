@@ -3,7 +3,8 @@ R_LIBS_USER=$HOME/R
 QGIS_SOURCES_DIR=$HOME/QGIS
 QGIS_BUILD_DIR=$QGIS_SOURCES_DIR/build-qt
 
-DIR_CODES=$HOME/Codes:$HOME/Codes
+DIR_CODES=$HOME/Codes
+DIR_WORK=
 DIR_QGIS_PROFILES=$HOME/.local/share/QGIS/QGIS3:/root/.local/share/QGIS/QGIS3
 
 KEYS_FOLDER=/usr/share/keyrings
@@ -18,15 +19,17 @@ MAIN_ENV=global-env
 MAIN_ENV_ACTIVATE=$PYTHON_ENVS_DIR/$MAIN_ENV/bin/activate
 
 PATH=$PATH:$HOME/.cargo/bin
-PATH=$PATH:$HOME/Scripts/tools:$HOME/Scripts/python:$HOME/Scripts:$HOME/Scripts/qgis
+PATH=$PATH:$HOME/Scripts:$HOME/Scripts/tools:$HOME/Scripts/python:$HOME/Scripts/qgis
 PATH=$PATH:$HOME/bin:/usr/local/texlive/2024/bin/x86_64-linux
 PATH=$PATH:$HOME/.local/bin
 PATH=$PATH:$HOME/miniconda3/bin
 
+VariablesFile=$HOME/.install_env_variables
+
+QGIS_WORKTREE_FOLDER="/QGIS"
 
 # TODO FILL
 PGHOST=localhost
 PGPORT=5432
 PGUSER=
 PGPASSWORD=
-DIR_WORK=
