@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Check if first argument is provided
 if [ -z "$1" ]; then
