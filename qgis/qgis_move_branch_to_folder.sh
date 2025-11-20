@@ -22,10 +22,12 @@ fi
 
 # Or check first:
 if [ ! -d "$QGIS_WORKTREE_FOLDER" ]; then
+    echo "🚀 Creating worktree folder: $QGIS_WORKTREE_FOLDER"
     sudo mkdir -p "$QGIS_WORKTREE_FOLDER"
     sudo chown -R $USER:$USER "$QGIS_WORKTREE_FOLDER"
 fi
 
+echo "🚀 Adding git worktree for branch '$BRANCH' in folder '$QGIS_WORKTREE_FOLDER/$BRANCH'"
 git worktree add "$QGIS_WORKTREE_FOLDER/$BRANCH" "$BRANCH"
 
 # copy necessary files to the new worktree
