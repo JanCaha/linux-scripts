@@ -54,7 +54,8 @@ sudo apt-get install -y \
     vsftpd \
     wakeonlan \
     openssh-server \
-    baobab
+    baobab \
+    smbclient
 
 # numlockx
 
@@ -133,7 +134,9 @@ sudo apt-get install -y \
 # QGIS
 sudo apt-get install -y \
     qgis \
-    libqgis-dev
+    libqgis-dev \
+    qgis-plugin-grass
+
 
 # GRASS
 sudo apt-get install -y \
