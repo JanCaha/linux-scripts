@@ -1,9 +1,11 @@
 #!/bin/zsh
 BASEDIR=$(dirname "$0")
 
+source $BASEDIR/docker_envs.sh
+
 docker build \
     -t qgis-ltr \
-    -f $BASEDIR/docker/QGIS-ltr.dockerfile $BASEDIR/docker
+    -f $DOCKER_IMAGES/QGIS-ltr.dockerfile $DOCKER_IMAGES
 
 xhost +
 docker run --rm -it \
@@ -18,4 +20,4 @@ docker run --rm -it \
     /bin/bash -c qgis
 xhost -
 
-# sudo chown -R $USER /home/$USER/.local/share/QGIS
+sudo chown -R $USER $HOME/.local/share/QGIS

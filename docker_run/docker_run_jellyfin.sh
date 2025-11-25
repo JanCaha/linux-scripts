@@ -1,6 +1,7 @@
 #!/bin/bash
+BASEDIR=$(dirname "$0")
 
-export HOME_DIR=~
+source $BASEDIR/docker_envs.sh
 
 export CONTAINER_NAME=jellyfin-machine
 
@@ -10,13 +11,13 @@ if [ $RUNS = "true" ]; then
     while true; do
         read -p "Close the docker machine? (y/n)" yn
         case $yn in
-            [Yy]* ) docker compose -f $HOME_DIR/Scripts/docker_compose/jellyfin.yaml stop; break;;
+            [Yy]* ) docker compose -f $DOCKER_COMPOSE/jellyfin.yaml stop; break;;
             [Nn]* ) exit;;
             * ) echo "Please answer yes or no.";;
         esac
     done
 else
-    docker compose -f $HOME_DIR/Scripts/docker_compose/jellyfin.yaml up -d
+    docker compose -f $DOCKER_COMPOSE/jellyfin.yaml up -d
 fi
 
 sleep 2
