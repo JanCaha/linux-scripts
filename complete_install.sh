@@ -100,7 +100,7 @@ rm ~/.config/redshift.conf
 sudo apt-get install -y redshift
 
 # GIT
-sudo apt-get -y install git
+sudo apt-get -y install git git-crypt
 
 # Docker
 sudo apt-get install -y \
