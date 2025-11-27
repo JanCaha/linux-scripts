@@ -38,7 +38,7 @@ echo "📥 Latest onedrive version: $LATEST_VERSION"
 
 ONEDRIVE_VERSION=$(onedrive --version 2>/dev/null | sed -nE 's/.*v?([0-9]+\.[0-9]+\.[0-9]+).*/\1/p')
 
-if [ "$LATEST_VERSION" != "$ONEDRIVE_VERSION" ]; then
+if [ "$LATEST_VERSION" != "v$ONEDRIVE_VERSION" ]; then
     
     echo "❌ Onedrive version mismatch: installed=$ONEDRIVE_VERSION, expected=$LATEST_VERSION updating"
 
