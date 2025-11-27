@@ -1,5 +1,5 @@
 #!/bin/zsh
-BASEDIR=$(dirname "$0")
+BASEDIR="$(readlink -f "$(dirname "$0")")"
 
 source $BASEDIR/docker_envs.sh
 
