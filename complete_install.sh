@@ -55,7 +55,8 @@ sudo apt-get install -y \
     wakeonlan \
     openssh-server \
     baobab \
-    smbclient
+    smbclient \
+    default-jdk
 
 # numlockx
 
