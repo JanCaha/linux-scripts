@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Dev QGIS
+Exec=/home/cahik/QGIS/build/output/bin/qgis
+Comment=
+Terminal=false
+Icon=/home/cahik/Scripts/icons/qgis_dev.svg
+Type=Application
