@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=PostgreSQL
+Exec=/home/cahik/Scripts/docker_run/docker_run_pg.sh
+Comment=
+Terminal=true
+PrefersNonDefaultGPU=false
+Icon=/home/cahik/Scripts/icons/postgresql.svg
+Type=Application
