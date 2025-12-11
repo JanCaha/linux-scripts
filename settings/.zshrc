@@ -125,7 +125,7 @@ alias sleep_computer="systemctl suspend"
 alias venv_global_activate="source $PYTHON_ENVS_DIR/$MAIN_ENV/bin/activate"
 
 alias gitreset="git reset --hard"
-alias git_merge_upstream="git fetch upstream && git merge upstream/master"
+alias git_merge_upstream="git stash && git fetch upstream && git merge upstream/master && git stash pop"
 alias git_branch_latest="git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)'"
 
 alias find_package="apt search"
