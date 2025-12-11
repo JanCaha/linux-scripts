@@ -56,7 +56,9 @@ sudo apt-get install -y \
     openssh-server \
     baobab \
     smbclient \
-    default-jdk
+    default-jdk \
+    gnome-panel \
+    gparted
 
 # numlockx
 
