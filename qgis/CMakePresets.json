@@ -1,0 +1,94 @@
+{
+    "version": 8,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 23
+    },
+    "configurePresets": [
+        {
+            "name": "configure_base",
+            "description": "Base configure QGIS with QT6 and tests disabled",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build",
+            "environment": {
+                "CC": "/usr/bin/gcc-15",
+                "CXX": "/usr/bin/g++-15"
+            },
+            "cacheVariables": {
+                "CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
+                "CMAKE_C_COMPILER_LAUNCHER": "ccache",
+                "CMAKE_BUILD_TYPE": "Debug",
+                "ENABLE_TESTS": "OFF",
+                "WITH_PDAL": "OFF",
+                "WITH_3D": "TRUE",
+                "BUILD_WITH_QT6": "ON",
+                "WITH_INTERNAL_SPATIALINDEX": "ON"
+            }
+        },
+        {
+            "name": "configure_system_gdal_no_pdal_no_tests",
+            "inherits": "configure_base"
+        },
+        {
+            "name": "configure_system_gdal_no_pdal_with_tests",
+            "inherits": "configure_system_gdal_no_pdal_no_tests",
+            "cacheVariables": {
+                "ENABLE_TESTS": "ON"
+            }
+        },
+        {
+            "name": "configure_with_gdal_312_no_tests",
+            "inherits": [
+                "configure_system_gdal_no_pdal_no_tests"
+            ],
+            "cacheVariables": {
+                "CMAKE_PREFIX_PATH": "/opt/pdal;/opt/gdal",
+                "WITH_PDAL": "ON",
+                "GDAL_DIR": "/opt/gdal/lib/cmake/gdal"
+            }
+        },
+        {
+            "name": "configure_with_gdal_312_with_tests",
+            "inherits": [
+                "configure_with_gdal_312_no_tests"
+            ],
+            "cacheVariables": {
+                "ENABLE_TESTS": "ON"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "build_with_tests",
+            "description": "Build QGIS with tests enabled",
+            "configurePreset": "configure_system_gdal_no_pdal_with_tests",
+            "jobs": 16,
+            "hidden": false
+        },
+        {
+            "name": "build_with_GDAL_312_PDAL_tests",
+            "description": "Build QGIS with tests enabled",
+            "configurePreset": "configure_with_gdal_312_with_tests",
+            "jobs": 16,
+            "hidden": false
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "test",
+            "description": "",
+            "displayName": "",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "configure_with_gdal_312_with_tests"
+                },
+                {
+                    "type": "build",
+                    "name": "build_with_GDAL_312_PDAL_tests"
+                }
+            ]
+        }
+    ]
+}

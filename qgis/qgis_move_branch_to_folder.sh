@@ -1,4 +1,5 @@
 #!/bin/zsh
+SCRIPT_DIR=$(dirname "$0")
 
 # Check if first argument is provided
 if [ -z "$1" ]; then
@@ -33,4 +34,4 @@ git worktree add "$QGIS_WORKTREE_FOLDER/$BRANCH" "$BRANCH"
 # copy necessary files to the new worktree
 echo "📂 Copy files not part of the git repository to the new worktree"
 cp -r ./.vscode "$QGIS_WORKTREE_FOLDER/$BRANCH/"
-cp -r ./CMakePresets.json "$QGIS_WORKTREE_FOLDER/$BRANCH/CMakePresets.json"
+cp -r $SCRIPT_DIR/CMakePresets.json "$QGIS_WORKTREE_FOLDER/$BRANCH/CMakePresets.json"
