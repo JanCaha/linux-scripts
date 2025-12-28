@@ -6,19 +6,20 @@ concurrency:
 
 on: [push]
 
+env:
+  GH_TOKEN: ${{ github.token }}
+
 jobs:
-
   test-scripts:
-
     runs-on: ubuntu-24.04
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Run first_run.sh
         run: ./first_run.sh
-      
+
       - name: Run complete_install.sh
         shell: zsh {0}
         run: ./complete_install.sh
