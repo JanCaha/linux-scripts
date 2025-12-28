@@ -2,7 +2,7 @@
 source /etc/os-release
 
 BASEDIR=$(dirname "$(readlink -f "$0")")
-PATH=$PATH:$BASEDIR/python
+PATH=$PATH:$BASEDIR/python_programs
 
 # source prepare_sources.sh
 
@@ -132,7 +132,8 @@ sudo apt-get install -y \
     python3-pytest \
     python3-pytest-cov \
     python3-pytestqt \
-    pipx
+    pipx \
+    python-is-python3
 
 # QGIS
 sudo apt-get install -y \
