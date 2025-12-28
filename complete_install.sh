@@ -62,6 +62,9 @@ sudo apt-get install -y \
 
 # numlockx
 
+# GitHub CLI
+sudo apt-get install -y gh
+
 # mtp for android devices
 sudo apt-get install -y \
     mtp-tools \
@@ -141,7 +144,6 @@ sudo apt-get install -y \
     libqgis-dev \
     qgis-plugin-grass
 
-
 # GRASS
 sudo apt-get install -y \
     grass-gui
@@ -192,9 +194,6 @@ sudo apt-get install -y brave-browser
 # WEBP PEEK
 sudo apt-get install -y \
     peek
-
-# GitHub CLI
-sudo apt-get install -y gh
 
 # Quarto
 cd /tmp
