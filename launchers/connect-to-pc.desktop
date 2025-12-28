@@ -2,7 +2,7 @@
 Name=Connect to PC
 Exec=remmina -c /home/cahik/.local/share/remmina/group_vnc_quick-connect_192-168-0-106-5900.remmina
 Comment=
-Terminal=true
+Terminal=false
 PrefersNonDefaultGPU=false
 Icon=/home/cahik/Scripts/icons/pc.svg
 Type=Application
