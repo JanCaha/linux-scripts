@@ -7,6 +7,9 @@ if ! command -v conda &> /dev/null; then
     exit 1
 fi
 
+# Source conda setup to enable conda activate in this script
+source "$(conda info --base)/etc/profile.d/conda.sh"
+
 # check that specific env exist
 if ! conda info --envs | grep -q "^qgis-ltr"; then
     echo "Creating conda environment qgis-ltr..."
