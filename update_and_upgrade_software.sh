@@ -18,7 +18,6 @@ cd "$(dirname "$0")"
 HomeFolder=~
 VariablesFile=$HomeFolder/.install_env_variables
 currentDir=$(pwd)
-R_LIBS_USER=$HOME/R/x86_64-pc-linux-gnu-library/4.3
 BASEDIR=$(dirname "$(readlink -f "$0")")
 
 source $currentDir/update_and_upgrade.sh
@@ -78,7 +77,7 @@ echo ""
 # quarto check and update
 echo -e "$YELLOW---Quarto update---$NORMAL"
 cd /tmp
-$currentDir/python/download_quarto.py
+$currentDir/python_programs/download_quarto.py
 echo -e "$YELLOW---end Quarto update---$NORMAL"
 echo ""
 
@@ -94,28 +93,28 @@ echo ""
 # RStudio
 echo -e "$YELLOW---RStudio update---$NORMAL"
 cd /tmp
-$currentDir/python/download_RStudio.py
+$currentDir/python_programs/download_RStudio.py
 echo -e "$YELLOW---end RStudio update---$NORMAL"
 echo ""
 
 # XnView
 echo -e "$YELLOW---XnView update---$NORMAL"
 cd /tmp
-$currentDir/python/download_XnView.py
+$currentDir/python_programs/download_XnView.py
 echo -e "$YELLOW---end XnView update---$NORMAL"
 echo ""
 
 # # FreeFileSync
 # echo -e "$YELLOW---FreeFileSync update---$NORMAL"
 # cd /tmp
-# #$currentDir/python/download_FreeFileSync.py
+# #$currentDir/python_programs/download_FreeFileSync.py
 # echo -e "$YELLOW---end FreeFileSync update---$NORMAL"
 # echo ""
 
 # Calibre
 echo -e "$YELLOW---Calibre update---$NORMAL"
 
-version=$(python3 $currentDir/python/check_calibre_version.py)
+version=$(python3 $currentDir/python_programs/check_calibre_version.py)
 if [ -z "$version"]; then
     echo -e "$PINK Version found online $version matches currently installed. $NORMAL"
     echo -e "$PINK Skipping Calibre Update $NORMAL"
