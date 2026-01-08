@@ -139,7 +139,15 @@ git_merge_upstream_function()
 
   echo "Fetching and merging upstream changes..."
   git fetch upstream 
-  git merge upstream/master 
+
+  # Check if master branch exists, fall back to main
+  UPSTREAM_BRANCH="master"
+  if ! git rev-parse --verify upstream/master >/dev/null 2>&1; then
+    UPSTREAM_BRANCH="main"
+    echo "master branch not found, using main instead."
+  fi
+   
+  git merge upstream/$UPSTREAM_BRANCH
 
   if [ $use_stash -eq 1 ]; then
     echo "Applying stashed changes..."
