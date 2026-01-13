@@ -22,7 +22,6 @@
                 "ENABLE_TESTS": "OFF",
                 "WITH_PDAL": "OFF",
                 "WITH_3D": "TRUE",
-                "BUILD_WITH_QT6": "ON",
                 "WITH_INTERNAL_SPATIALINDEX": "ON"
             }
         },
