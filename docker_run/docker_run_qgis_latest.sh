@@ -1,7 +1,9 @@
-#!/bin/zsh
+#!/bin/bash
 BASEDIR=$(dirname "$0")
 
-docker build -t qgis-dev -f $BASEDIR/docker/QGIS-nigthly-unstable.dockerfile .
+source $BASEDIR/docker_envs.sh
+
+docker build -t qgis-dev -f $DOCKER_IMAGES/QGIS-nightly-unstable.dockerfile $DOCKER_IMAGES
 
 xhost +
 docker run --rm -it \
@@ -14,4 +16,4 @@ docker run --rm -it \
     /bin/bash -c qgis
 xhost -
 
-sudo chown -R $USER /home/$USER/.local/share/QGIS
+sudo chown -R $USER $HOME/.local/share/QGIS

@@ -119,13 +119,51 @@ git_stop_tracking_file() {
   git commit -m "Stop tracking '$1' file"
 }
 
+git_merge_upstream_function()
+{
+  echo "Starting merge with upstream..."
+
+  use_stash=0
+
+  if git diff --quiet && git diff --cached --quiet; then
+    echo "No local changes detected."
+    use_stash=1
+  fi
+
+  exit 1
+
+  if [ $use_stash -eq 1 ]; then
+    echo "Stashing changes..."
+    git stash
+  fi
+
+  echo "Fetching and merging upstream changes..."
+  git fetch upstream 
+
+  # Check if master branch exists, fall back to main
+  UPSTREAM_BRANCH="master"
+  if ! git rev-parse --verify upstream/master >/dev/null 2>&1; then
+    UPSTREAM_BRANCH="main"
+    echo "master branch not found, using main instead."
+  fi
+   
+  git merge upstream/$UPSTREAM_BRANCH
+
+  if [ $use_stash -eq 1 ]; then
+    echo "Applying stashed changes..."
+    git stash pop
+  fi
+
+  echo "Merge from upstream complete."
+}
+
 alias open="nohup nemo . > /dev/null 2>&1 &"
 alias sleep_computer="systemctl suspend"
 
 alias venv_global_activate="source $PYTHON_ENVS_DIR/$MAIN_ENV/bin/activate"
 
 alias gitreset="git reset --hard"
-alias git_merge_upstream="git fetch upstream && git merge upstream/master"
+alias git_merge_upstream="git_merge_upstream_function"
 alias git_branch_latest="git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)'"
 
 alias find_package="apt search"

@@ -28,3 +28,25 @@ if [ ! -d /etc/lightdm/lightdm.conf.d ]; then
 fi
 
 echo -e "[Seat:*]\ngreeter-setup-script=/usr/bin/numlockx on" | sudo tee /etc/lightdm/lightdm.conf.d/numlock.conf
+
+# remove games
+sudo apt purge -y \
+  aisleriot \
+  gnome-chess \
+  gnome-mahjongg \
+  gnome-mines \
+  gnome-sudoku \
+  quadrapassel \
+  swell-foop \
+  tali \
+  five-or-more \
+  hitori \
+  iagno \
+  lightsoff \
+  four-in-a-row \
+  gnome-robots \
+  gnome-klotski \
+  gnome-2048 \
+  gnome-nibbles \
+  gnome-taquin \
+  gnome-tetravex

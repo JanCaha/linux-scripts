@@ -9,8 +9,8 @@ services:
       POSTGRES_PASSWORD: heslo
       PGDATA: /data/postgres
     volumes:
-      - ${HOME_DIR}/PG_Data:/data/postgres
-      - ${HOME_DIR}:/home
+      - ${HOME}/PG_Data:/data/postgres
+      - ${HOME}:/home
     ports:
       - "5432:5432"
     command:

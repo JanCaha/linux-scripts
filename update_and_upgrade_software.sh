@@ -18,7 +18,6 @@ cd "$(dirname "$0")"
 HomeFolder=~
 VariablesFile=$HomeFolder/.install_env_variables
 currentDir=$(pwd)
-R_LIBS_USER=$HOME/R/x86_64-pc-linux-gnu-library/4.3
 BASEDIR=$(dirname "$(readlink -f "$0")")
 
 source $currentDir/update_and_upgrade.sh
@@ -34,7 +33,6 @@ else
     echo -e "$RED $VariablesFile does not exist. $NORMAL"
     touch $VariablesFile
     echo "QuartoVersion=''" >>$VariablesFile
-    echo "OneDriveLastInstalledHash=''" >>$VariablesFile
     echo "RStudioVersion='v'" >>$VariablesFile
     echo "FreeFileSyncLastVersion='v'" >>$VariablesFile
     echo "KrusaderLastInstalledHash='v'" >>$VariablesFile
@@ -79,26 +77,14 @@ echo ""
 # quarto check and update
 echo -e "$YELLOW---Quarto update---$NORMAL"
 cd /tmp
-$currentDir/python/download_quarto.py
+$currentDir/python_programs/download_quarto.py
 echo -e "$YELLOW---end Quarto update---$NORMAL"
 echo ""
 
 # onedrive check and update
 echo -e "$YELLOW---OneDrive update---$NORMAL"
-echo -e "$BLUE---$(onedrive --version)---$NORMAL"
-# currentHash="$(git rev-parse HEAD)"
-currentHash="$(git ls-remote https://github.com/abraunegg/onedrive.git master | grep -i -E '[a-z|0-9]+' -o -m 1 | head -1)"
-
-if [[ -z "$OneDriveLastInstalledHash" ]]; then
-    OneDriveLastInstalledHash=""
-fi
-
-if [ "$currentHash" != "$OneDriveLastInstalledHash" ]; then
-    source $BASEDIR/install/onedrive.sh
-    sed -i "s/^OneDriveLastInstalledHash=.*/OneDriveLastInstalledHash='$currentHash'/g" $VariablesFile
-else
-    echo -e "$PINK Skipping OneDrive Update $NORMAL"
-fi
+echo -e "$BLUE---$(onedrive --version)---$NORMAL"s
+source $BASEDIR/install/onedrive.sh
 
 cd .. && rm -rf onedrive
 echo -e "$YELLOW---end OneDrive update---$NORMAL"
@@ -107,28 +93,28 @@ echo ""
 # RStudio
 echo -e "$YELLOW---RStudio update---$NORMAL"
 cd /tmp
-$currentDir/python/download_RStudio.py
+$currentDir/python_programs/download_RStudio.py
 echo -e "$YELLOW---end RStudio update---$NORMAL"
 echo ""
 
 # XnView
 echo -e "$YELLOW---XnView update---$NORMAL"
 cd /tmp
-$currentDir/python/download_XnView.py
+$currentDir/python_programs/download_XnView.py
 echo -e "$YELLOW---end XnView update---$NORMAL"
 echo ""
 
 # # FreeFileSync
 # echo -e "$YELLOW---FreeFileSync update---$NORMAL"
 # cd /tmp
-# #$currentDir/python/download_FreeFileSync.py
+# #$currentDir/python_programs/download_FreeFileSync.py
 # echo -e "$YELLOW---end FreeFileSync update---$NORMAL"
 # echo ""
 
 # Calibre
 echo -e "$YELLOW---Calibre update---$NORMAL"
 
-version=$(python3 $currentDir/python/check_calibre_version.py)
+version=$(python3 $currentDir/python_programs/check_calibre_version.py)
 if [ -z "$version"]; then
     echo -e "$PINK Version found online $version matches currently installed. $NORMAL"
     echo -e "$PINK Skipping Calibre Update $NORMAL"
@@ -177,7 +163,7 @@ fi
 
 if [ "$CURRENT_RELEASE" != "$DBeaverVersion" ]; then
     source $currentDir/install/dbeaver.sh
-    ed -i "s/^DBeaverVersion=.*/DBeaverVersion='$CURRENT_RELEASE'/g" $VariablesFile
+    sed -i "s/^DBeaverVersion=.*/DBeaverVersion='$CURRENT_RELEASE'/g" $VariablesFile
 fi
 
 echo -e "$YELLOW---end DBeaver update---$NORMAL"

@@ -17,7 +17,7 @@ def main():
 
     soup = BeautifulSoup(r.text, "html.parser")
 
-    links = soup.findAll("a")
+    links = soup.find_all("a")
 
     tar_link = None
 
