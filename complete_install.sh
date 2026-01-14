@@ -63,7 +63,11 @@ sudo apt-get install -y \
     smbclient \
     default-jdk \
     gnome-panel \
-    gparted
+    gparted \
+    konsole \
+    kate \
+    kompare \
+    krename
 
 # numlockx
 
