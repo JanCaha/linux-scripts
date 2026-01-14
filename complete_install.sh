@@ -271,3 +271,9 @@ $BASEDIR/install/jellyfin.sh
 $BASEDIR/install/texlive.sh
 $BASEDIR/install/r.sh
 $BASEDIR/install/xnview.sh
+
+# NVIDIA Drivers
+# add contrib and non-free to /etc/apt/sources.list into trixie, trixie-security, trixie-updates
+sudo apt install linux-headers-$(uname -r)
+sudo apt install linux-headers-amd64
+sudo apt install nvidia-driver
