@@ -72,7 +72,10 @@ sudo apt-get install -y \
 # numlockx
 
 # GitHub CLI
-sudo apt-get install -y gh
+cd /tmp
+wget https://github.com/cli/cli/releases/download/v2.83.2/gh_2.83.2_linux_amd64.deb
+sudo dpkg -i gh_2.83.2_linux_amd64.deb
+# sudo apt-get install -y gh
 
 # mtp for android devices
 sudo apt-get install -y \
