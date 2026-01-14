@@ -145,8 +145,8 @@ sudo apt-get install -y \
     python3-pytest-cov \
     python3-pytestqt \
     pipx \
-    python-is-python3 \
-    python3-sip
+    python3-pip \
+    python-is-python3
 
 # QGIS
 sudo apt-get install -y \
