@@ -7,13 +7,13 @@
     "configurePresets": [
         {
             "name": "configure_base",
-            "description": "Base configure QGIS with QT6 and tests disabled",
+            "description": "Base configure QGIS tests disabled",
             "hidden": true,
             "generator": "Ninja",
             "binaryDir": "${sourceDir}/build",
             "environment": {
-                "CC": "/usr/bin/gcc-15",
-                "CXX": "/usr/bin/g++-15"
+                "CC": "/usr/bin/gcc",
+                "CXX": "/usr/bin/g++"
             },
             "cacheVariables": {
                 "CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
@@ -26,10 +26,12 @@
             }
         },
         {
+            "description": "Configure QGIS with system GDAL, no PDAL, tests disabled",
             "name": "configure_system_gdal_no_pdal_no_tests",
             "inherits": "configure_base"
         },
         {
+            "description": "Configure QGIS with system GDAL, no PDAL, tests enabled",
             "name": "configure_system_gdal_no_pdal_with_tests",
             "inherits": "configure_system_gdal_no_pdal_no_tests",
             "cacheVariables": {
@@ -37,23 +39,16 @@
             }
         },
         {
-            "name": "configure_with_gdal_312_no_tests",
+            "name": "configure_with_opt_gdal_pdal_tests",
+            "description": "Configure QGIS with /OPT GDAL, PDAL, tests enabled",
             "inherits": [
-                "configure_system_gdal_no_pdal_no_tests"
+                "configure_base"
             ],
             "cacheVariables": {
+                "ENABLE_TESTS": "ON",
                 "CMAKE_PREFIX_PATH": "/opt/pdal;/opt/gdal",
                 "WITH_PDAL": "ON",
                 "GDAL_DIR": "/opt/gdal/lib/cmake/gdal"
-            }
-        },
-        {
-            "name": "configure_with_gdal_312_with_tests",
-            "inherits": [
-                "configure_with_gdal_312_no_tests"
-            ],
-            "cacheVariables": {
-                "ENABLE_TESTS": "ON"
             }
         }
     ],
@@ -66,9 +61,9 @@
             "hidden": false
         },
         {
-            "name": "build_with_GDAL_312_PDAL_tests",
+            "name": "build_with_opt_gdal_pdal_tests",
             "description": "Build QGIS with tests enabled",
-            "configurePreset": "configure_with_gdal_312_with_tests",
+            "configurePreset": "configure_with_opt_gdal_pdal_tests",
             "jobs": 16,
             "hidden": false
         }
@@ -81,11 +76,11 @@
             "steps": [
                 {
                     "type": "configure",
-                    "name": "configure_with_gdal_312_with_tests"
+                    "name": "configure_with_opt_gdal_pdal_tests"
                 },
                 {
                     "type": "build",
-                    "name": "build_with_GDAL_312_PDAL_tests"
+                    "name": "build_with_opt_gdal_pdal_tests"
                 }
             ]
         }
