@@ -1,4 +1,11 @@
 #!/bin/bash
+
+set -euo pipefail
+
+if [[ ! -d "~/.local/bin" ]]; then
+    mkdir -p ~/.local/bin
+fi
+
 source /etc/os-release
 
 BASEDIR=$(dirname "$(readlink -f "$0")")
