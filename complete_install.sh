@@ -54,7 +54,6 @@ sudo apt-get install -y \
     jq \
     git-buildpackage \
     krita \
-    handbrake \
     eiciel \
     tesseract-ocr \
     vsftpd \
