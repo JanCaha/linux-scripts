@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Reboot to Win
+Exec=/home/cahik/Scripts/reboot_to_win.sh
+Comment=
+Terminal=true
+PrefersNonDefaultGPU=false
+Icon=/home/cahik/Scripts/icons/windows.svg
+Type=Application

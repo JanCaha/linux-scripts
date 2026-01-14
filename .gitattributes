@@ -1,0 +1,4 @@
+# *.secret.sh filter=git-crypt diff=git-crypt
+tools/wake_on_lan.sh filter=git-crypt diff=git-crypt
+notes/** filter=git-crypt diff=git-crypt
+

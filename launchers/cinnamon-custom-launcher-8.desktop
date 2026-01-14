@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Restart QGIS
+Exec=/home/cahik/Scripts/restart_qgis.sh
+Comment=
+Terminal=true
+PrefersNonDefaultGPU=false
+Icon=/home/cahik/Scripts/icons/qgis_close.svg
+Type=Application

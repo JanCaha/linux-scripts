@@ -2,14 +2,13 @@
 source /etc/os-release
 
 BASEDIR=$(dirname "$(readlink -f "$0")")
-PATH=$PATH:$BASEDIR/python
+PATH=$PATH:$BASEDIR/python_programs
 
 # source prepare_sources.sh
 
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get autoremove -y
-sudo apt-get install -y mintupgrade
 
 # basic stuff
 sudo apt-get install -y \
@@ -30,7 +29,6 @@ sudo apt-get install -y \
     sqlitebrowser \
     ncftp \
     umbrello \
-    zanshin \
     dia \
     chromium \
     gpick \
@@ -54,8 +52,18 @@ sudo apt-get install -y \
     eiciel \
     tesseract-ocr \
     vsftpd \
-    wakeonlan
+    wakeonlan \
+    openssh-server \
+    baobab \
+    smbclient \
+    default-jdk \
+    gnome-panel \
+    gparted
+
 # numlockx
+
+# GitHub CLI
+sudo apt-get install -y gh
 
 # mtp for android devices
 sudo apt-get install -y \
@@ -71,7 +79,6 @@ sudo apt-get install -y \
     lld \
     libclang-dev \
     ninja-build \
-    g++-12 \
     doxygen \
     cmake \
     devscripts \
@@ -83,7 +90,11 @@ sudo apt-get install -y \
     valgrind \
     silversearcher-ag \
     expect \
-    shellcheck
+    shellcheck \
+    pre-commit \
+    astyle \
+    flip \
+    ccache
 
 # Fd - find replacement
 sudo apt-get install -y fd-find
@@ -95,7 +106,7 @@ rm ~/.config/redshift.conf
 sudo apt-get install -y redshift
 
 # GIT
-sudo apt-get -y install git
+sudo apt-get -y install git git-crypt
 
 # Docker
 sudo apt-get install -y \
@@ -124,12 +135,15 @@ sudo apt-get install -y \
     python3-pytest \
     python3-pytest-cov \
     python3-pytestqt \
-    pipx
+    pipx \
+    python-is-python3 \
+    python3-sip
 
 # QGIS
 sudo apt-get install -y \
     qgis \
-    libqgis-dev
+    libqgis-dev \
+    qgis-plugin-grass
 
 # GRASS
 sudo apt-get install -y \
@@ -182,9 +196,6 @@ sudo apt-get install -y brave-browser
 sudo apt-get install -y \
     peek
 
-# GitHub CLI
-sudo apt-get install -y gh
-
 # Quarto
 cd /tmp
 sudo curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb
@@ -204,24 +215,18 @@ sudo apt-get install -y cmake
 
 # QGIS compile
 sudo apt-get install -y \
-    bison build-essential ca-certificates ccache cmake cmake-curses-gui dh-python doxygen expect flex flip gdal-bin git graphviz grass-dev libdraco-dev libexiv2-dev libexpat1-dev libfcgi-dev libgdal-dev libgeos-dev libgsl-dev libpq-dev libproj-dev libprotobuf-dev libqca-qt5-2-dev libqca-qt5-2-plugins libqscintilla2-qt5-dev libqt5opengl5-dev libqt5serialport5-dev libqt5sql5-sqlite libqt5svg5-dev libqt5webkit5-dev libqt5xmlpatterns5-dev libqwt-qt5-dev libspatialindex-dev libspatialite-dev libsqlite3-dev libsqlite3-mod-spatialite libyaml-tiny-perl libzip-dev libzstd-dev lighttpd locales ninja-build ocl-icd-opencl-dev opencl-headers pandoc pkg-config poppler-utils protobuf-compiler pyqt5-dev pyqt5-dev-tools pyqt5.qsci-dev python3-all-dev python3-autopep8 python3-dev python3-gdal python3-jinja2 python3-lxml python3-mock python3-nose2 python3-owslib python3-plotly python3-psycopg2 python3-pygments python3-pyproj python3-pyqt5 python3-pyqt5.qsci python3-pyqt5.qtmultimedia python3-pyqt5.qtpositioning python3-pyqt5.qtserialport python3-pyqt5.qtsql python3-pyqt5.qtsvg python3-pyqt5.qtwebkit python3-pyqtbuild python3-sip python3-termcolor python3-yaml qt3d-assimpsceneimport-plugin qt3d-defaultgeometryloader-plugin qt3d-gltfsceneio-plugin qt3d-scene2d-plugin qt3d5-dev qtbase5-dev qtbase5-private-dev qtkeychain-qt5-dev qtmultimedia5-dev qtpositioning5-dev qttools5-dev qttools5-dev-tools sip-tools spawn-fcgi xauth xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable xvfb libpdal-dev
+    flex bison libzip-dev libprotobuf-dev libexiv2-dev libdraco-dev \
+    pyqt6-dev pyqt6-dev-tools libqca-qt6-dev libqca-qt6-plugins libqscintilla2-qt6-dev \
+    qt6-3d-defaultgeometryloader-plugin qt6-3d-dev qt6-3d-gltfsceneio-plugin qt6-3d-scene2d-plugin \
+    qt6-5compat-dev qt6-base-dev qt6-base-private-dev qt6-multimedia-dev qt6-positioning-dev \
+    qt6-serialport-dev qt6-svg-dev qt6-tools-dev qt6-tools-dev-tools qt6-webengine-dev 
+    qtkeychain-qt6-dev pyqt6.qsci-dev libgsl-dev \
+    libspatialite-dev sip-tools protobuf-compiler ocl-icd-opencl-dev opencl-headers \
+    libhdf5-dev libhdf5-serial-dev hdf5-tools libnetcdf-dev netcdf-bin libsfcgal-dev
 
-# Qt6 and PyQt6 for QGIS
-sudo apt-get install -y \
-    qt6-base-dev \
-    qt6-tools-dev \
-    qt6-tools-dev-tools \
-    qt6-svg-dev \
-    qt6-serialport-dev \
-    qt6-positioning-dev \
-    qt6-5compat-dev \
-    qt6-3d-dev \
-    qt6-webengine-dev \
-    qtkeychain-qt6-dev libqt6keychain1 \
-    qt6-multimedia-dev \
-    libqca-qt6-dev \
-    libqscintilla2-qt6-dev \
-    pyqt6-dev-tools
+# PDAL
+libgeotiff-dev geotiff-bin
+
 
 sudo apt-get install -y \
     python3-pyqt6 \
@@ -245,7 +250,11 @@ sudo apt-get install -y \
     python3-pyqt6.qtwebchannel \
     python3-pyqt6.qtwebengine \
     python3-pyqt6.qtwebsockets \
-    python3-pyqt6.sip
+    python3-pyqt6.sip \
+    python3-gdal     
+
+pip install sip pyqt-builder owslib psycopg2 --break-system-packages
+
 
 # PgAdmin
 sudo apt-get install -y \
