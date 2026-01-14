@@ -261,8 +261,8 @@ sudo apt-get install -y \
 # LibreOffice style
 sudo apt-get install -y libreoffice-style-karasa-jaga
 
-# Turtle
-sudo apt-get install -y turtle-cli turtle-nautilus
+# UFW and GUI for it
+sudo apt install ufw gufw -y
 
 # add install from sepearate scripts
 $BASEDIR/install/miniconda.sh
