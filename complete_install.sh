@@ -200,7 +200,7 @@ sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | 
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 
 # Brave
-sudo apt-get install -y brave-browser
+curl -fsS https://dl.brave.com/install.sh | sh
 
 # WEBP PEEK
 sudo apt-get install -y \
