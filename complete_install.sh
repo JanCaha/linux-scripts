@@ -224,19 +224,10 @@ source install/zsh.sh
 sudo apt-get install -y cmake
 
 # QGIS compile
-sudo apt-get install -y \
-    flex bison libzip-dev libprotobuf-dev libexiv2-dev libdraco-dev \
-    pyqt6-dev pyqt6-dev-tools libqca-qt6-dev libqca-qt6-plugins libqscintilla2-qt6-dev \
-    qt6-3d-defaultgeometryloader-plugin qt6-3d-dev qt6-3d-gltfsceneio-plugin qt6-3d-scene2d-plugin \
-    qt6-5compat-dev qt6-base-dev qt6-base-private-dev qt6-multimedia-dev qt6-positioning-dev \
-    qt6-serialport-dev qt6-svg-dev qt6-tools-dev qt6-tools-dev-tools qt6-webengine-dev 
-    qtkeychain-qt6-dev pyqt6.qsci-dev libgsl-dev \
-    libspatialite-dev sip-tools protobuf-compiler ocl-icd-opencl-dev opencl-headers \
-    libhdf5-dev libhdf5-serial-dev hdf5-tools libnetcdf-dev netcdf-bin libsfcgal-dev
+sudo apt-get install bison build-essential ca-certificates ccache cmake cmake-curses-gui dh-python expect flex flip gdal-bin git graphviz grass-dev libcups2-dev libdraco-dev libexiv2-dev libexpat1-dev libfcgi-dev libgdal-dev libgeographiclib-dev libgeos-dev libgsl-dev libmeshoptimizer-dev libpq-dev libproj-dev libprotobuf-dev libqca-qt6-dev libqca-qt6-plugins libqscintilla2-qt6-dev libsfcgal-dev libspatialite-dev libsqlite3-dev libsqlite3-mod-spatialite libyaml-tiny-perl libzip-dev libzstd-dev lighttpd locales ninja-build nlohmann-json3-dev ocl-icd-opencl-dev opencl-headers pandoc pkgconf poppler-utils protobuf-compiler pyqt6-dev pyqt6-dev-tools pyqt6.qsci-dev python3-all-dev python3-autopep8 python3-dev python3-gdal python3-matplotlib python3-mock python3-nose2 python3-owslib python3-packaging python3-psycopg2 python3-pyqt6 python3-pyqt6.qsci python3-pyqt6.qtmultimedia python3-pyqt6.qtpositioning python3-pyqt6.qtserialport python3-pyqt6.qtsvg python3-pyqt6.sip python3-pyqtbuild python3-termcolor python3-yaml qt6-3d-assimpsceneimport-plugin qt6-3d-defaultgeometryloader-plugin qt6-3d-dev qt6-3d-gltfsceneio-plugin qt6-3d-scene2d-plugin qt6-5compat-dev qt6-base-dev qt6-base-private-dev qt6-multimedia-dev qt6-positioning-dev qt6-serialport-dev qt6-svg-dev qt6-tools-dev qt6-tools-dev-tools qt6-webengine-dev qtkeychain-qt6-dev sip-tools spawn-fcgi xauth xfonts-100dpi xfonts-75dpi xfonts-base xfonts-scalable xvfb
 
 # PDAL
-libgeotiff-dev geotiff-bin
-
+sudo apt-get install -y libgeotiff-dev geotiff-bin
 
 sudo apt-get install -y \
     python3-pyqt6 \
@@ -261,14 +252,10 @@ sudo apt-get install -y \
     python3-pyqt6.qtwebengine \
     python3-pyqt6.qtwebsockets \
     python3-pyqt6.sip \
-    python3-gdal     
-
-pip install sip pyqt-builder owslib psycopg2 --break-system-packages
-
+    python3-gdal
 
 # PgAdmin
 sudo apt-get install -y \
-    pgadmin4 \
     libpq-dev libpqxx-dev # libraries
 
 # LibreOffice style
