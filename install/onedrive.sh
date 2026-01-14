@@ -16,7 +16,7 @@ else
   
   cd /tmp
   sudo curl -LO https://downloads.dlang.org/releases/2.x/$LATEST/dmd_$LATEST-0_amd64.deb
-  sudo gdebi dmd_$LATEST-0_amd64.deb  
+  sudo dpkg -i dmd_$LATEST-0_amd64.deb
   echo "✅ dlang installed"
 fi
 
