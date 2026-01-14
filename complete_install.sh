@@ -122,10 +122,7 @@ sudo apt-get -y install git git-crypt
 
 # Docker
 sudo apt-get install -y \
-    docker-ce \
-    docker-ce-cli \
-    containerd.io \
-    docker-compose-plugin \
+    docker.io \
     docker-compose
 
 sudo groupadd docker
