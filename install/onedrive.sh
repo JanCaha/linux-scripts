@@ -1,11 +1,8 @@
 echo "🚀 Installing dlang"
 
-source $VariablesFile
-
 LATEST=$(curl -fsSL https://downloads.dlang.org/releases/2.x/ \
-  | grep -Eo 'href="2\.[0-9]+\.[0-9]+/' \
-  | cut -d'"' -f2 \
-  | sed 's:/$::' \
+  | grep -Eo 'href="/releases/2.x/2\.[0-9]+\.[0-9]+/' \
+  | grep -Eo '2\.[0-9]+\.[0-9]+' \
   | sort -V \
   | tail -1)
 echo "$LATEST"
