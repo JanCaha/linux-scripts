@@ -186,7 +186,8 @@ sudo apt-get install -y \
 # cd krusader
 # cmake -DCMAKE_INSTALL_PREFIX=/usr/ -DCMAKE_C_FLAGS="-O2 -fPIC" -DCMAKE_CXX_FLAGS="-O2 -fPIC"
 # sudo make install
-sudo apt-get install -y krusader
+sudo apt-get install -y nemo cinnamon-control-center xdg-utils krusader
+
 
 # Onedrive
 source install/onedrive.sh
