@@ -23,7 +23,6 @@ sudo apt-get install -y \
     ca-certificates \
     curl \
     gnupg2 \
-    software-properties-common \
     wget \
     gdebi-core \
     gdebi \
