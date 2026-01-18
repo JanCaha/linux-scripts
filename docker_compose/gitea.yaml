@@ -1,0 +1,25 @@
+services:
+  gitea:
+    image: gitea/gitea:latest
+    container_name: gitea-machine
+    restart: unless-stopped
+
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - GITEA__server__SSH_PORT=22
+      - GITEA__server__SSH_LISTEN_PORT=2222
+
+    volumes:
+      - ${HOME}/gitea/data:/data
+
+    ports:
+      - "3000:3000" # Web UI
+      - "2222:2222" # SSH for Git
+
+    networks:
+      - gitea
+
+networks:
+  gitea:
+    driver: bridge
