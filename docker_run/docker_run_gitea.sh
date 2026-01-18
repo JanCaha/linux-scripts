@@ -3,7 +3,7 @@ BASEDIR=$(dirname "$0")
 
 source $BASEDIR/docker_envs.sh
 
-export CONTAINER_NAME=gitea-machine
+export CONTAINER_NAME=gitea
 
 RUNS="$( docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME )"
 
