@@ -1,13 +1,12 @@
-version: "3.5"
-
 services:
   postgres:
     container_name: $CONTAINER_NAME
     image: postgis/postgis:17-master
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: heslo
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
       PGDATA: /data/postgres
+    user: "${UID}:${GID}"
     volumes:
       - ${HOME}/PG_Data:/data/postgres
       - ${HOME}:/home

@@ -11,13 +11,13 @@ if [ $RUNS = "true" ]; then
     while true; do
         read -p "Close the docker machine? (y/n)" yn
         case $yn in
-            [Yy]* ) docker compose -f $DOCKER_COMPOSE/postgresql-postgis-compose.yaml stop; break;;
+            [Yy]* ) docker compose -f $DOCKER_COMPOSE/postgresql-postgis.yaml stop; break;;
             [Nn]* ) exit;;
             * ) echo "Please answer yes or no.";;
         esac
     done
 else
-    docker compose -f $DOCKER_COMPOSE/postgresql-postgis-compose.yaml up -d
+    docker compose -f $DOCKER_COMPOSE/postgresql-postgis.yaml up -d
 fi
 
 sleep 2
