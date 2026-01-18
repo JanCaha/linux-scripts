@@ -1,13 +1,13 @@
 services:
   gitea:
     image: gitea/gitea:latest
-    container_name: gitea-machine
+    container_name: gitea
     restart: unless-stopped
 
     environment:
       - USER_UID=1000
       - USER_GID=1000
-      - GITEA__server__SSH_PORT=22
+      - GITEA__server__SSH_PORT=2222
       - GITEA__server__SSH_LISTEN_PORT=2222
 
     volumes:
@@ -18,6 +18,27 @@ services:
       - "2222:2222" # SSH for Git
 
     networks:
+      - gitea
+
+  act-runner:
+    image: gitea/act_runner:latest
+    container_name: gitea-act-runner
+    restart: unless-stopped
+
+    environment:
+      CONFIG_FILE: /config/config.yaml
+      GITEA_INSTANCE_URL: http://localhost:3000
+      GITEA_RUNNER_REGISTRATION_TOKEN: YOUR_REGISTRATION_TOKEN
+
+    volumes:
+      - ${HOME}/act_runner/config:/config
+      - ${HOME}/act_runner/data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    networks:
+      - gitea
+
+    depends_on:
       - gitea
 
 networks:
