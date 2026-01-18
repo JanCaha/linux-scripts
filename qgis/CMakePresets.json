@@ -48,7 +48,8 @@
                 "ENABLE_TESTS": "ON",
                 "CMAKE_PREFIX_PATH": "/opt/pdal;/opt/gdal",
                 "WITH_PDAL": "ON",
-                "GDAL_DIR": "/opt/gdal/lib/cmake/gdal"
+                "GDAL_DIR": "/opt/gdal/lib/cmake/gdal",
+                "GDAL_ROOT": "/opt/gdal"
             }
         }
     ],
