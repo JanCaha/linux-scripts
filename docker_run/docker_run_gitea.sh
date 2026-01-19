@@ -3,7 +3,10 @@ BASEDIR=$(dirname "$0")
 
 source $BASEDIR/docker_envs.sh
 
-export CONTAINER_NAME=gitea
+## create requierd gitea network
+docker network inspect gitea >/dev/null 2>&1 || docker network create gitea
+
+export CONTAINER_NAME=gitea-machine
 
 RUNS="$( docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME )"
 
