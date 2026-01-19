@@ -1,3 +1,5 @@
+name: Gitea with Action Runner
+
 services:
   gitea:
     image: gitea/gitea:latest
@@ -27,10 +29,12 @@ services:
 
     environment:
       CONFIG_FILE: /config/config.yaml
-      GITEA_INSTANCE_URL: http://localhost:3000
-      GITEA_RUNNER_REGISTRATION_TOKEN: YOUR_REGISTRATION_TOKEN
+      GITEA_INSTANCE_URL: http://gitea:3000
+      # only on first run, the mount /data takes over afterwards
+      # GITEA_RUNNER_REGISTRATION_TOKEN: x0EcZ85yBJRXVmOYu2hGSiz9CLgYplGvGNPYKOtA
 
     volumes:
+      - ${HOME}/act_runner/artifacts:/artifacts
       - ${HOME}/act_runner/config:/config
       - ${HOME}/act_runner/data:/data
       - /var/run/docker.sock:/var/run/docker.sock
@@ -43,4 +47,4 @@ services:
 
 networks:
   gitea:
-    driver: bridge
+    external: true
