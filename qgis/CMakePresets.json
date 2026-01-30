@@ -55,6 +55,13 @@
     ],
     "buildPresets": [
         {
+            "name": "build_without_tests",
+            "description": "Build QGIS without tests enabled",
+            "configurePreset": "configure_system_gdal_no_pdal_no_tests",
+            "jobs": 16,
+            "hidden": false
+        },
+        {
             "name": "build_with_tests",
             "description": "Build QGIS with tests enabled",
             "configurePreset": "configure_system_gdal_no_pdal_with_tests",
