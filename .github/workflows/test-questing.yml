@@ -1,4 +1,4 @@
-name: Test scripts - Ubuntu Questing
+name: Test scripts - Debian Trixie
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     container:
-      image: ubuntu:questing
+      image: debian:trixie
 
     steps:
       - name: Setup
