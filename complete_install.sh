@@ -126,7 +126,9 @@ sudo apt-get install -y \
     docker-compose
 
 sudo groupadd docker || true
-sudo usermod -aG docker $USER
+if [[ -n "${USER:-}" ]]; then
+    sudo usermod -aG docker $USER
+fi
 
 # Python Packages
 sudo apt-get install -y \
