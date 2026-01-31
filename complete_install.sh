@@ -125,7 +125,7 @@ sudo apt-get install -y \
     docker.io \
     docker-compose
 
-sudo groupadd docker
+sudo groupadd docker || true
 sudo usermod -aG docker $USER
 
 # Python Packages
