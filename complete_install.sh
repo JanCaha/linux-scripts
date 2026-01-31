@@ -114,7 +114,7 @@ ln -s $(which fdfind) ~/.local/bin/fd
 
 # redshift
 sudo apt-get remove -y redshift-gtk
-rm ~/.config/redshift.conf
+rm -f ~/.config/redshift.conf
 sudo apt-get install -y redshift
 
 # GIT
