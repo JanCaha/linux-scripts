@@ -49,7 +49,11 @@ if [[ -z "$LATEST_ONEDRIVER_VERSION" ]]; then
 fi
 echo "📥 Latest onedrive version: $LATEST_ONEDRIVER_VERSION"
 
-ONEDRIVE_VERSION=$(onedrive --version 2>/dev/null | sed -nE 's/.*v?([0-9]+\.[0-9]+\.[0-9]+).*/\1/p')
+if command -v onedrive >/dev/null 2>&1; then
+  ONEDRIVE_VERSION=$(onedrive --version | sed -nE 's/.*v?([0-9]+\.[0-9]+\.[0-9]+).*/\1/p')
+else
+  ONEDRIVE_VERSION=""
+fi
 
 sudo apt install libdbus-1-dev -y
 
