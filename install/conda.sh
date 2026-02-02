@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
 echo "🚀 Installing MiniConda"
 
 mkdir -p ~/miniconda3
