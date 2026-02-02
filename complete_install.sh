@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -euo pipefail
 
 if [[ ! -d "~/.local/bin" ]]; then
@@ -10,6 +9,8 @@ source /etc/os-release
 
 BASEDIR=$(dirname "$(readlink -f "$0")")
 PATH=$PATH:$BASEDIR/python_programs
+
+echo "Starting the complete install script from $BASEDIR"
 
 # source prepare_sources.sh
 
