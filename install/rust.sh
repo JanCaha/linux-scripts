@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
 echo "🚀 Installing Rust, Cargo and packages"
 
 # Rust, Cargo and packages
