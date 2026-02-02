@@ -285,7 +285,7 @@ sudo apt-get install -y libreoffice-style-karasa-jaga
 sudo apt install ufw gufw -y
 
 # add install from sepearate scripts
-source $BASEDIR/install/miniconda.sh
+source $BASEDIR/install/conda.sh
 source $BASEDIR/install/rust.sh
 source $BASEDIR/install/jellyfin.sh
 source $BASEDIR/install/texlive.sh
