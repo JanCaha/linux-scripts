@@ -74,8 +74,9 @@ sudo apt-get install -y \
 
 # GitHub CLI
 cd /tmp
-wget https://github.com/cli/cli/releases/download/v2.83.2/gh_2.83.2_linux_amd64.deb
-sudo dpkg -i gh_2.83.2_linux_amd64.deb
+GH_VERSION=$(curl -fsSL https://api.github.com/repos/cli/cli/releases/latest | grep -o '"tag_name": "[^"]*' | cut -d'"' -f4)
+wget https://github.com/cli/cli/releases/download/$GH_VERSION/gh_${GH_VERSION#v}_linux_amd64.deb
+sudo dpkg -i gh_${GH_VERSION#v}_linux_amd64.deb
 # sudo apt-get install -y gh
 
 # mtp for android devices
