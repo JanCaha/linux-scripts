@@ -32,7 +32,6 @@ if [[ -f "$VariablesFile" ]]; then
 else
     echo -e "$RED $VariablesFile does not exist. $NORMAL"
     touch $VariablesFile
-    echo "QuartoVersion=''" >>$VariablesFile
     echo "RStudioVersion='v'" >>$VariablesFile
     echo "FreeFileSyncLastVersion='v'" >>$VariablesFile
     echo "KrusaderLastInstalledHash='v'" >>$VariablesFile
