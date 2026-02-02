@@ -112,7 +112,7 @@ sudo apt-get install -y \
 
 # Fd - find replacement
 sudo apt-get install -y fd-find
-ln -s $(which fdfind) ~/.local/bin/fd
+ln -s "$(which fdfind)" ~/.local/bin/fd
 
 # redshift
 sudo apt-get remove -y redshift-gtk
