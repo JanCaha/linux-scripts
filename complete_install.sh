@@ -193,7 +193,7 @@ sudo apt-get install -y nemo cinnamon-control-center xdg-utils krusader
 
 
 # Onedrive
-source install/onedrive.sh
+source $BASEDIR/install/onedrive.sh
 
 # Calibre
 sudo apt-get install -y libxcb-cursor0
