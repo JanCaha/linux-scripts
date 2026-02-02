@@ -16,7 +16,7 @@ if [[ -z "$LATEST" ]]; then
 fi
 
 if command -v dmd >/dev/null 2>&1; then
-  DMD_VERSION=$(dmd --version | sed -nE 's/.*v([0-9]+\.[0-9]+\.[0-9]+).*/\1/p')
+  DMD_VERSION=$(dmd --version 2>/dev/null | sed -nE 's/.*v([0-9]+\.[0-9]+\.[0-9]+).*/\1/p' || echo "")
 else
   DMD_VERSION=""
 fi
@@ -42,7 +42,7 @@ if ! command -v gh >/dev/null 2>&1; then
   exit 1
 fi
 
-LATEST_ONEDRIVER_VERSION=$(gh release view --repo abraunegg/onedrive --json tagName --jq .tagName)
+LATEST_ONEDRIVER_VERSION=$(gh release view --repo abraunegg/onedrive --json tagName --jq .tagName 2>/dev/null || echo "")
 if [[ -z "$LATEST_ONEDRIVER_VERSION" ]]; then
   echo "❌ Unable to determine latest Onedrive version from GitHub" >&2
   exit 1
