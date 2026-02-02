@@ -200,7 +200,7 @@ sudo apt-get install -y libxcb-cursor0
 sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
 
 # Joplin
-wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
+wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh --allow-root | bash
 
 # Brave
 curl -fsS https://dl.brave.com/install.sh | sh
