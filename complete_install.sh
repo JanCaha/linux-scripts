@@ -223,7 +223,7 @@ sudo apt-get install -y qtcreator
 sudo apt-get install -y strawberry
 
 # ZSH
-source install/zsh.sh
+source $BASEDIR/install/zsh.sh
 
 # CMake
 sudo apt-get install -y cmake
