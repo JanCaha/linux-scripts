@@ -16,10 +16,11 @@ echo "🚀 Installing packages to base environment"
 
 $CONDA_DIR/bin/conda init zsh
 
-# only run on CI to avoid messing up user shell configs
+# only run on CI to properly initialize conda in the script
 if [ -n "${CI:-}" ]; then
   $CONDA_DIR/bin/conda init bash
-  source ~/.bashrc
+  # Initialize conda for this bash session
+  eval "$($CONDA_DIR/bin/conda shell.bash hook)"
 fi
 
 $CONDA_DIR/bin/conda config --set solver libmamba
