@@ -16,6 +16,12 @@ echo "🚀 Installing packages to base environment"
 
 $CONDA_DIR/bin/conda init zsh
 
+# only run on CI to avoid messing up user shell configs
+if [ -n "${CI:-}" ]; then
+  $CONDA_DIR/bin/conda init bash
+  source ~/.bashrc
+fi
+
 $CONDA_DIR/bin/conda config --set solver libmamba
 
 $CONDA_DIR/bin/conda activate base
