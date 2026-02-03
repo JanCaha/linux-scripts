@@ -4,7 +4,14 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
-on: [push]
+on:
+  push:
+    paths:
+      - first_run.sh
+      - complete_install.sh
+      - "install/**"
+      - "python_programs/**"
+      - ".github/workflows/test-questing.yml"
 
 env:
   GH_TOKEN: ${{ github.token }}
