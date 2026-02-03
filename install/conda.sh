@@ -25,8 +25,7 @@ fi
 
 $CONDA_DIR/bin/conda config --set solver libmamba
 
-$CONDA_DIR/bin/conda activate base
-
+# Install packages to base environment (activate not needed)
 $CONDA_DIR/bin/conda install -y \
     beautifulsoup4 \
     nbclient \
