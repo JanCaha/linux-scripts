@@ -13,10 +13,10 @@ if [[ "$ID" == "debian" ]]; then
     IS_DEBIAN=1
 fi
 
-BASEDIR=$(dirname "$(readlink -f "$0")")
-PATH=$PATH:$BASEDIR/python_programs
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+PATH=$PATH:$SCRIPT_DIR/python_programs
 
-echo "Starting the complete install script from $BASEDIR"
+echo "Starting the complete install script from $SCRIPT_DIR"
 
 # source prepare_sources.sh
 
@@ -200,7 +200,7 @@ sudo apt-get install -y nemo cinnamon-control-center xdg-utils krusader
 
 
 # Onedrive
-source $BASEDIR/install/onedrive.sh
+source $SCRIPT_DIR/install/onedrive.sh
 
 # Calibre
 sudo apt-get install -y libxcb-cursor0
@@ -230,7 +230,7 @@ sudo apt-get install -y qtcreator
 sudo apt-get install -y strawberry
 
 # ZSH
-source $BASEDIR/install/zsh.sh
+source $SCRIPT_DIR/install/zsh.sh
 
 # CMake
 sudo apt-get install -y cmake
@@ -291,14 +291,14 @@ sudo apt-get install -y libreoffice-style-karasa-jaga
 sudo apt install ufw gufw -y
 
 # add install from sepearate scripts
-source $BASEDIR/install/conda.sh
-source $BASEDIR/install/rust.sh
-source $BASEDIR/install/texlive.sh
-source $BASEDIR/install/r.sh
-source $BASEDIR/install/xnview.sh
-source $BASEDIR/install/drivers-nvidia.sh
+source $SCRIPT_DIR/install/conda.sh
+source $SCRIPT_DIR/install/rust.sh
+source $SCRIPT_DIR/install/texlive.sh
+source $SCRIPT_DIR/install/r.sh
+source $SCRIPT_DIR/install/xnview.sh
+source $SCRIPT_DIR/install/drivers-nvidia.sh
 
 
 if [[ $IS_DEBIAN -eq 0 ]]; then
-    source $BASEDIR/install/jellyfin.sh
+    source $SCRIPT_DIR/install/jellyfin.sh
 fi
