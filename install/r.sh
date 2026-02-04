@@ -1,4 +1,6 @@
-BASEDIR=$(dirname "$(readlink -f "$0")")
+#!/bin/bash
+set -euo pipefail
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
 # R
 sudo apt-get install -y \
@@ -9,4 +11,4 @@ sudo apt-get install -y \
 pip3 install -U radian --break-system-packages
 
 # R packages
-Rscript $BASEDIR/install_packages.R
+Rscript $SCRIPT_DIR/install_packages.R
