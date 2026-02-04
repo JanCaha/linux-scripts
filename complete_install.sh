@@ -7,6 +7,12 @@ fi
 
 source /etc/os-release
 
+IS_DEBIAN=0
+
+if [[ "$ID" == "debian" ]]; then
+    IS_DEBIAN=1
+fi
+
 BASEDIR=$(dirname "$(readlink -f "$0")")
 PATH=$PATH:$BASEDIR/python_programs
 
@@ -287,9 +293,12 @@ sudo apt install ufw gufw -y
 # add install from sepearate scripts
 source $BASEDIR/install/conda.sh
 source $BASEDIR/install/rust.sh
-source $BASEDIR/install/jellyfin.sh
 source $BASEDIR/install/texlive.sh
 source $BASEDIR/install/r.sh
 source $BASEDIR/install/xnview.sh
 source $BASEDIR/install/drivers-nvidia.sh
 
+
+if [[ $IS_DEBIAN -eq 0 ]]; then
+    source $BASEDIR/install/jellyfin.sh
+fi
