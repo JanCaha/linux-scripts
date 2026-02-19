@@ -31,6 +31,19 @@ fi
 echo "🚀 Adding git worktree for branch '$BRANCH' in folder '$QGIS_WORKTREE_FOLDER/$BRANCH'"
 git worktree add "$QGIS_WORKTREE_FOLDER/$BRANCH" "$BRANCH"
 
+# copy build directory to the new worktree (if available)
+if [ -d "$QGIS_SOURCES_DIR/build" ]; then
+    echo "📦 Copy build folder to new worktree"
+    cp -a "$QGIS_SOURCES_DIR/build" "$QGIS_WORKTREE_FOLDER/$BRANCH/"
+    CMAKE_CACHE_FILE="$QGIS_WORKTREE_FOLDER/$BRANCH/build/CMakeCache.txt"
+    if [ -f "$CMAKE_CACHE_FILE" ]; then
+        echo "🧹 Remove stale CMakeCache.txt from copied build"
+        rm "$CMAKE_CACHE_FILE"
+    fi
+else
+    echo "ℹ️ No build folder found at '$QGIS_SOURCES_DIR/build'"
+fi
+
 # copy necessary files to the new worktree
 echo "📂 Copy files not part of the git repository to the new worktree"
 cp -r ./.vscode "$QGIS_WORKTREE_FOLDER/$BRANCH/"
