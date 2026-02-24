@@ -51,6 +51,24 @@
                 "GDAL_DIR": "/opt/gdal/lib/cmake/gdal",
                 "GDAL_ROOT": "/opt/gdal"
             }
+        },
+        {
+            "name": "configure_release_with_opt_gdal_pdal_no_tests",
+            "description": "Configure QGIS Release with /opt GDAL, PDAL, tests disabled",
+            "inherits": [
+                "configure_base"
+            ],
+            "binaryDir": "${sourceDir}/build_release_opt",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "ENABLE_TESTS": "OFF",
+                "CMAKE_PREFIX_PATH": "/opt/pdal;/opt/gdal",
+                "WITH_PDAL": "ON",
+                "WITH_INTERNAL_SPATIALINDEX": "ON",
+                "GDAL_DIR": "/opt/gdal/lib/cmake/gdal",
+                "GDAL_ROOT": "/opt/gdal",
+                "CMAKE_INSTALL_PREFIX": "/opt/qgis"
+            }
         }
     ],
     "buildPresets": [
@@ -74,6 +92,16 @@
             "configurePreset": "configure_with_opt_gdal_pdal_tests",
             "jobs": 16,
             "hidden": false
+        },
+        {
+            "name": "build_release_with_opt_gdal_pdal_no_tests",
+            "description": "Build QGIS Release with /opt GDAL and PDAL, tests disabled",
+            "configurePreset": "configure_release_with_opt_gdal_pdal_no_tests",
+            "jobs": 16,
+            "hidden": false,
+            "targets": [
+                "install"
+            ]
         }
     ],
     "workflowPresets": [
@@ -89,6 +117,20 @@
                 {
                     "type": "build",
                     "name": "build_with_opt_gdal_pdal_tests"
+                }
+            ]
+        },
+        {
+            "name": "release_opt_no_tests_install",
+            "description": "Configure Release with /opt GDAL+PDAL, no tests, then build and install",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "configure_release_with_opt_gdal_pdal_no_tests"
+                },
+                {
+                    "type": "build",
+                    "name": "build_release_with_opt_gdal_pdal_no_tests"
                 }
             ]
         }
