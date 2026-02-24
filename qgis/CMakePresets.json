@@ -67,7 +67,9 @@
                 "WITH_INTERNAL_SPATIALINDEX": "ON",
                 "GDAL_DIR": "/opt/gdal/lib/cmake/gdal",
                 "GDAL_ROOT": "/opt/gdal",
-                "CMAKE_INSTALL_PREFIX": "/opt/qgis"
+                "CMAKE_INSTALL_PREFIX": "/opt/qgis",
+                "CMAKE_INSTALL_RPATH": "/opt/qgis/lib;/opt/gdal/lib;/opt/pdal/lib",
+                "CMAKE_INSTALL_RPATH_USE_LINK_PATH": "ON"
             }
         }
     ],
