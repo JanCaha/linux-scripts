@@ -107,7 +107,6 @@ source $SCRIPT_DIR/install/krusader.sh
 # add install from sepearate scripts
 source $SCRIPT_DIR/install/conda.sh
 source $SCRIPT_DIR/install/rust.sh
-source $SCRIPT_DIR/install/texlive.sh
 source $SCRIPT_DIR/install/r.sh
 source $SCRIPT_DIR/install/xnview.sh
 source $SCRIPT_DIR/install/drivers-nvidia.sh
