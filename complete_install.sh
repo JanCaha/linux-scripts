@@ -56,9 +56,6 @@ source $SCRIPT_DIR/install/gis_libs.sh
 source $SCRIPT_DIR/install/grass.sh
 source $SCRIPT_DIR/install/qgis.sh
 
-# Krusader
-source $SCRIPT_DIR/install/krusader.sh
-
 # Onedrive
 source $SCRIPT_DIR/install/onedrive.sh
 
@@ -102,7 +99,10 @@ source $SCRIPT_DIR/install/pg.sh
 source $SCRIPT_DIR/install/libreoffice_style.sh
 
 # UFW and GUI for it
-sudo apt install ufw gufw -y
+source $SCRIPT_DIR/install/ufw.sh
+
+# Krusader
+source $SCRIPT_DIR/install/krusader.sh
 
 # add install from sepearate scripts
 source $SCRIPT_DIR/install/conda.sh
