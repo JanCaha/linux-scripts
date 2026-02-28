@@ -108,7 +108,7 @@
     ],
     "workflowPresets": [
         {
-            "name": "test",
+            "name": "build-for-testing",
             "description": "",
             "displayName": "",
             "steps": [
