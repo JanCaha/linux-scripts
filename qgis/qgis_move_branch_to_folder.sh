@@ -33,5 +33,7 @@ git worktree add "$QGIS_WORKTREE_FOLDER/$BRANCH" "$BRANCH"
 
 # copy necessary files to the new worktree
 echo "📂 Copy files not part of the git repository to the new worktree"
-cp -r ./.vscode "$QGIS_WORKTREE_FOLDER/$BRANCH/"
+VS_CODE_DIR="$QGIS_WORKTREE_FOLDER/$BRANCH/.vscode"
+mkdir -p $VS_CODE_DIR
+cp -r $SCRIPT_DIR/vscode/. "$VS_CODE_DIR/"
 cp -r $SCRIPT_DIR/CMakePresets.json "$QGIS_WORKTREE_FOLDER/$BRANCH/CMakePresets.json"

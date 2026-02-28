@@ -1,0 +1,76 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMake: Build for Testing",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--workflow",
+                "build-for-testing"
+            ],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "CTest: Run Test for Current C++ File",
+            "type": "shell",
+            "command": "${workspaceFolder}/.vscode/run_test.sh",
+            "args": [
+                "${file}"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Debug PyQGIS Test (C++)",
+            "type": "shell",
+            "command": "/usr/bin/python3",
+            "args": [
+                "${file}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PYTHONPATH": "${workspaceFolder}/build/output/python:${workspaceFolder}/build/output/python/plugins:${workspaceFolder}/tests/src/python",
+                    "LD_LIBRARY_PATH": "${workspaceFolder}/build/output/lib:${env:LD_LIBRARY_PATH}",
+                    "QGIS_PREFIX_PATH": "${workspaceFolder}/build/output",
+                    "QT_QPA_PLATFORM": "offscreen",
+                    "QGIS_DEBUG": "1"
+                }
+            },
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "QGIS: PostgreSQL Tests Setup",
+            "type": "shell",
+            "command": "${workspaceFolder}/.vscode/qgis_postgresql_tests_setup.sh",
+            "group": "none",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        }
+    ]
+}
