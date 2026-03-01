@@ -109,7 +109,10 @@ source $SCRIPT_DIR/install/conda.sh
 source $SCRIPT_DIR/install/rust.sh
 source $SCRIPT_DIR/install/r.sh
 source $SCRIPT_DIR/install/xnview.sh
-source $SCRIPT_DIR/install/drivers-nvidia.sh
+
+if [[ "$GITHUB_ACTIONS" != "true" ]]; then
+    source $SCRIPT_DIR/install/drivers-nvidia.sh
+fi
 
 if [[ $IS_DEBIAN -eq 0 ]]; then
     source $SCRIPT_DIR/install/jellyfin.sh
