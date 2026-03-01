@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+START_DIR="$(pwd)"
+
 echo "🚀 Installing Zsh and plugins"
 
 # Check if Zsh is installed
@@ -38,3 +40,5 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
 else
     echo "✅ Oh-my-zsh already exists at: $HOME/.oh-my-zsh"
 fi
+
+cd "$START_DIR"
