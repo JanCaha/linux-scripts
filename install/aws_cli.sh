@@ -1,3 +1,8 @@
+#!/bin/bash
+set -euo pipefail
+
+START_DIR="$(pwd)"
+
 echo "🚀 Installing AWS CLI"
 
 cd /tmp
@@ -11,3 +16,5 @@ unzip awscliv2.zip
 sudo ./aws/install
 
 echo "✅ AWS CLI installed"
+
+cd "$START_DIR"
