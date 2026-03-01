@@ -10,6 +10,6 @@ GH_VERSION=$(curl -fsSL https://api.github.com/repos/cli/cli/releases/latest | g
 
 wget https://github.com/cli/cli/releases/download/$GH_VERSION/gh_${GH_VERSION#v}_linux_amd64.deb
 
-sudo dpkg -i gh_${GH_VERSION#v}_linux_amd64.deb
+sudo apt install "./$(ls gh_${GH_VERSION#v}_linux_amd64.deb)"
 
 cd "$START_DIR"
