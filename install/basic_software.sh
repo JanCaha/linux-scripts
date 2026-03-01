@@ -51,4 +51,5 @@ sudo apt-get install -y \
     konsole \
     kate \
     kompare \
-    krename
+    krename \
+    shfmt
