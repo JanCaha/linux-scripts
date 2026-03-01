@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+START_DIR="$(pwd)"
+
 echo "🚀 Installing Rust, Cargo and packages"
 
 # Rust, Cargo and packages
@@ -16,3 +18,5 @@ cargo install eza
 export PATH=~/.cargo/bin:$PATH
 
 echo "✅ Rust packages installed"
+
+cd "$START_DIR"
