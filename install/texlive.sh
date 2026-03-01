@@ -1,3 +1,8 @@
+#!/bin/bash
+set -euo pipefail
+
+START_DIR="$(pwd)"
+
 #TeXLive
 cd /tmp # working directory of your choice
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz # or curl instead of wget
@@ -18,6 +23,7 @@ sudo apt-get install -y \
 # texlive-latex-recommended texlive-science texlive-fonts-extra texlive-full
 
 sudo $(which tlmgr) init-usertree
+
 sudo $(which tlmgr) update --self
 
 sudo $(which tlmgr) install \
@@ -60,4 +66,5 @@ sudo $(which tlmgr) install \
 
 # edit .zshrc file ins
 echo "Add this to PATH in the open file - $folder"
-kate ~/.zshrc
+
+cd "$START_DIR"

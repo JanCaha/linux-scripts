@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+START_DIR="$(pwd)"
+
 echo "🚀 Installing dlang"
 
 LATEST=$(curl -fsSL https://downloads.dlang.org/releases/2.x/ \
@@ -103,3 +105,5 @@ if [ "$LATEST_ONEDRIVER_VERSION" != "v$ONEDRIVE_VERSION" ]; then
 else
     echo "Skipping OneDrive Update"
 fi
+
+cd "$START_DIR"

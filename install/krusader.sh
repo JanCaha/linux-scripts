@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+START_DIR="$(pwd)"
+
 sudo apt-get install extra-cmake-modules
 
 sudo apt-get install -y nemo cinnamon-control-center xdg-utils 
@@ -41,3 +43,5 @@ cmake -DCMAKE_INSTALL_PREFIX=/usr/ -DCMAKE_C_FLAGS="-O2 -fPIC" -DCMAKE_CXX_FLAGS
 sudo make install
 
 sudo apt-get install -y  krusader
+
+cd "$START_DIR"
