@@ -1,3 +1,6 @@
+#!/bin/bash
+set -euo pipefail
+
 # VCPKG
 cd ~
 git clone https://github.com/microsoft/vcpkg.git
