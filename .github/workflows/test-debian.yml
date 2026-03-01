@@ -1,4 +1,4 @@
-name: Test scripts - Debian Trixie
+name: Test scripts - Debian
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -20,8 +20,12 @@ jobs:
   test-scripts:
     runs-on: ubuntu-24.04
 
+    strategy:
+      matrix:
+        container: [debian:trixie, debian:testing]
+
     container:
-      image: debian:trixie
+      image: ${{ matrix.container }}
 
     steps:
       - name: Setup
