@@ -11,7 +11,7 @@ on:
       - complete_install.sh
       - "install/**"
       - "python_programs/**"
-      - ".github/workflows/test-questing.yml"
+      - ".github/workflows/test-debian.yml"
 
 env:
   GH_TOKEN: ${{ github.token }}
