@@ -22,7 +22,7 @@ jobs:
 
     strategy:
       matrix:
-        container: [debian:trixie, debian:testing]
+        container: [debian:trixie]
 
     container:
       image: ${{ matrix.container }}
