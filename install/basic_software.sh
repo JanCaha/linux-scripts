@@ -52,4 +52,8 @@ sudo apt-get install -y \
     kate \
     kompare \
     krename \
-    shfmt
+    shfmt \
+    openvpn \
+    systemd-resolved \
+    openvpn-systemd-resolved \
+    simplescreenrecorder
