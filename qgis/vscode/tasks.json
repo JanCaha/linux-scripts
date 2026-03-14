@@ -2,7 +2,8 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "CMake: Build for Testing",
+            "label": "Build QGIS for Testing",
+            "detail": "Build QGIS in debug mode with tests using workflow build-for-testing",
             "type": "shell",
             "command": "cmake",
             "args": [
@@ -21,7 +22,8 @@
             }
         },
         {
-            "label": "CTest: Run Test for Current C++ File",
+            "label": "Run QGIS Test for Current C++ File",
+            "detail": "Run the test corresponding to the current C++ test file",
             "type": "shell",
             "command": "${workspaceFolder}/.vscode/run_test.sh",
             "args": [
@@ -37,6 +39,7 @@
         },
         {
             "label": "Debug PyQGIS Test (C++)",
+            "detail": "Run the current Python test file with the QGIS Python environment for debugging",
             "type": "shell",
             "command": "/usr/bin/python3",
             "args": [
@@ -62,6 +65,7 @@
         },
         {
             "label": "QGIS: PostgreSQL Tests Setup",
+            "detail": "Run the setup script for PostgreSQL tests for QGIS",
             "type": "shell",
             "command": "${workspaceFolder}/.vscode/qgis_postgresql_tests_setup.sh",
             "group": "none",
@@ -73,7 +77,8 @@
             }
         },
         {
-            "label": "CMake: Release and Install with /Opt Libraries",
+            "label": "Release and Install with /Opt Libraries",
+            "detail": "Build QGIS in release mode without tests and install it with sudo",
             "type": "shell",
             "command": "sudo",
             "args": [
