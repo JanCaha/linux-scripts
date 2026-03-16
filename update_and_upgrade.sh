@@ -53,13 +53,13 @@ echo ""
 
 # apt update
 echo -e "$YELLOW---apt update---$NORMAL"
-sudo apt update
+sudo apt-get -y update
 echo -e "$GREEN---Upgradable packages---"
 apt list --upgradable
 echo -e "$GREEN---------$NORMAL"
 echo -e "\n\n\n"
-sudo apt upgrade -y --fix-missing
-sudo apt autoremove -y
+sudo apt-get upgrade -y --fix-missing
+sudo apt-get autoremove -y
 echo -e "$GREEN---kept back packages---$NORMAL"
 apt-get upgrade --dry-run | grep -i "kept back" -A 1000
 echo -e "$YELLOW---end apt update---$NORMAL"
