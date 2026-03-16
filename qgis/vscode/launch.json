@@ -2,6 +2,45 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "(gdb) Launch QGIS",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build-qt/output/bin/qgis",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build-qt",
+            "environment": [
+                {
+                    "name": "LD_LIBRARY_PATH",
+                    "value": "${workspaceFolder}/build/output/lib:${env:LD_LIBRARY_PATH}"
+                },
+                {
+                    "name": "QGIS_PREFIX_PATH",
+                    "value": "${workspaceFolder}/build-qt/output"
+                },
+                {
+                    "name": "PYTHONPATH",
+                    "value": "${workspaceFolder}/build-qt/output/share/qgis/python:${env:PYTHONPATH}"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "showDisplayString": true,
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
             "name": "Debug PyQGIS Test (C++)",
             "type": "cppdbg",
             "request": "launch",
@@ -44,13 +83,14 @@
             ]
         },
         {
-            "name": "Python: Attach to QGIS",
+            "name": "Debug PyQGIS Test (Python)",
             "type": "debugpy",
             "request": "attach",
             "connect": {
                 "host": "localhost",
                 "port": 5678
             },
+            "preLaunchTask": "Run PyQGIS Test with Wait for Debugger",
             "pathMappings": [
                 {
                     "localRoot": "${workspaceFolder}/python",

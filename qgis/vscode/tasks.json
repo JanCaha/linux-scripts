@@ -48,32 +48,6 @@
             }
         },
         {
-            "label": "Debug PyQGIS Test (C++)",
-            "detail": "Run the current Python test file with the QGIS Python environment for debugging",
-            "type": "shell",
-            "command": "/usr/bin/python3",
-            "args": [
-                "${file}"
-            ],
-            "options": {
-                "cwd": "${workspaceFolder}",
-                "env": {
-                    "PYTHONPATH": "${workspaceFolder}/build/output/python:${workspaceFolder}/build/output/python/plugins:${workspaceFolder}/tests/src/python",
-                    "LD_LIBRARY_PATH": "${workspaceFolder}/build/output/lib:${env:LD_LIBRARY_PATH}",
-                    "QGIS_PREFIX_PATH": "${workspaceFolder}/build/output",
-                    "QT_QPA_PLATFORM": "offscreen",
-                    "QGIS_DEBUG": "1"
-                }
-            },
-            "group": "test",
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": false,
-                "panel": "shared"
-            }
-        },
-        {
             "label": "QGIS: PostgreSQL Tests Setup",
             "detail": "Run the setup script for PostgreSQL tests for QGIS",
             "type": "shell",
@@ -105,6 +79,43 @@
                 "reveal": "always",
                 "focus": false,
                 "panel": "shared"
+            }
+        },
+        {
+            "label": "Run PyQGIS Test with Wait for Debugger",
+            "type": "shell",
+            "isBackground": true,
+            "command": "/usr/bin/python3",
+            "args": [
+                "${workspaceFolder}/.vscode/run_pyqgis_test_debug.py",
+                "${file}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PYTHONPATH": "${workspaceFolder}/build/output/python:${workspaceFolder}/build/output/python/plugins:${workspaceFolder}/tests/src/python",
+                    "LD_LIBRARY_PATH": "${workspaceFolder}/build/output/lib:${env:LD_LIBRARY_PATH}",
+                    "QGIS_PREFIX_PATH": "${workspaceFolder}/build/output",
+                    "QT_QPA_PLATFORM": "offscreen",
+                    "QGIS_DEBUG": "1"
+                }
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": {
+                "owner": "custom",
+                "pattern": {
+                    "regexp": "^$"
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "^WAITING_FOR_DEBUGGER$",
+                    "endsPattern": "^WAITING_FOR_DEBUGGER$"
+                }
             }
         }
     ]
