@@ -55,7 +55,7 @@ echo ""
 echo -e "$YELLOW---apt update---$NORMAL"
 sudo apt-get -y update
 echo -e "$GREEN---Upgradable packages---"
-apt list --upgradable
+PAGER=cat apt list --upgradable
 echo -e "$GREEN---------$NORMAL"
 echo -e "\n\n\n"
 sudo apt-get upgrade -y --fix-missing
