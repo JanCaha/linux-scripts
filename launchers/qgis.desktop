@@ -1,4 +1,3 @@
-#!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=QGIS
 Exec=/opt/qgis/bin/qgis 
