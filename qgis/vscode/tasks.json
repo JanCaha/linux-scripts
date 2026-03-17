@@ -61,7 +61,7 @@
             }
         },
         {
-            "label": "Release and Install with /Opt Libraries",
+            "label": "QGIS Release build Install with /Opt Libraries",
             "detail": "Build QGIS in release mode without tests and install it with sudo",
             "type": "shell",
             "command": "sudo",
