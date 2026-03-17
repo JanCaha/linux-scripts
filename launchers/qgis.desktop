@@ -1,0 +1,8 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Name=QGIS
+Exec=/opt/qgis/bin/qgis 
+Comment=
+Terminal=false
+Icon=/home/cahik/Scripts/icons/qgis.svg
+Type=Application
