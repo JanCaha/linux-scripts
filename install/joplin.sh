@@ -3,6 +3,8 @@ set -euo pipefail
 
 START_DIR="$(pwd)"
 
+sudo apt-get install libfuse2t64
+
 # Joplin
 cd /tmp
 
