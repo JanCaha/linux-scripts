@@ -56,4 +56,5 @@ sudo apt-get install -y \
     openvpn \
     systemd-resolved \
     openvpn-systemd-resolved \
-    simplescreenrecorder
+    simplescreenrecorder \
+    nmap
