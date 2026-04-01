@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Connect to PC
-Exec=remmina -c /home/cahik/.local/share/remmina/group_vnc_quick-connect_192-168-0-106-5900.remmina
+Exec=/home/cahik/Scripts/tools/connect_to_media.sh
 Comment=
 Terminal=false
 PrefersNonDefaultGPU=false
