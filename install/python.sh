@@ -12,9 +12,9 @@ if [ ! -d "$PYTHON_ENVS_DIR/$MAIN_ENV" ]; then
     sudo python3 -m venv $MAIN_ENV --system-site-packages --symlinks
 fi
 
-source /.$MAIN_ENV_ACTIVATE
+source $PYTHON_ENVS_DIR/$MAIN_ENV/bin/activate
 
-echo "📦 Installing packages to nase VENV"
+echo "📦 Installing packages to base VENV"
 
 pip3 install \
     beautifulsoup4 \
