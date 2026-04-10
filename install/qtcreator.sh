@@ -26,4 +26,4 @@ sudo apt-get install -y \
     python3-pyqt6.qtwebchannel \
     python3-pyqt6.qtwebengine \
     python3-pyqt6.qtwebsockets \
-    python3-pyqt6.sip \
+    python3-pyqt6.sip

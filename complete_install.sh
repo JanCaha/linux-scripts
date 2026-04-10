@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-if [[ ! -d "~/.local/bin" ]]; then
+if [[ ! -d ~/.local/bin ]]; then
     mkdir -p ~/.local/bin
 fi
 
