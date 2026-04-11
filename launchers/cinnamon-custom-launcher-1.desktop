@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Update and upgrade
+Exec=/home/cahik/Scripts/update_and_upgrade_software.sh
+Comment=
+Terminal=true
+PrefersNonDefaultGPU=false
+Icon=org.gnome.Terminal
+Type=Application
