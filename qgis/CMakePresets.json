@@ -22,7 +22,8 @@
                 "ENABLE_TESTS": "OFF",
                 "WITH_PDAL": "OFF",
                 "WITH_3D": "TRUE",
-                "WITH_INTERNAL_SPATIALINDEX": "ON"
+                "WITH_INTERNAL_SPATIALINDEX": "ON",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             }
         },
         {
