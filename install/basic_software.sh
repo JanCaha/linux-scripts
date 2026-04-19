@@ -58,4 +58,5 @@ sudo apt-get install -y \
     openvpn-systemd-resolved \
     simplescreenrecorder \
     nmap \
-    time
+    time \
+    tesseract-ocr tesseract-ocr-ces tesseract-ocr-eng
