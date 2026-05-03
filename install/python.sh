@@ -28,3 +28,5 @@ pip3 install \
 	git+https://github.com/it-novum/mkdocs-featherlight.git
 
 echo "✅ Packages installed to base VENV"
+
+sudo chown -R $USER:$USER $PYTHON_ENVS_DIR
