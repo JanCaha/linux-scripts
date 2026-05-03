@@ -8,6 +8,10 @@ is_device_available() {
     bluetoothctl devices | grep -Fqi "$DEVICE_MAC"
 }
 
+is_device_trusted() {
+    bluetoothctl info "$DEVICE_MAC" | grep -Fq "Trusted: yes"
+}
+
 bluetoothctl power on
 
 echo "🔌 Disconnecting headphones if they are connected"
@@ -35,7 +39,14 @@ fi
 echo "✅ Device $DEVICE_MAC is available"
 echo "🤝 Pairing headphones"
 bluetoothctl pair "$DEVICE_MAC"
-bluetoothctl trust "$DEVICE_MAC"
+
+if is_device_trusted; then
+    echo "✅ Device $DEVICE_MAC is already trusted"
+else
+    echo "🔐 Trusting device $DEVICE_MAC"
+    bluetoothctl trust "$DEVICE_MAC"
+fi
+
 bluetoothctl connect "$DEVICE_MAC"
 
 echo "🟢 Bluetooth headphones reconnected: $DEVICE_MAC"
