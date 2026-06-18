@@ -90,13 +90,7 @@
                 "host": "localhost",
                 "port": 5678
             },
-            "preLaunchTask": "Run PyQGIS Test with Wait for Debugger",
-            "pathMappings": [
-                {
-                    "localRoot": "${workspaceFolder}/python",
-                    "remoteRoot": "${workspaceFolder}/python"
-                }
-            ]
+            "preLaunchTask": "Run PyQGIS Test with Wait for Debugger"
         }
     ]
 }
