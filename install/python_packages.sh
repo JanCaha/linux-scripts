@@ -14,6 +14,7 @@ sudo apt-get install -y \
     python3-pycodestyle \
     python3-isort \
     python3-mypy \
+    python3-selenium \
     python3-pytest \
     python3-pytest-cov \
     python3-pytestqt \
