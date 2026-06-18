@@ -113,7 +113,7 @@
                 },
                 "background": {
                     "activeOnStart": true,
-                    "beginsPattern": "^WAITING_FOR_DEBUGGER$",
+                    "beginsPattern": "^__NEVER_MATCHES__$",
                     "endsPattern": "^WAITING_FOR_DEBUGGER$"
                 }
             }
