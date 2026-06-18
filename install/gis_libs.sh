@@ -12,4 +12,10 @@ sudo apt-get install -y \
     libssh-dev \
     qpdf \
     libfontconfig1-dev \
-    libgeos-dev
+    libgeos-dev \
+    postgis
+
+sudo systemctl stop postgresql
+sudo systemctl disable postgresql
+sudo systemctl is-active postgresql
+sudo systemctl is-enabled postgresql
