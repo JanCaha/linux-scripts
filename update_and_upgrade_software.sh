@@ -89,12 +89,12 @@ cd .. && rm -rf onedrive
 echo -e "$YELLOW---end OneDrive update---$NORMAL"
 echo ""
 
-# RStudio
-echo -e "$YELLOW---RStudio update---$NORMAL"
-cd /tmp
-$currentDir/python_programs/download_RStudio.py
-echo -e "$YELLOW---end RStudio update---$NORMAL"
-echo ""
+# # RStudio
+# echo -e "$YELLOW---RStudio update---$NORMAL"
+# cd /tmp
+# $currentDir/python_programs/download_RStudio.py
+# echo -e "$YELLOW---end RStudio update---$NORMAL"
+# echo ""
 
 # XnView
 echo -e "$YELLOW---XnView update---$NORMAL"
