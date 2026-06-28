@@ -103,7 +103,7 @@ if [ "$LATEST_ONEDRIVER_VERSION" != "v$ONEDRIVE_VERSION" ]; then
 
     echo "✅ OneDrive installed"
 else
-    echo "Skipping OneDrive Update"
+    echo "Skipping OneDrive Update as the latest version is already installed: $ONEDRIVE_VERSION"
 fi
 
 cd "$START_DIR"
