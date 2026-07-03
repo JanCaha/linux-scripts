@@ -41,17 +41,34 @@
     ],
     "buildPresets": [
         {
-            "name": "build_with_opt_gdal_pdal_tests",
-            "description": "Build QGIS with tests enabled",
+            "name": "build_app",
+            "description": "Build QGIS application targets only (tests configured but not compiled)",
             "configurePreset": "configure_with_opt_gdal_pdal_tests",
             "jobs": 16,
+            "targets": [
+                "src/all",
+                "python/all",
+                "resources/all",
+                "images/all",
+                "i18n/all"
+            ],
+            "hidden": false
+        },
+        {
+            "name": "build_tests",
+            "description": "Compile QGIS tests (on demand)",
+            "configurePreset": "configure_with_opt_gdal_pdal_tests",
+            "jobs": 16,
+            "targets": [
+                "tests/all"
+            ],
             "hidden": false
         }
     ],
     "workflowPresets": [
         {
             "name": "build-for-testing",
-            "description": "Build QGIS for testing with GDAL and PDAL",
+            "description": "Build QGIS with GDAL and PDAL, tests configured but not compiled",
             "displayName": "Build for Testing",
             "steps": [
                 {
@@ -60,7 +77,7 @@
                 },
                 {
                     "type": "build",
-                    "name": "build_with_opt_gdal_pdal_tests"
+                    "name": "build_app"
                 }
             ]
         }
