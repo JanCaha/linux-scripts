@@ -16,11 +16,11 @@ mkdir build
 cd build
 
 cmake .. \
-  -G Ninja \
-  -DCMAKE_BUILD_TYPE=Release \
-  -DCMAKE_INSTALL_PREFIX="$GDAL_PREFIX" \
-  -DBUILD_SHARED_LIBS="ON" \
-  -DCMAKE_CXX_FLAGS="-DGDAL_DEBUG"
+    -G Ninja \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX="$GDAL_PREFIX" \
+    -DBUILD_SHARED_LIBS="ON" \
+    -DCMAKE_CXX_FLAGS="-DGDAL_DEBUG"
 
 cmake --build .
 sudo cmake --build . --target install
@@ -37,14 +37,14 @@ mkdir -p build
 cd build
 
 cmake .. \
-  -G Ninja \
-  -DCMAKE_BUILD_TYPE=Debug \
-  -DCMAKE_INSTALL_PREFIX="$PDAL_PREFIX" \
-  -DBUILD_SHARED_LIBS="ON" \
-  -DCMAKE_PREFIX_PATH="$GDAL_PREFIX" \
-  -DGDAL_ROOT="$GDAL_PREFIX" \
-  -DCMAKE_CXX_FLAGS="-DGDAL_DEBUG" \
-  -DWITH_TESTS="ON"
+    -G Ninja \
+    -DCMAKE_BUILD_TYPE=Debug \
+    -DCMAKE_INSTALL_PREFIX="$PDAL_PREFIX" \
+    -DBUILD_SHARED_LIBS="ON" \
+    -DCMAKE_PREFIX_PATH="$GDAL_PREFIX" \
+    -DGDAL_ROOT="$GDAL_PREFIX" \
+    -DCMAKE_CXX_FLAGS="-DGDAL_DEBUG" \
+    -DWITH_TESTS="ON"
 
 cmake --build .
 sudo cmake --install .

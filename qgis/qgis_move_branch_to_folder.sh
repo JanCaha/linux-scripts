@@ -6,9 +6,18 @@ CREATE_FROM_MASTER=0
 # Parse arguments
 while [[ "$#" -gt 0 ]]; do
     case $1 in
-        -m|--master) CREATE_FROM_MASTER=1; shift ;;
-        -*) echo "❌ Error: Unknown parameter passed: $1"; exit 1 ;;
-        *) BRANCH="$1"; shift ;;
+        -m | --master)
+            CREATE_FROM_MASTER=1
+            shift
+            ;;
+        -*)
+            echo "❌ Error: Unknown parameter passed: $1"
+            exit 1
+            ;;
+        *)
+            BRANCH="$1"
+            shift
+            ;;
     esac
 done
 
@@ -25,7 +34,10 @@ if [ -z "${QGIS_SOURCES_DIR:-}" ] || [ -z "${QGIS_WORKTREE_FOLDER:-}" ]; then
     exit 1
 fi
 
-cd "$QGIS_SOURCES_DIR" || { echo "❌ Error: Failed to navigate to $QGIS_SOURCES_DIR"; exit 1; }
+cd "$QGIS_SOURCES_DIR" || {
+    echo "❌ Error: Failed to navigate to $QGIS_SOURCES_DIR"
+    exit 1
+}
 
 BRANCH_EXISTS=0
 # Check if branch already exists
