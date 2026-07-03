@@ -1,0 +1,15 @@
+# shfmt reads these settings natively (https://github.com/mvdan/sh#shfmt)
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+
+[*.sh]
+indent_style = space
+indent_size = 4
+# keep && / || operators at the start of continued lines
+binary_next_line = true
+# indent case statement branches
+switch_case_indent = true
