@@ -114,7 +114,7 @@ echo ""
 echo -e "$YELLOW---Calibre update---$NORMAL"
 
 version=$(python3 $currentDir/python_programs/check_calibre_version.py)
-if [ -z "$version"]; then
+if [ -z "$version" ]; then
     echo -e "$PINK Version found online $version matches currently installed. $NORMAL"
     echo -e "$PINK Skipping Calibre Update $NORMAL"
 else
