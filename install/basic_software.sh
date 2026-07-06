@@ -59,4 +59,5 @@ sudo apt-get install -y \
     simplescreenrecorder \
     nmap \
     time \
-    tesseract-ocr tesseract-ocr-ces tesseract-ocr-eng
+    tesseract-ocr tesseract-ocr-ces tesseract-ocr-eng \
+    unrar
