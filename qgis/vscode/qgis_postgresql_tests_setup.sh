@@ -1,7 +1,7 @@
-#!/bin/zsh
+#!/bin/bash
 export PGHOST
 export PGPORT
 export PGUSER
 export PGPASSWORD
 
-$QGIS_SOURCES_DIR/tests/testdata/provider/testdata_pg.sh
+bash "$QGIS_SOURCES_DIR/tests/testdata/provider/testdata_pg.sh"

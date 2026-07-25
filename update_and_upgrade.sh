@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # COLORS
 BLACK="\033[30m"
@@ -24,14 +24,14 @@ if [ "$?" -ne 0 ]; then
 
     select yn in "Yes" "No"; do
         case $yn in
-        Yes)
-            DELETELOCK=true
-            break
-            ;;
-        No)
-            DELETELOCK=false
-            break
-            ;;
+            Yes)
+                DELETELOCK=true
+                break
+                ;;
+            No)
+                DELETELOCK=false
+                break
+                ;;
         esac
     done
 

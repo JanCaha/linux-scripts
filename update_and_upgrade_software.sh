@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 # needs QuartoVersion, OneDriveLastInstalledHash, RStudioVersion, CalibreVersion in $VariablesFile file
 
 # COLORS
@@ -171,4 +171,4 @@ echo ""
 # wait at the end
 # read -p "Press any key to resume ..."
 echo 'Press any key to continue...'
-read -k1 -s
+read -r -n 1 -s

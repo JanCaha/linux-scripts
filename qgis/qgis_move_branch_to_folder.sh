@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 SCRIPT_DIR=$(dirname "$0")
 
 CREATE_FROM_MASTER=0
@@ -57,7 +57,7 @@ fi
 if [ ! -d "$QGIS_WORKTREE_FOLDER" ]; then
     echo "🚀 Creating worktree folder: $QGIS_WORKTREE_FOLDER"
     sudo mkdir -p "$QGIS_WORKTREE_FOLDER"
-    sudo chown -R $USER:$USER "$QGIS_WORKTREE_FOLDER"
+    sudo chown -R "$USER:$USER" "$QGIS_WORKTREE_FOLDER"
 fi
 
 if [ -d "$QGIS_WORKTREE_FOLDER/$BRANCH" ]; then
