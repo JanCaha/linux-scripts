@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # Remove local worktrees whose branch was deleted on the remote.
 # Requires: QGIS_SOURCES_DIR
@@ -68,9 +68,9 @@ if [ -z "$REMOTE_NAME" ]; then
     fi
 
     if [ -z "$REMOTE_NAME" ]; then
-        REMOTES=("${(@f)$(git remote)}")
+        mapfile -t REMOTES < <(git remote)
         if [ ${#REMOTES[@]} -eq 1 ]; then
-            REMOTE_NAME="${REMOTES[1]}"
+            REMOTE_NAME="${REMOTES[0]}"
         fi
     fi
 fi
@@ -95,8 +95,8 @@ if ! FETCH_ERR=$(git fetch "$REMOTE_NAME" --prune --quiet 2>&1); then
     exit 1
 fi
 
-typeset -a STALE_PATHS
-typeset -a STALE_BRANCHES
+declare -a STALE_PATHS
+declare -a STALE_BRANCHES
 
 CURRENT_PATH=""
 CURRENT_BRANCH=""
@@ -148,7 +148,7 @@ if [ ${#STALE_PATHS[@]} -eq 0 ]; then
 fi
 
 echo "🧹 Found ${#STALE_PATHS[@]} stale worktree(s):"
-for i in {1..${#STALE_PATHS[@]}}; do
+for i in "${!STALE_PATHS[@]}"; do
     echo "  - Branch '${STALE_BRANCHES[$i]}' -> ${STALE_PATHS[$i]}"
 done
 
@@ -159,7 +159,7 @@ fi
 
 if [ $AUTO_YES -eq 0 ]; then
     echo ""
-    read "REPLY?Remove these worktrees? [y/N]: "
+    read -r -p "Remove these worktrees? [y/N]: " REPLY
     if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then
         echo "ℹ️ Aborted by user."
         exit 0
@@ -167,7 +167,7 @@ if [ $AUTO_YES -eq 0 ]; then
 fi
 
 FAILED=0
-for i in {1..${#STALE_PATHS[@]}}; do
+for i in "${!STALE_PATHS[@]}"; do
     WT_PATH="${STALE_PATHS[$i]}"
     WT_BRANCH="${STALE_BRANCHES[$i]}"
 
