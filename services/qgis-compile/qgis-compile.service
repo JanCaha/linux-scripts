@@ -1,0 +1,10 @@
+[Unit]
+Description=Rebuild all QGIS worktrees
+
+[Service]
+Type=oneshot
+User=cahik
+Environment=QGIS_MAIN_DIR=/home/cahik/QGIS
+ExecStart=/usr/local/bin/qgis-compile.sh
+StandardOutput=journal
+StandardError=journal
