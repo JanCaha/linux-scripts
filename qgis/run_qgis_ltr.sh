@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 QGIS_VERSION=3.40
 
 # check that conda is available
