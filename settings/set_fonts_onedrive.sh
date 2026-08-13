@@ -1,24 +1,33 @@
-# fonts folder from OneDrive
-if [ -d ~/.local/share/fonts/ ]; then
-ln -s ~/OneDrive/Fonts/fonts_folder/ ~/.local/share/fonts
-	read -r response
-	if [ "$response" = "y" ]; then
-		tar -czf ~/fonts_backup.tar.gz ~/.local/share/fonts/
-		echo "Backup created at ~/fonts_backup.tar.gz"
-	fi
-	echo "Are you sure you want to delete ~/.local/share/fonts/? (y/n)"
-	read -r confirm
-	if [ "$confirm" = "y" ]; then
-		rm -rf ~/.local/share/fonts/
-		echo "Directory deleted."
-	else
-		echo "Deletion canceled."
-	fi
-else
-	echo "The directory ~/.local/share/fonts/ does not exist."
+#!/usr/bin/env bash
+set -euo pipefail
+
+FONT_SOURCE="$HOME/OneDrive/Fonts/fonts_folder"
+FONT_TARGET="$HOME/.local/share/fonts"
+
+if [ ! -d "$FONT_SOURCE" ]; then
+    echo "Source font directory not found: $FONT_SOURCE"
+    exit 1
 fi
 
-ln -sd ~/OneDrive/Fonts/fonts_folder/ ~/.local/share/fonts
+mkdir -p "$(dirname "$FONT_TARGET")"
+
+if [ -L "$FONT_TARGET" ] || [ -d "$FONT_TARGET" ]; then
+    echo "Existing font path found at $FONT_TARGET"
+    read -r -p "Back it up and replace it with the OneDrive font folder? [y/N] " response
+    case "$response" in
+        [Yy] | [Yy][Ee][Ss])
+            tar -czf "$HOME/fonts_backup.tar.gz" -C "$(dirname "$FONT_TARGET")" "$(basename "$FONT_TARGET")" 2>/dev/null || true
+            rm -rf "$FONT_TARGET"
+            ;;
+        *)
+            echo "Aborted. No changes made."
+            exit 1
+            ;;
+    esac
+fi
+
+ln -s "$FONT_SOURCE" "$FONT_TARGET"
+echo "Fonts are now linked from $FONT_SOURCE to $FONT_TARGET"
 
 # Update the font cache system-wide to reflect the changes
 sudo fc-cache -v
