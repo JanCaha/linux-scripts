@@ -104,7 +104,7 @@ def main():
         for image_file in images_list:
             pdf_image = pdfium.PdfImage.new(output_pdf)
             pdf_image.load_jpeg(image_file)
-            width, height = pdf_image.get_size()
+            width, height = pdf_image.get_px_size()
 
             width = width / 2
             height = height / 2
