@@ -21,7 +21,7 @@ else
     exit 1
 fi
 
-python3 ~/Scripts/python/scan_pdf.py "$1" "$2"
+python3 ~/Scripts/python_programs/scan_pdf.py "$1" "$2"
 
 if [ $? -eq 0 ]; then
     echo "✅ PDF scan successful"
