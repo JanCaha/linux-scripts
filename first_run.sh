@@ -29,6 +29,13 @@ fi
 
 echo -e "[Seat:*]\ngreeter-setup-script=/usr/bin/numlockx on" | sudo tee /etc/lightdm/lightdm.conf.d/numlock.conf
 
+# default autologin user
+read -r -p "Enter default user name for autologin (leave empty to skip): " DEFAULT_USER_NAME
+
+if [ -n "$DEFAULT_USER_NAME" ]; then
+    echo -e "[Seat:*]\nautologin-user=$DEFAULT_USER_NAME" | sudo tee /etc/lightdm/lightdm.conf.d/autologin.conf
+fi
+
 # remove games
 sudo apt purge -y \
   aisleriot \
