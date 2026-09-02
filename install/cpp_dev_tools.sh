@@ -14,7 +14,6 @@ sudo apt-get install -y \
     libgmock-dev \
     libpqxx-dev \
     clang-format \
-    google-perftools \
     valgrind \
     silversearcher-ag \
     expect \
@@ -23,3 +22,4 @@ sudo apt-get install -y \
     astyle \
     flip \
     ccache
+#google-perftools \
