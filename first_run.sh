@@ -3,7 +3,7 @@
 # install git
 sudo apt-get install -y git
 
-# Scripts 
+# Scripts
 CODES_DIR=~/Codes
 CODES_SCRIPTS_DIR=$CODES_DIR/linux-scripts
 SCRIPTS_DIR=~/Scripts
@@ -20,7 +20,6 @@ $SCRIPTS_DIR/install/zsh.sh
 # settings zshrc
 mv ~/.zshrc ~/.zshrc_backup
 $SCRIPTS_DIR/settings/copy_zsh_settings.sh
-
 
 # numlock still on
 sudo apt install numlockx -y
@@ -40,22 +39,22 @@ fi
 
 # remove games
 sudo apt purge -y \
-  aisleriot \
-  gnome-chess \
-  gnome-mahjongg \
-  gnome-mines \
-  gnome-sudoku \
-  quadrapassel \
-  swell-foop \
-  tali \
-  five-or-more \
-  hitori \
-  iagno \
-  lightsoff \
-  four-in-a-row \
-  gnome-robots \
-  gnome-klotski \
-  gnome-2048 \
-  gnome-nibbles \
-  gnome-taquin \
-  gnome-tetravex
+    aisleriot \
+    gnome-chess \
+    gnome-mahjongg \
+    gnome-mines \
+    gnome-sudoku \
+    quadrapassel \
+    swell-foop \
+    tali \
+    five-or-more \
+    hitori \
+    iagno \
+    lightsoff \
+    four-in-a-row \
+    gnome-robots \
+    gnome-klotski \
+    gnome-2048 \
+    gnome-nibbles \
+    gnome-taquin \
+    gnome-tetravex
