@@ -61,3 +61,7 @@ sudo apt-get install -y \
     time \
     tesseract-ocr tesseract-ocr-ces tesseract-ocr-eng \
     unrar
+
+# Bluetooth support
+sudo apt-get install -y \
+    libspa-0.2-bluetooth
