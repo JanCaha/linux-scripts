@@ -1,6 +1,9 @@
 #!/bin/bash
 SCRIPT_DIR=$(dirname "$0")
 
+# QGIS_SOURCES_DIR and QGIS_WORKTREE_FOLDER live in .zshenv, which bash never sources
+[ -f "$HOME/.zshenv" ] && source "$HOME/.zshenv"
+
 CREATE_FROM_MASTER=0
 
 # Parse arguments
