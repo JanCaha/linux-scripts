@@ -5,15 +5,18 @@ source $BASEDIR/docker_envs.sh
 
 export CONTAINER_NAME=jellyfin-machine
 
-RUNS="$( docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME )"
+RUNS="$(docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME)"
 
-if [ $RUNS = "true" ]; then
+if [ "$RUNS" = "true" ]; then
     while true; do
         read -p "Close the docker machine? (y/n)" yn
         case $yn in
-            [Yy]* ) docker compose -f $DOCKER_COMPOSE/jellyfin.yaml stop; break;;
-            [Nn]* ) exit;;
-            * ) echo "Please answer yes or no.";;
+            [Yy]*)
+                docker compose -f $DOCKER_COMPOSE/jellyfin.yaml stop
+                break
+                ;;
+            [Nn]*) exit ;;
+            *) echo "Please answer yes or no." ;;
         esac
     done
 else
