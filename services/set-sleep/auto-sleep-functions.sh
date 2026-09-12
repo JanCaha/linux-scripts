@@ -31,7 +31,7 @@ jellyfin_is_playing() {
   local url="$base_url/Sessions?ActiveWithinSeconds=300"
   local json
   json=$(curl -fsS --connect-timeout 2 --max-time 4 \
-    -H "X-Emby-Token: $JELLYFIN_API_KEY" "$url" 2>/dev/null) || return 1
+    -H "Authorization: MediaBrowser Token=\"$JELLYFIN_API_KEY\"" "$url" 2>/dev/null) || return 1
 
   if jellyfin_json_has_playback "$json"; then
     log info "Jellyfin playback active"
