@@ -1,7 +1,7 @@
 services:
   postgres:
     container_name: $CONTAINER_NAME
-    image: postgis/postgis:17-master
+    image: postgis/postgis:18-master
     environment:
       POSTGRES_USER: ${PGUSER}
       POSTGRES_PASSWORD: ${PGPASSWORD}
