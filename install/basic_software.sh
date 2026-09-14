@@ -59,8 +59,7 @@ sudo apt-get install -y \
     simplescreenrecorder \
     nmap \
     time \
-    tesseract-ocr tesseract-ocr-ces tesseract-ocr-eng \
-    unrar
+    tesseract-ocr tesseract-ocr-ces tesseract-ocr-eng 
 
 # Bluetooth support
 sudo apt-get install -y \

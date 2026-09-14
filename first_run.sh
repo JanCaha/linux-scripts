@@ -33,9 +33,8 @@ echo -e "[Seat:*]\ngreeter-setup-script=/usr/bin/numlockx on" | sudo tee /etc/li
 # default autologin user
 read -r -p "Enter default user name for autologin (leave empty to skip): " DEFAULT_USER_NAME
 
-if [ -n "$DEFAULT_USER_NAME" ]; then
-    echo -e "[Seat:*]\nautologin-user=$DEFAULT_USER_NAME" | sudo tee /etc/lightdm/lightdm.conf.d/autologin.conf
-fi
+# show user list on greeter (Debian hides it by default), so the user is preselected and only password needs typing
+echo -e "[Seat:*]\ngreeter-hide-users=false" | sudo tee /etc/lightdm/lightdm.conf.d/50-show-users.conf
 
 # remove games
 sudo apt purge -y \
