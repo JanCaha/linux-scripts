@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source $HOME/.zshenv
+
 echo "🚀 Making $1 Scan of the PDF"
 
 if [ -z "$1" ]; then
