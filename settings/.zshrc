@@ -125,12 +125,10 @@ git_merge_upstream_function()
 
   use_stash=0
 
-  if git diff --quiet && git diff --cached --quiet; then
-    echo "No local changes detected."
+  if ! git diff --quiet || ! git diff --cached --quiet; then
+    echo "Local changes detected."
     use_stash=1
   fi
-
-  exit 1
 
   if [ $use_stash -eq 1 ]; then
     echo "Stashing changes..."
