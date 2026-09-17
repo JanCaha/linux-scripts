@@ -1,8 +1,14 @@
 #!/bin/bash
 BASEDIR=$(dirname "$0")
 
-source $BASEDIR/docker_envs.sh
-source $HOME/.zshenv
+# Load user shell environment variables before using any shell-dependent paths.
+if [ -f "$HOME/.zshenv" ]; then
+    set -a
+    source "$HOME/.zshenv"
+    set +a
+fi
+
+source "$BASEDIR/docker_envs.sh"
 
 export CONTAINER_NAME=postgis-machine
 
