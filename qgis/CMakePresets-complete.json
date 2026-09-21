@@ -105,6 +105,11 @@
             "jobs": 16,
             "hidden": false,
             "targets": [
+                "src/all",
+                "python/all",
+                "resources/all",
+                "images/all",
+                "i18n/all",
                 "install"
             ]
         }
