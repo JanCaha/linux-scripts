@@ -1,0 +1,50 @@
+name: Gitea with Action Runner
+
+services:
+  gitea:
+    image: gitea/gitea:latest
+    container_name: gitea
+    restart: unless-stopped
+
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - GITEA__server__SSH_PORT=2222
+      - GITEA__server__SSH_LISTEN_PORT=2222
+
+    volumes:
+      - ${HOME}/gitea/data:/data
+
+    ports:
+      - "3000:3000" # Web UI
+      - "2222:2222" # SSH for Git
+
+    networks:
+      - gitea
+
+  act-runner:
+    image: gitea/act_runner:latest
+    container_name: gitea-act-runner
+    restart: unless-stopped
+
+    environment:
+      CONFIG_FILE: /config/config.yaml
+      GITEA_INSTANCE_URL: http://gitea:3000
+      # only on first run, the mount /data takes over afterwards
+      # GITEA_RUNNER_REGISTRATION_TOKEN: x0EcZ85yBJRXVmOYu2hGSiz9CLgYplGvGNPYKOtA
+
+    volumes:
+      - ${HOME}/act_runner/artifacts:/artifacts
+      - ${HOME}/act_runner/config:/config
+      - ${HOME}/act_runner/data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    networks:
+      - gitea
+
+    depends_on:
+      - gitea
+
+networks:
+  gitea:
+    external: true

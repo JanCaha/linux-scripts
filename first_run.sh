@@ -1,7 +1,9 @@
+#!/usr/bin/env bash
+
 # install git
 sudo apt-get install -y git
 
-# Scripts 
+# Scripts
 CODES_DIR=~/Codes
 CODES_SCRIPTS_DIR=$CODES_DIR/linux-scripts
 SCRIPTS_DIR=~/Scripts
@@ -19,7 +21,6 @@ $SCRIPTS_DIR/install/zsh.sh
 mv ~/.zshrc ~/.zshrc_backup
 $SCRIPTS_DIR/settings/copy_zsh_settings.sh
 
-
 # numlock still on
 sudo apt install numlockx -y
 
@@ -29,24 +30,30 @@ fi
 
 echo -e "[Seat:*]\ngreeter-setup-script=/usr/bin/numlockx on" | sudo tee /etc/lightdm/lightdm.conf.d/numlock.conf
 
+# default autologin user
+read -r -p "Enter default user name for autologin (leave empty to skip): " DEFAULT_USER_NAME
+
+# show user list on greeter (Debian hides it by default), so the user is preselected and only password needs typing
+echo -e "[Seat:*]\ngreeter-hide-users=false" | sudo tee /etc/lightdm/lightdm.conf.d/50-show-users.conf
+
 # remove games
 sudo apt purge -y \
-  aisleriot \
-  gnome-chess \
-  gnome-mahjongg \
-  gnome-mines \
-  gnome-sudoku \
-  quadrapassel \
-  swell-foop \
-  tali \
-  five-or-more \
-  hitori \
-  iagno \
-  lightsoff \
-  four-in-a-row \
-  gnome-robots \
-  gnome-klotski \
-  gnome-2048 \
-  gnome-nibbles \
-  gnome-taquin \
-  gnome-tetravex
+    aisleriot \
+    gnome-chess \
+    gnome-mahjongg \
+    gnome-mines \
+    gnome-sudoku \
+    quadrapassel \
+    swell-foop \
+    tali \
+    five-or-more \
+    hitori \
+    iagno \
+    lightsoff \
+    four-in-a-row \
+    gnome-robots \
+    gnome-klotski \
+    gnome-2048 \
+    gnome-nibbles \
+    gnome-taquin \
+    gnome-tetravex

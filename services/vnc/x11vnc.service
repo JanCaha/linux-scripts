@@ -6,10 +6,9 @@ After=display-manager.service
 Type=simple
 ExecStart=/usr/bin/x11vnc \
   -display :0 \
-  -auth /var/run/lightdm/root/:0 \
+  -auth guess \
   -rfbauth /root/.vnc/passwd \
   -forever \
-  -loop \
   -noxdamage \
   -repeat \
   -shared \

@@ -1,0 +1,66 @@
+#!/bin/bash
+set -euo pipefail
+
+# Install basic utilities
+sudo apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg2 \
+    wget \
+    gdebi-core \
+    gdebi \
+    gedit \
+    gimp \
+    inkscape \
+    scribus \
+    keepassxc \
+    filezilla \
+    sqlitebrowser \
+    ncftp \
+    umbrello \
+    dia \
+    chromium \
+    gpick \
+    webp \
+    konsole \
+    vlc \
+    kate \
+    lsb-release \
+    dirmngr \
+    build-essential \
+    libcurl4-openssl-dev \
+    libsqlite3-dev \
+    pkg-config \
+    libnotify-dev \
+    ksnip \
+    okular \
+    jq \
+    git-buildpackage \
+    krita \
+    eiciel \
+    tesseract-ocr \
+    vsftpd \
+    wakeonlan \
+    openssh-server \
+    baobab \
+    smbclient \
+    default-jdk \
+    gnome-panel \
+    gparted \
+    konsole \
+    kate \
+    kompare \
+    krename \
+    shfmt \
+    openvpn \
+    systemd-resolved \
+    openvpn-systemd-resolved \
+    simplescreenrecorder \
+    nmap \
+    time \
+    tesseract-ocr tesseract-ocr-ces tesseract-ocr-eng 
+
+# Bluetooth support
+sudo apt-get install -y \
+    libspa-0.2-bluetooth

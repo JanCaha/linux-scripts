@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # First parameter: true/false flag (default: false)
 USE_GDAL_OPT="${1:-false}"
@@ -24,7 +24,7 @@ _builddir=$(pwd)/build-qt
 if expr "${_builddir}" : "@" >/dev/null || test -z "${_builddir}" ||
     expr "${_srcdir}" : "@" >/dev/null || test -z "${_srcdir}"; then
     echo "This File, it wasn't generated properly." >&2
-    return 1
+    exit 1
 fi
 
 export srcdir=${_srcdir}

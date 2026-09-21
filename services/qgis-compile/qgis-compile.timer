@@ -1,0 +1,9 @@
+[Unit]
+Description=Daily rebuild of all QGIS worktrees (wakes machine if asleep)
+
+[Timer]
+OnCalendar=*-*-* 04:00:00
+WakeSystem=true
+
+[Install]
+WantedBy=timers.target

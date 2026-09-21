@@ -1,60 +1,82 @@
+#!/bin/bash
+set -euo pipefail
+
+START_DIR="$(pwd)"
+
 echo "🚀 Installing dlang"
 
-source $VariablesFile
-
 LATEST=$(curl -fsSL https://downloads.dlang.org/releases/2.x/ \
-  | grep -Eo 'href="2\.[0-9]+\.[0-9]+/' \
-  | cut -d'"' -f2 \
-  | sed 's:/$::' \
-  | sort -V \
-  | tail -1)
+    | grep -Eo 'href="/releases/2.x/2\.[0-9]+\.[0-9]+/' \
+    | grep -Eo '2\.[0-9]+\.[0-9]+' \
+    | sort -V \
+    | tail -1)
 echo "$LATEST"
 
-DMD_VERSION=$(dmd --version | sed -nE 's/.*v([0-9]+\.[0-9]+\.[0-9]+).*/\1/p')
+if [[ -z "$LATEST" ]]; then
+    echo "❌ Unable to determine latest DMD version" >&2
+    exit 1
+fi
 
-if [ "$INSTALLED_VERSION" = "$LATEST" ]; then
-  echo "✅ Latest DMD version installed: $INSTALLED_VERSION"
+if command -v dmd >/dev/null 2>&1; then
+    DMD_VERSION=$(dmd --version 2>/dev/null | sed -nE 's/.*v([0-9]+\.[0-9]+\.[0-9]+).*/\1/p' || echo "")
 else
-  echo "❌ DMD version mismatch: installed=$INSTALLED_VERSION, expected=$LATEST updating"
-  
-  cd /tmp
-  sudo curl -LO https://downloads.dlang.org/releases/2.x/$LATEST/dmd_$LATEST-0_amd64.deb
-  sudo gdebi dmd_$LATEST-0_amd64.deb  
-  echo "✅ dlang installed"
+    DMD_VERSION=""
+fi
+
+if [ "$DMD_VERSION" = "$LATEST" ]; then
+    echo "✅ Latest DMD version installed: $DMD_VERSION"
+else
+    echo "❌ DMD version mismatch: installed=$DMD_VERSION, expected=$LATEST updating"
+
+    cd /tmp
+    sudo curl -LO https://downloads.dlang.org/releases/2.x/$LATEST/dmd_$LATEST-0_amd64.deb
+    sudo apt install "./dmd_$LATEST-0_amd64.deb"
+    echo "✅ dlang installed"
 fi
 
 echo "🚀 Installing onedrive (from latest GitHub release tar.gz)"
+
+sudo apt install libdbus-1-dev -y
 
 cd /tmp
 
 # Ensure gh is available
 if ! command -v gh >/dev/null 2>&1; then
-  echo "❌ GitHub CLI (gh) not found. Please install: https://cli.github.com/" >&2
-  exit 1
+    echo "❌ GitHub CLI (gh) not found. Please install: https://cli.github.com/" >&2
+    exit 1
 fi
 
-LATEST_VERSION=$(gh release view --repo abraunegg/onedrive --json tagName --jq .tagName)
-echo "📥 Latest onedrive version: $LATEST_VERSION"
+LATEST_ONEDRIVER_VERSION=$(gh release view --repo abraunegg/onedrive --json tagName --jq .tagName 2>/dev/null || echo "")
+if [[ -z "$LATEST_ONEDRIVER_VERSION" ]]; then
+    echo "❌ Unable to determine latest Onedrive version from GitHub" >&2
+    exit 1
+fi
+echo "📥 Latest onedrive version: $LATEST_ONEDRIVER_VERSION"
 
-ONEDRIVE_VERSION=$(onedrive --version 2>/dev/null | sed -nE 's/.*v?([0-9]+\.[0-9]+\.[0-9]+).*/\1/p')
+if command -v onedrive >/dev/null 2>&1; then
+    ONEDRIVE_VERSION=$(onedrive --version | sed -nE 's/.*v?([0-9]+\.[0-9]+\.[0-9]+).*/\1/p')
+else
+    ONEDRIVE_VERSION=""
+fi
 
-if [ "$LATEST_VERSION" != "v$ONEDRIVE_VERSION" ]; then
-    
-    echo "❌ Onedrive version mismatch: installed=$ONEDRIVE_VERSION, expected=$LATEST_VERSION updating"
+if [ "$LATEST_ONEDRIVER_VERSION" != "v$ONEDRIVE_VERSION" ]; then
+
+    echo "❌ Onedrive version mismatch: installed=$ONEDRIVE_VERSION, expected=$LATEST_ONEDRIVER_VERSION updating"
 
     # Download latest release tar.gz asset for abraunegg/onedrive
     DOWNLOAD_DIR="/tmp/onedrive_dl"
     mkdir -p "$DOWNLOAD_DIR"
-    cd $DOWNLOAD_DIR
+    cd "$DOWNLOAD_DIR"
     gh release download --repo abraunegg/onedrive --clobber --archive "tar.gz"
 
     # Pick the most recent tar.gz (there should usually be one)
     TARBALL=$(ls -1t "$DOWNLOAD_DIR"/*.tar.gz 2>/dev/null | head -n1)
     if [ -z "$TARBALL" ]; then
         echo "❌ No tar.gz asset found in latest release" >&2
-    exit 1
+        exit 1
     fi
-        echo "📦 Downloaded: $TARBALL"
+
+    echo "📦 Downloaded: $TARBALL"
 
     # Extract into /tmp and enter extracted folder
     EXTRACT_DIR="/tmp/onedrive_src"
@@ -82,5 +104,7 @@ if [ "$LATEST_VERSION" != "v$ONEDRIVE_VERSION" ]; then
 
     echo "✅ OneDrive installed"
 else
-    echo "Skipping OneDrive Update"
+    echo "Skipping OneDrive Update as the latest version is already installed: $ONEDRIVE_VERSION"
 fi
+
+cd "$START_DIR"

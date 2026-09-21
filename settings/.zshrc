@@ -125,12 +125,10 @@ git_merge_upstream_function()
 
   use_stash=0
 
-  if git diff --quiet && git diff --cached --quiet; then
-    echo "No local changes detected."
+  if ! git diff --quiet || ! git diff --cached --quiet; then
+    echo "Local changes detected."
     use_stash=1
   fi
-
-  exit 1
 
   if [ $use_stash -eq 1 ]; then
     echo "Stashing changes..."
@@ -162,7 +160,7 @@ alias sleep_computer="systemctl suspend"
 
 alias venv_global_activate="source $PYTHON_ENVS_DIR/$MAIN_ENV/bin/activate"
 
-alias gitreset="git reset --hard"
+alias git_reset="git reset --hard"
 alias git_merge_upstream="git_merge_upstream_function"
 alias git_branch_latest="git for-each-ref --sort=-committerdate refs/heads/ --format='%(refname:short)'"
 

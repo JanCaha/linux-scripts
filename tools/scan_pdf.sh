@@ -1,4 +1,6 @@
-#!/bin/zsh
+#!/bin/bash
+
+source $HOME/.zshenv
 
 echo "🚀 Making $1 Scan of the PDF"
 
@@ -8,11 +10,11 @@ if [ -z "$1" ]; then
 fi
 
 if [ -z "$2" ]; then
-    2=$1
+    set -- "$1" "$1"
 fi
 
 echo "📥 Activating Python environment"
-source $MAIN_ENV_ACTIVATE
+source "$MAIN_ENV_ACTIVATE"
 
 if [ -n "$VIRTUAL_ENV" ]; then
     echo "You are inside a virtual environment: $VIRTUAL_ENV"
@@ -21,7 +23,7 @@ else
     exit 1
 fi
 
-python3 ~/Scripts/python/scan_pdf.py "$1" "$2"
+python3 ~/Scripts/python_programs/scan_pdf.py "$1" "$2"
 
 if [ $? -eq 0 ]; then
     echo "✅ PDF scan successful"

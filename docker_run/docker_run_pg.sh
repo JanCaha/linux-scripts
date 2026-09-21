@@ -1,23 +1,41 @@
 #!/bin/bash
 BASEDIR=$(dirname "$0")
 
-source $BASEDIR/docker_envs.sh
+# Load user shell environment variables before using any shell-dependent paths.
+if [ -f "$HOME/.zshenv" ]; then
+    set -a
+    source "$HOME/.zshenv"
+    set +a
+fi
 
-export CONTAINER_NAME=postgis-machine
+source "$BASEDIR/docker_envs.sh"
 
-RUNS="$( docker container inspect -f '{{.State.Running}}' $CONTAINER_NAME )"
+export CONTAINER_NAME="postgis-machine"
 
-if [ $RUNS = "true" ]; then
-    while true; do
-        read -p "Close the docker machine? (y/n)" yn
-        case $yn in
-            [Yy]* ) docker compose -f $DOCKER_COMPOSE/postgresql-postgis-compose.yaml stop; break;;
-            [Nn]* ) exit;;
-            * ) echo "Please answer yes or no.";;
-        esac
-    done
+if docker container inspect "$CONTAINER_NAME" >/dev/null 2>&1; then
+    RUNS="$(docker container inspect -f '{{.State.Running}}' "$CONTAINER_NAME")"
+
+    if [ "$RUNS" = "true" ]; then
+        while true; do
+            read -p "Close the docker machine? (y/n) " yn
+            case "$yn" in
+                [Yy]*)
+                    docker compose -f "$DOCKER_COMPOSE/postgresql-postgis.yaml" stop
+                    break
+                    ;;
+                [Nn]*)
+                    exit 0
+                    ;;
+                *)
+                    echo "Please answer yes or no."
+                    ;;
+            esac
+        done
+    else
+        docker compose -f "$DOCKER_COMPOSE/postgresql-postgis.yaml" up -d
+    fi
 else
-    docker compose -f $DOCKER_COMPOSE/postgresql-postgis-compose.yaml up -d
+    docker compose -f "$DOCKER_COMPOSE/postgresql-postgis.yaml" up -d
 fi
 
 sleep 2

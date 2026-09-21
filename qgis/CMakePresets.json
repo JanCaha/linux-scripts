@@ -7,85 +7,77 @@
     "configurePresets": [
         {
             "name": "configure_base",
-            "description": "Base configure QGIS with QT6 and tests disabled",
+            "description": "Base configure QGIS tests disabled",
             "hidden": true,
             "generator": "Ninja",
             "binaryDir": "${sourceDir}/build",
             "environment": {
-                "CC": "/usr/bin/gcc-15",
-                "CXX": "/usr/bin/g++-15"
+                "CC": "/usr/bin/gcc",
+                "CXX": "/usr/bin/g++"
             },
             "cacheVariables": {
-                "CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
-                "CMAKE_C_COMPILER_LAUNCHER": "ccache",
                 "CMAKE_BUILD_TYPE": "Debug",
                 "ENABLE_TESTS": "OFF",
                 "WITH_PDAL": "OFF",
                 "WITH_3D": "TRUE",
-                "WITH_INTERNAL_SPATIALINDEX": "ON"
+                "WITH_INTERNAL_SPATIALINDEX": "ON",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
             }
         },
         {
-            "name": "configure_system_gdal_no_pdal_no_tests",
-            "inherits": "configure_base"
-        },
-        {
-            "name": "configure_system_gdal_no_pdal_with_tests",
-            "inherits": "configure_system_gdal_no_pdal_no_tests",
-            "cacheVariables": {
-                "ENABLE_TESTS": "ON"
-            }
-        },
-        {
-            "name": "configure_with_gdal_312_no_tests",
+            "name": "configure_with_opt_gdal_pdal_tests",
+            "description": "Configure QGIS with /OPT GDAL, PDAL, tests enabled",
             "inherits": [
-                "configure_system_gdal_no_pdal_no_tests"
+                "configure_base"
             ],
             "cacheVariables": {
+                "ENABLE_TESTS": "ON",
                 "CMAKE_PREFIX_PATH": "/opt/pdal;/opt/gdal",
                 "WITH_PDAL": "ON",
-                "GDAL_DIR": "/opt/gdal/lib/cmake/gdal"
-            }
-        },
-        {
-            "name": "configure_with_gdal_312_with_tests",
-            "inherits": [
-                "configure_with_gdal_312_no_tests"
-            ],
-            "cacheVariables": {
-                "ENABLE_TESTS": "ON"
+                "GDAL_DIR": "/opt/gdal/lib/cmake/gdal",
+                "GDAL_ROOT": "/opt/gdal"
             }
         }
     ],
     "buildPresets": [
         {
-            "name": "build_with_tests",
-            "description": "Build QGIS with tests enabled",
-            "configurePreset": "configure_system_gdal_no_pdal_with_tests",
+            "name": "build_app",
+            "description": "Build QGIS application targets only (tests configured but not compiled)",
+            "configurePreset": "configure_with_opt_gdal_pdal_tests",
             "jobs": 16,
+            "targets": [
+                "src/all",
+                "python/all",
+                "resources/all",
+                "images/all",
+                "i18n/all"
+            ],
             "hidden": false
         },
         {
-            "name": "build_with_GDAL_312_PDAL_tests",
-            "description": "Build QGIS with tests enabled",
-            "configurePreset": "configure_with_gdal_312_with_tests",
+            "name": "build_tests",
+            "description": "Compile QGIS tests (on demand)",
+            "configurePreset": "configure_with_opt_gdal_pdal_tests",
             "jobs": 16,
+            "targets": [
+                "tests/all"
+            ],
             "hidden": false
         }
     ],
     "workflowPresets": [
         {
-            "name": "test",
-            "description": "",
-            "displayName": "",
+            "name": "build-for-testing",
+            "description": "Build QGIS with GDAL and PDAL, tests configured but not compiled",
+            "displayName": "Build for Testing",
             "steps": [
                 {
                     "type": "configure",
-                    "name": "configure_with_gdal_312_with_tests"
+                    "name": "configure_with_opt_gdal_pdal_tests"
                 },
                 {
                     "type": "build",
-                    "name": "build_with_GDAL_312_PDAL_tests"
+                    "name": "build_app"
                 }
             ]
         }

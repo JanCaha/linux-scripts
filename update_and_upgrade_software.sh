@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 # needs QuartoVersion, OneDriveLastInstalledHash, RStudioVersion, CalibreVersion in $VariablesFile file
 
 # COLORS
@@ -32,7 +32,6 @@ if [[ -f "$VariablesFile" ]]; then
 else
     echo -e "$RED $VariablesFile does not exist. $NORMAL"
     touch $VariablesFile
-    echo "QuartoVersion=''" >>$VariablesFile
     echo "RStudioVersion='v'" >>$VariablesFile
     echo "FreeFileSyncLastVersion='v'" >>$VariablesFile
     echo "KrusaderLastInstalledHash='v'" >>$VariablesFile
@@ -90,12 +89,12 @@ cd .. && rm -rf onedrive
 echo -e "$YELLOW---end OneDrive update---$NORMAL"
 echo ""
 
-# RStudio
-echo -e "$YELLOW---RStudio update---$NORMAL"
-cd /tmp
-$currentDir/python_programs/download_RStudio.py
-echo -e "$YELLOW---end RStudio update---$NORMAL"
-echo ""
+# # RStudio
+# echo -e "$YELLOW---RStudio update---$NORMAL"
+# cd /tmp
+# $currentDir/python_programs/download_RStudio.py
+# echo -e "$YELLOW---end RStudio update---$NORMAL"
+# echo ""
 
 # XnView
 echo -e "$YELLOW---XnView update---$NORMAL"
@@ -115,7 +114,7 @@ echo ""
 echo -e "$YELLOW---Calibre update---$NORMAL"
 
 version=$(python3 $currentDir/python_programs/check_calibre_version.py)
-if [ -z "$version"]; then
+if [ -z "$version" ]; then
     echo -e "$PINK Version found online $version matches currently installed. $NORMAL"
     echo -e "$PINK Skipping Calibre Update $NORMAL"
 else
@@ -172,4 +171,4 @@ echo ""
 # wait at the end
 # read -p "Press any key to resume ..."
 echo 'Press any key to continue...'
-read -k1 -s
+read -r -n 1 -s

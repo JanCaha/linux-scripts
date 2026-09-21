@@ -1,0 +1,19 @@
+{
+    "editor.formatOnSave": false,
+    "[yaml]": {
+        "editor.formatOnSave": false
+    },
+    "[cpp]": {
+        "editor.formatOnSave": false
+    },
+    "[c]": {
+        "editor.formatOnSave": false
+    },
+    "[cmake]": {
+        "editor.formatOnSave": false
+    },
+    "cmake.configureOnOpen": false,
+    "cmake.configureOnEdit": false,
+    "C_Cpp.formatting": "disabled",
+    "cmake.skipConfigureIfCachePresent": true
+}

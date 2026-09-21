@@ -1,8 +1,22 @@
 #!/bin/bash
+set -euo pipefail
+
+if [[ ! -d ~/.local/bin ]]; then
+    mkdir -p ~/.local/bin
+fi
+
 source /etc/os-release
 
-BASEDIR=$(dirname "$(readlink -f "$0")")
-PATH=$PATH:$BASEDIR/python_programs
+IS_DEBIAN=0
+
+if [[ "$ID" == "debian" ]]; then
+    IS_DEBIAN=1
+fi
+
+SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
+PATH=$PATH:$SCRIPT_DIR/python_programs
+
+echo "Starting the complete install script from $SCRIPT_DIR"
 
 # source prepare_sources.sh
 
@@ -11,266 +25,95 @@ sudo apt-get upgrade -y
 sudo apt-get autoremove -y
 
 # basic stuff
-sudo apt-get install -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg2 \
-    software-properties-common \
-    wget \
-    gdebi-core \
-    gdebi \
-    gedit \
-    gimp \
-    inkscape \
-    scribus \
-    keepassxc \
-    filezilla \
-    sqlitebrowser \
-    ncftp \
-    umbrello \
-    dia \
-    chromium \
-    gpick \
-    webp \
-    konsole \
-    vlc \
-    kate \
-    lsb-release \
-    dirmngr \
-    build-essential \
-    libcurl4-openssl-dev \
-    libsqlite3-dev \
-    pkg-config \
-    libnotify-dev \
-    ksnip \
-    okular \
-    jq \
-    git-buildpackage \
-    krita \
-    handbrake \
-    eiciel \
-    tesseract-ocr \
-    vsftpd \
-    wakeonlan \
-    openssh-server \
-    baobab \
-    smbclient \
-    default-jdk \
-    gnome-panel \
-    gparted
-
-# numlockx
+source $SCRIPT_DIR/install/basic_software.sh
 
 # GitHub CLI
-sudo apt-get install -y gh
+source $SCRIPT_DIR/install/github_cli.sh
 
 # mtp for android devices
-sudo apt-get install -y \
-    mtp-tools \
-    jmtpfs \
-    gvfs-backends \
-    gvfs-fuse \
-    libmtp-runtime
+source $SCRIPT_DIR/install/android.sh
 
 # C++ dev tools
-sudo apt-get install -y \
-    clang \
-    lld \
-    libclang-dev \
-    ninja-build \
-    doxygen \
-    cmake \
-    devscripts \
-    libgtest-dev \
-    libgmock-dev \
-    libpqxx-dev \
-    clang-format \
-    google-perftools \
-    valgrind \
-    silversearcher-ag \
-    expect \
-    shellcheck \
-    pre-commit \
-    astyle \
-    flip \
-    ccache
+source $SCRIPT_DIR/install/cpp_dev_tools.sh
 
 # Fd - find replacement
-sudo apt-get install -y fd-find
-ln -s $(which fdfind) ~/.local/bin/fd
+source $SCRIPT_DIR/install/fd_find.sh
 
 # redshift
-sudo apt-get remove -y redshift-gtk
-rm ~/.config/redshift.conf
-sudo apt-get install -y redshift
+source $SCRIPT_DIR/install/redshift.sh
 
 # GIT
-sudo apt-get -y install git git-crypt
+source $SCRIPT_DIR/install/git.sh
 
 # Docker
-sudo apt-get install -y \
-    docker-ce \
-    docker-ce-cli \
-    containerd.io \
-    docker-compose-plugin \
-    docker-compose
-
-sudo groupadd docker
-sudo usermod -aG docker $USER
+source $SCRIPT_DIR/install/docker.sh
 
 # Python Packages
-sudo apt-get install -y \
-    python3-pip \
-    python3-pybind11 \
-    python3-venv \
-    python3-debugpy \
-    python3-jupyter-core \
-    python3-ipykernel \
-    python3-nbclient \
-    python3-flake8-black \
-    python3-pycodestyle \
-    python3-isort \
-    python3-mypy \
-    python3-pytest \
-    python3-pytest-cov \
-    python3-pytestqt \
-    pipx \
-    python-is-python3 \
-    python3-sip
+source $SCRIPT_DIR/install/python_packages.sh
 
-# QGIS
-sudo apt-get install -y \
-    qgis \
-    libqgis-dev \
-    qgis-plugin-grass
-
-# GRASS
-sudo apt-get install -y \
-    grass-gui
-
-sudo apt-get install -y \
-    libudunits2-dev \
-    gdal-bin \
-    libgdal-dev \
-    libgit2-dev \
-    libharfbuzz-dev \
-    libfribidi-dev \
-    libssh-dev \
-    qpdf \
-    libfontconfig1-dev \
-    libgeos-dev
-
-# Krusader
-# sudo apt-get install -y \
-#     extra-cmake-modules \
-#     libkf5archive-dev \
-#     libkf5doctools-dev \
-#     libkf5kio-dev \
-#     libkf5notifications-dev \
-#     libkf5parts-dev \
-#     libkf5wallet-dev \
-#     libkf5xmlgui-dev
-
-# cd /tmp
-# git clone https://invent.kde.org/utilities/krusader
-# cd krusader
-# cmake -DCMAKE_INSTALL_PREFIX=/usr/ -DCMAKE_C_FLAGS="-O2 -fPIC" -DCMAKE_CXX_FLAGS="-O2 -fPIC"
-# sudo make install
-sudo apt-get install -y krusader
+# GIS
+source $SCRIPT_DIR/install/gis_libs.sh
+source $SCRIPT_DIR/install/grass.sh
+source $SCRIPT_DIR/install/qgis.sh
 
 # Onedrive
-source install/onedrive.sh
+source $SCRIPT_DIR/install/onedrive.sh
 
 # Calibre
-sudo apt-get install -y libxcb-cursor0
-sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+source $SCRIPT_DIR/install/calibre.sh
 
 # Joplin
-wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
+source $SCRIPT_DIR/install/joplin.sh
 
 # Brave
-sudo apt-get install -y brave-browser
+source $SCRIPT_DIR/install/brave.sh
 
 # WEBP PEEK
-sudo apt-get install -y \
-    peek
+source $SCRIPT_DIR/install/webp_peek.sh
 
 # Quarto
-cd /tmp
-sudo curl -LO https://quarto.org/download/latest/quarto-linux-amd64.deb
-sudo gdebi quarto-linux-amd64.deb
+source $SCRIPT_DIR/install/quarto.sh
 
 # QtCreator
 sudo apt-get install -y qtcreator
 
 # Strawberry
-sudo apt-get install -y strawberry
+source $SCRIPT_DIR/install/strawberry.sh
 
 # ZSH
-source install/zsh.sh
+source $SCRIPT_DIR/install/zsh.sh
 
 # CMake
-sudo apt-get install -y cmake
+source $SCRIPT_DIR/install/cmake.sh
 
 # QGIS compile
-sudo apt-get install -y \
-    flex bison libzip-dev libprotobuf-dev libexiv2-dev libdraco-dev \
-    pyqt6-dev pyqt6-dev-tools libqca-qt6-dev libqca-qt6-plugins libqscintilla2-qt6-dev \
-    qt6-3d-defaultgeometryloader-plugin qt6-3d-dev qt6-3d-gltfsceneio-plugin qt6-3d-scene2d-plugin \
-    qt6-5compat-dev qt6-base-dev qt6-base-private-dev qt6-multimedia-dev qt6-positioning-dev \
-    qt6-serialport-dev qt6-svg-dev qt6-tools-dev qt6-tools-dev-tools qt6-webengine-dev 
-    qtkeychain-qt6-dev pyqt6.qsci-dev libgsl-dev \
-    libspatialite-dev sip-tools protobuf-compiler ocl-icd-opencl-dev opencl-headers \
-    libhdf5-dev libhdf5-serial-dev hdf5-tools libnetcdf-dev netcdf-bin libsfcgal-dev
+source $SCRIPT_DIR/install/qgis_compile.sh
 
 # PDAL
-libgeotiff-dev geotiff-bin
-
-
-sudo apt-get install -y \
-    python3-pyqt6 \
-    python3-pyqt6.qsci \
-    python3-pyqt6.qtbluetooth \
-    python3-pyqt6.qtcharts \
-    python3-pyqt6.qtdesigner \
-    python3-pyqt6.qthelp \
-    python3-pyqt6.qtmultimedia \
-    python3-pyqt6.qtnfc \
-    python3-pyqt6.qtpdf \
-    python3-pyqt6.qtpositioning \
-    python3-pyqt6.qtqml \
-    python3-pyqt6.qtquick3d \
-    python3-pyqt6.qtquick \
-    python3-pyqt6.qtremoteobjects \
-    python3-pyqt6.qtsensors \
-    python3-pyqt6.qtserialport \
-    python3-pyqt6.qtsvg \
-    python3-pyqt6.qttexttospeech \
-    python3-pyqt6.qtwebchannel \
-    python3-pyqt6.qtwebengine \
-    python3-pyqt6.qtwebsockets \
-    python3-pyqt6.sip \
-    python3-gdal     
-
-pip install sip pyqt-builder owslib psycopg2 --break-system-packages
-
+source $SCRIPT_DIR/install/pdal.sh
 
 # PgAdmin
-sudo apt-get install -y \
-    pgadmin4 \
-    libpq-dev libpqxx-dev # libraries
+source $SCRIPT_DIR/install/pg.sh
 
 # LibreOffice style
-sudo apt-get install -y libreoffice-style-karasa-jaga
+source $SCRIPT_DIR/install/libreoffice_style.sh
 
-# Turtle
-sudo apt-get install -y turtle-cli turtle-nautilus
+# UFW and GUI for it
+source $SCRIPT_DIR/install/ufw.sh
+
+# Krusader
+source $SCRIPT_DIR/install/krusader.sh
 
 # add install from sepearate scripts
-$BASEDIR/install/miniconda.sh
-$BASEDIR/install/rust.sh
-$BASEDIR/install/jellyfin.sh
-$BASEDIR/install/texlive.sh
-$BASEDIR/install/r.sh
-$BASEDIR/install/xnview.sh
+source $SCRIPT_DIR/install/conda.sh
+source $SCRIPT_DIR/install/rust.sh
+source $SCRIPT_DIR/install/r.sh
+source $SCRIPT_DIR/install/xnview.sh
+
+if [[ "$GITHUB_ACTIONS" != "true" ]]; then
+    source $SCRIPT_DIR/install/drivers-nvidia.sh
+fi
+
+if [[ $IS_DEBIAN -eq 0 ]]; then
+    source $SCRIPT_DIR/install/jellyfin.sh
+fi

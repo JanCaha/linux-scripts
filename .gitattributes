@@ -2,3 +2,4 @@
 tools/wake_on_lan.sh filter=git-crypt diff=git-crypt
 notes/** filter=git-crypt diff=git-crypt
 
+settings/.zshenv filter=git-crypt diff=git-crypt

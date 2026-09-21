@@ -32,7 +32,13 @@ def main():
 
     version = result.stdout.decode("utf-8").replace("\n", "")
 
-    existing_version = util_functions.get_install_variable("QuartoVersion")
+    quarto_version = subprocess.run(
+        ["quarto", "--version"],
+        stdout=subprocess.PIPE,
+        check=True,
+    )
+
+    existing_version = quarto_version.stdout.decode("utf-8").replace("\n", "")
 
     if version == existing_version:
         util_functions.print_skip("Skipping Quarto installation.")

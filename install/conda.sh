@@ -1,22 +1,32 @@
+#!/bin/bash
+set -euo pipefail
+
 echo "🚀 Installing MiniConda"
 
-mkdir -p ~/miniconda3
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
-bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
-rm ~/miniconda3/miniconda.sh
+CONDA_DIR=~/miniconda3
+
+mkdir -p "$CONDA_DIR"
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O "/tmp/miniconda.sh"
+bash "/tmp/miniconda.sh" -b -u -p "$CONDA_DIR"
+rm "/tmp/miniconda.sh"
 
 echo "✅ MiniConda installed"
 
 echo "🚀 Installing packages to base environment"
 
-~/miniconda3/bin/conda init zsh
-source ~/.zshrc
+$CONDA_DIR/bin/conda init zsh
 
-conda config --set solver libmamba
+# only run on CI to properly initialize conda in the script
+if [ -n "${CI:-}" ]; then
+  $CONDA_DIR/bin/conda init bash
+  # Initialize conda for this bash session
+  eval "$($CONDA_DIR/bin/conda shell.bash hook)"
+fi
 
-conda activate base
+$CONDA_DIR/bin/conda config --set solver libmamba
 
-conda install -y \
+# Install packages to base environment (activate not needed)
+$CONDA_DIR/bin/conda install -y \
     beautifulsoup4 \
     nbclient \
     ipykernel \
