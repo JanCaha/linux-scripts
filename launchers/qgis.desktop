@@ -3,5 +3,5 @@ Name=QGIS
 Exec=/opt/qgis/bin/qgis 
 Comment=
 Terminal=false
-Icon=/home/cahik/Scripts/icons/qgis.svg
+Icon=__HOME__/Scripts/icons/qgis.svg
 Type=Application
