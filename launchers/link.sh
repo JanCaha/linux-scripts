@@ -9,6 +9,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 for desktop_file in "$SCRIPT_DIR"/*.desktop; do
     cp -f "$desktop_file" "$LAUNCHER_PATH/$(basename "$desktop_file")"
     sed -i \
+        -e "s|__APPS_DIRECTORY__|$APPS_DIRECTORY|g" \
         -e "s|__HOME__|$HOME|g" \
         -e "s|__QGIS_BUILD_DIR__|$QGIS_BUILD_DIR|g" \
         "$LAUNCHER_PATH/$(basename "$desktop_file")"

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Jellyfin
+Exec=__APPS_DIRECTORY__/JellyfinDesktop-x86_64.AppImage
+Comment=Jellyfin Desktop client
+Terminal=false
+PrefersNonDefaultGPU=false
+Icon=__HOME__/Scripts/icons/jellyfin.svg
+Type=Application
+Categories=AudioVideo;Video;Player;
