@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Lutra VPN
+Exec=__HOME__/Codes/linux-scripts/tools/lutra_vpn.sh
+Comment=Toggle Lutra VPN (wg-quick@wg0)
+Terminal=true
+PrefersNonDefaultGPU=false
+Icon=network-vpn
+Type=Application

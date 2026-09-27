@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=Connect to PC
-Exec=/home/cahik/Scripts/tools/connect_to_media.sh
+Exec=__HOME__/Scripts/tools/connect_to_media.sh
 Comment=
 Terminal=false
 PrefersNonDefaultGPU=false
-Icon=/home/cahik/Scripts/icons/pc.svg
+Icon=__HOME__/Scripts/icons/pc.svg
 Type=Application

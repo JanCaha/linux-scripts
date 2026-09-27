@@ -7,7 +7,7 @@ Some useful scripts for Linux
 Run manually:
 
 ```bash
-sudo apt install -y git zsh
+sudo apt install -y git git-crypt zsh
 cd /tmp
 git clone https://github.com/JanCaha/linux-scripts.git
 PATH=$PATH:/tmp/linux-scripts:/tmp/linux-scripts/python_programs
@@ -16,11 +16,6 @@ PATH=$PATH:/tmp/linux-scripts:/tmp/linux-scripts/python_programs
 ## Git-crypt
 
 To encrypt sensitive files in the repository:
-
-1. **Install git-crypt:**
-```bash
-sudo apt install git-crypt
-```
 
 2. **Initialize encryption in the repo:**
 ```bash
