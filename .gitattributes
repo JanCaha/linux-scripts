@@ -4,3 +4,6 @@ notes/** filter=git-crypt diff=git-crypt
 
 settings/.zshenv filter=git-crypt diff=git-crypt
 settings/.env filter=git-crypt diff=git-crypt
+
+.claude/** filter=git-crypt diff=git-crypt
+CLAUDE.md filter=git-crypt diff=git-crypt
