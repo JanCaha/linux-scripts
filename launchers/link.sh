@@ -13,6 +13,7 @@ for desktop_file in "$SCRIPT_DIR"/*.desktop; do
         -e "s|__HOME__|$HOME|g" \
         -e "s|__QGIS_BUILD_DIR__|$QGIS_BUILD_DIR|g" \
         "$LAUNCHER_PATH/$(basename "$desktop_file")"
+    echo "Copied $(basename "$desktop_file") to $LAUNCHER_PATH"
 done
 
 if command -v update-desktop-database >/dev/null 2>&1; then

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=DBGL
+Exec=java -jar __APPS_DIRECTORY__/dbgl/dbgl.jar
+Comment=DOSBox Game Launcher
+Terminal=false
+PrefersNonDefaultGPU=false
+Icon=__APPS_DIRECTORY__/dbgl/dbgl.png
+Type=Application
+Categories=Game;
