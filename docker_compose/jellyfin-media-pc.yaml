@@ -1,0 +1,32 @@
+name: Jellyfin (media-pc)
+
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    restart: unless-stopped
+
+    user: "1000:1000"
+
+    environment:
+      - JELLYFIN_DATA_DIR=/data
+      - JELLYFIN_CONFIG_DIR=/config
+      - JELLYFIN_CACHE_DIR=/cache
+
+    volumes:
+      - /home/media/Backup/Jellyfin/var:/data
+      - /home/media/Backup/Jellyfin/etc:/config
+      - /home/media/Backup/Jellyfin/cache:/cache
+      - /home/media/Disc-Seagate:/home/media/Disc-Seagate:ro
+
+    devices:
+      - /dev/dri/card1:/dev/dri/card1
+      - /dev/dri/renderD128:/dev/dri/renderD128
+
+    group_add:
+      - "44" # video
+      - "992" # render
+
+    ports:
+      - "8096:8096"
+      - "8920:8920"
