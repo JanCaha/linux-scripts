@@ -11,4 +11,3 @@ uv cache clean
 rm -rf ~/.cache/gdb
 rm -rf ~/.cache/vscode-cpptools/*
 ccache --clear
-  
