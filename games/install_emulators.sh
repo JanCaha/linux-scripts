@@ -40,9 +40,16 @@ sudo apt-get install -y --no-install-recommends \
     pkg-config
 
 if ! command -v emulationstation >/dev/null 2>&1; then
-    cd /tmp
-    git clone --depth 1 https://github.com/RetroPie/EmulationStation.git emulationstation-src
-    cd emulationstation-src
+    EMULATIONSTATION_SRC_DIR="/tmp/emulationstation-src"
+    if [[ -d "$EMULATIONSTATION_SRC_DIR/.git" ]]; then
+        git -C "$EMULATIONSTATION_SRC_DIR" fetch --depth 1 origin
+        git -C "$EMULATIONSTATION_SRC_DIR" reset --hard origin/master
+    else
+        rm -rf "$EMULATIONSTATION_SRC_DIR"
+        git clone --depth 1 https://github.com/RetroPie/EmulationStation.git "$EMULATIONSTATION_SRC_DIR"
+    fi
+
+    cd "$EMULATIONSTATION_SRC_DIR"
     cmake .
     make -j"$(nproc)"
     sudo make install
