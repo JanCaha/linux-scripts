@@ -44,10 +44,14 @@ if ! command -v emulationstation >/dev/null 2>&1; then
     EMULATIONSTATION_SRC_DIR="/tmp/emulationstation-src"
     if [[ -d "$EMULATIONSTATION_SRC_DIR/.git" ]]; then
         git -C "$EMULATIONSTATION_SRC_DIR" fetch --depth 1 origin
-        git -C "$EMULATIONSTATION_SRC_DIR" reset --hard origin/master
+        DEFAULT_REMOTE_BRANCH="$(git -C "$EMULATIONSTATION_SRC_DIR" symbolic-ref --quiet --short refs/remotes/origin/HEAD | sed 's|^origin/||')"
+        DEFAULT_REMOTE_BRANCH="${DEFAULT_REMOTE_BRANCH:-master}"
+        git -C "$EMULATIONSTATION_SRC_DIR" reset --hard "origin/$DEFAULT_REMOTE_BRANCH"
+        git -C "$EMULATIONSTATION_SRC_DIR" submodule sync --recursive
+        git -C "$EMULATIONSTATION_SRC_DIR" submodule update --init --recursive --depth 1
     else
         rm -rf "$EMULATIONSTATION_SRC_DIR"
-        git clone --depth 1 https://github.com/RetroPie/EmulationStation.git "$EMULATIONSTATION_SRC_DIR"
+        git clone --depth 1 --recurse-submodules --shallow-submodules https://github.com/RetroPie/EmulationStation.git "$EMULATIONSTATION_SRC_DIR"
     fi
 
     cd "$EMULATIONSTATION_SRC_DIR"
