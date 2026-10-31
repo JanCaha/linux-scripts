@@ -36,6 +36,7 @@ sudo apt-get install -y --no-install-recommends \
     libcurl4-openssl-dev \
     libvlc-dev \
     libx11-dev \
+    libsdl2-dev \
     pkg-config
 
 if ! command -v emulationstation >/dev/null 2>&1; then
