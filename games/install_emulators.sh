@@ -37,6 +37,7 @@ sudo apt-get install -y --no-install-recommends \
     libvlc-dev \
     libx11-dev \
     libsdl2-dev \
+    rapidjson-dev \
     pkg-config
 
 if ! command -v emulationstation >/dev/null 2>&1; then
