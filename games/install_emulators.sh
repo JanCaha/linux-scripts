@@ -26,6 +26,7 @@ sudo apt-get install -y --no-install-recommends \
     wget \
     p7zip-full \
     git \
+    git-lfs \
     build-essential \
     cmake \
     libasound2-dev \
@@ -53,6 +54,10 @@ if ! command -v emulationstation >/dev/null 2>&1; then
         rm -rf "$EMULATIONSTATION_SRC_DIR"
         git clone --depth 1 --recurse-submodules --shallow-submodules https://github.com/RetroPie/EmulationStation.git "$EMULATIONSTATION_SRC_DIR"
     fi
+
+    git -C "$EMULATIONSTATION_SRC_DIR" lfs install --local
+    git -C "$EMULATIONSTATION_SRC_DIR" lfs pull
+    git -C "$EMULATIONSTATION_SRC_DIR" submodule foreach --recursive 'git lfs install --local; git lfs pull'
 
     cd "$EMULATIONSTATION_SRC_DIR"
     cmake .
