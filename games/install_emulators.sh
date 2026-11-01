@@ -14,6 +14,8 @@ APPS_DIRECTORY="${APPS_DIRECTORY:-$HOME/Apps}"
 LAUNCHER_PATH="${LAUNCHER_PATH:-$HOME/.local/share/applications}"
 DBGL_INSTALL_DIR="${DBGL_INSTALL_DIR:-$APPS_DIRECTORY/dbgl}"
 DBGL_ARCHIVE_PATH="${DBGL_ARCHIVE_PATH:-$DOWNLOADS_DIR/dbgl.tar.xz}"
+EMULATIONSTATION_CONFIG_DIR="${EMULATIONSTATION_CONFIG_DIR:-$HOME/.emulationstation}"
+EMULATIONSTATION_SYSTEMS_FILE="$EMULATIONSTATION_CONFIG_DIR/es_systems.cfg"
 
 print_header "Installing emulator dependencies"
 
@@ -73,6 +75,7 @@ ensure_dir "$DOSBOX_GAMES_DIR"
 ensure_dir "$DOSBOX_CONFIG_DIR"
 ensure_dir "$DOWNLOADS_DIR"
 ensure_dir "$APPS_DIRECTORY"
+ensure_dir "$EMULATIONSTATION_CONFIG_DIR"
 
 print_header "Installing DBGL"
 
@@ -106,6 +109,23 @@ if command -v update-desktop-database >/dev/null 2>&1; then
     update-desktop-database "$LAUNCHER_PATH"
 fi
 
+if [[ ! -f "$EMULATIONSTATION_SYSTEMS_FILE" ]]; then
+    cat > "$EMULATIONSTATION_SYSTEMS_FILE" <<EOF
+<?xml version="1.0"?>
+<systemList>
+    <system>
+        <name>mame</name>
+        <fullname>MAME</fullname>
+        <path>$MAME_ROMS_DIR</path>
+        <extension>.zip .ZIP .7z .7Z</extension>
+        <command>mame -rompath "$MAME_ROMS_DIR" %ROM%</command>
+        <platform>arcade</platform>
+        <theme>mame</theme>
+    </system>
+</systemList>
+EOF
+fi
+
 cat <<EOF
 Installed software and prepared folders:
 - MAME: $MAME_ROOT
@@ -116,4 +136,5 @@ Installed software and prepared folders:
 - DBGL: $DBGL_INSTALL_DIR
 - DBGL launcher: $LAUNCHER_PATH/dbgl.desktop
 - DBGL icon: $DBGL_ICON
+- EmulationStation config: $EMULATIONSTATION_SYSTEMS_FILE
 EOF
