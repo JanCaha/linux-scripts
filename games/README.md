@@ -4,7 +4,7 @@ This folder contains scripts for setting up the emulation environment used for D
 
 ## Included scripts
 
-- `install_emulators.sh` — installs MAME, DOSBox, Java, basic download utilities, and DBGL into `APPS_DIRECTORY`, then creates a desktop launcher with the bundled DBGL icon.
+- `install_emulators.sh` — installs MAME, DOSBox, Java, basic download utilities, and DBGL into `APPS_DIRECTORY`, creates a DBGL desktop launcher, and writes a minimal EmulationStation MAME config (`~/.emulationstation/es_systems.cfg`) when missing.
 - `configure_mame.sh` — creates a simple MAME directory layout and a basic `mame.ini`.
 - `configure_dosbox.sh` — creates game-specific DOSBox configs.
 - `download_game.sh` — downloads and extracts a ZIP/7z archive from a URL into a chosen game directory.
