@@ -4,7 +4,7 @@ services:
   jellyfin:
     image: jellyfin/jellyfin:latest
     container_name: jellyfin-media-pc-encrypted
-    restart: unless-stopped
+    restart: "no"
 
     user: "1000:1000"
 
