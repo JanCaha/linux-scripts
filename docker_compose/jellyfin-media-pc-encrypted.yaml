@@ -31,7 +31,7 @@ services:
           create_host_path: false
       - type: bind
         source: ${JELLYFIN_MEDIA_DIR_ENCRYPTED:?Set JELLYFIN_MEDIA_DIR_ENCRYPTED}
-        target: /media
+        target: ${JELLYFIN_MEDIA_DIR_ENCRYPTED:?Set JELLYFIN_MEDIA_DIR_ENCRYPTED}
         read_only: true
         bind:
           create_host_path: false
